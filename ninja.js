@@ -6,10 +6,10 @@ class Ninja{
         this.speed = speed
         this.strength = strength
     }
-    sayName = () => {
+    sayName(){
         console.log(`Hello my name is ${this.name}`)
-    }
-    sayStats = () => {
+    };
+    sayStats(){
         console.log(`Name: ${this.name}, Health: ${this.health}, Speed: ${this.speed}, Strength: ${this.strength}`)
     }
     drinkSake(){
@@ -26,7 +26,8 @@ class Sensei extends Ninja{
     speakWisdom = () => {
         // super => class Ninja
         // super.drinkSake() => Ninja.drinkSake()
-        this.drinkSake()
+        // this.drinkSake()
+        super.sayName();
         console.log("THIS IS A WISE MESSAGE")
     }
 
@@ -51,6 +52,6 @@ const op_ninja = new Ninja("Anjiro", 200, 5, 5)
 
 const sensei = new Sensei("Jiraya", 500)
 sensei.sayStats()
-// sensei.speakWisdom()
-sensei.drinkSake()
+sensei.speakWisdom()
+// sensei.drinkSake()
 sensei.sayStats()
