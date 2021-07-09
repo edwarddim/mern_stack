@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 
 const CounterFunc = props => {
     const [state, setState] = useState({
-        count : 0
+        count : 0,
+        clickTimes : []
     })
 
     const handleClick = () => {

@@ -27,3 +27,64 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function bubbleSort(nums) {
 
 }
+
+
+/**
+ * Efficiently merges two already sorted arrays into a new sorted array.
+ * Do not mutate the given arrays.
+ * - Time: O(?).
+ * - Space: O(?).
+ * @param {Array<number>} left
+ * @param {Array<number>} right
+ * @returns {Array<number>} A new sorted array containing all the elements of
+ *    both given halves.
+ */
+function merge(leftArr, rightArr) {
+  // 1. Create an empty arr to push the sorted numbers into
+  let result = []
+  let leftIdx = 0
+  let rightIdx = 0
+  // 2. Iterate through the left and right arrays and push the corresponding min values
+  while(leftIdx < leftArr.length && rightIdx < rightArr.length){
+    if(leftArr[leftIdx] < rightArr[rightIdx]){
+      result.push(leftArr[leftIdx])
+      leftIdx++
+    }
+    else{
+      result.push(rightArr[rightIdx])
+      rightIdx++
+    }
+  }
+  // 3. Iterate through the array with numbers left and push the rest of the values
+  while(leftIdx < leftArr.length){
+    result.push(leftArr[leftIdx])
+    leftIdx++
+  }
+  while(rightIdx < rightArr.length){
+    result.push(rightArr[rightIdx])
+    rightIdx++
+  }
+  // 4. Return the new sorted array
+  return result
+}
+
+/**
+* Creates a new sorted array based on the given nums being recursively split
+* and merged.
+* Best: O(n log(n)) linearithmic.
+* Avg: O(n log(n)) linearithmic.
+* Worst: O(n log(n)) linearithmic.
+* @param {Array<number>} nums
+* @returns {Array<number>} A New sorted array.
+*/
+function mergeSort(nums) {
+  // BASE CASE
+  if(nums.length === 1){
+    return nums
+  }
+  // PROGRESSION
+  // splitting the given array into left and right
+  
+  // RECURSIVE CALL
+  // call your merge and your mergeSort
+}
