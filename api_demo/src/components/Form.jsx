@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
+import axios from "axios"
 
 const Form = props => {
 
-    const {setLoggedUsers, loggedUsers} = props
+    // const {setLoggedUsers, loggedUsers} = props
     // console.log("FUNCTION BEING PASSED THROUGH PROPS: ",setLoggedUsers)
     // console.log(loggedUsers)
 
@@ -18,6 +19,29 @@ const Form = props => {
         confirmPassword : false
     })
 
+    const [submitState, setSubmitState] = useState(false)
+
+    const [lukeState, setLukeState] = useState()
+
+    useEffect( () => {
+        // making API calls
+        // let response = await fetch("https://swapi.dev/api/people/1")
+        // let data  = await response.json()
+        // console.log(data)
+        // setLukeState(data)
+
+        axios.get("https://swapi.dev/api/people/1")
+            .then(resp => { // .then = successful response
+                console.log("SUCCESS")
+                console.log(resp.data)
+                setLukeState(resp.data)
+            })
+            .catch(err => {  // .catch = unsuccessful response
+                console.log("FAILURE")
+                console.log(err)
+            })
+
+    }, [])
 
     const handleChange = event => {
         const {name, value} = event.target
@@ -29,30 +53,13 @@ const Form = props => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        // // check for email validations
-        // if(! (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(formState.email)){
-        //     var email = true
-        // }
-        // // check for password validations
-        // if(formState.password.length < 8){
-        //     var password = true
-        // }
-        // if(formState.password !== formState.confirmPassword){
-        //     var confirmPassword = true
-        // }
-        
-        // setValidState({
-        //     ...validState,
-        //     email,
-        //     password,
-        //     confirmPassword
-        // })
-        setLoggedUsers([...loggedUsers, formState])
+        // setLoggedUsers([...loggedUsers, formState])
         setFormState({
             email : "",
             password : "",
             confirmPassword : ""
         })
+        setSubmitState(!submitState)
     }
 
     return(
@@ -76,8 +83,12 @@ const Form = props => {
                 </p>
                 <button type="submit">Login</button>
             </form>
+            <div>
+                {
+                    (lukeState) ? <h1>{lukeState.name}</h1> : <h1>Luke loading....</h1>
+                }
+            </div>
         </fieldset>
-
     )
 }
 export default Form;
