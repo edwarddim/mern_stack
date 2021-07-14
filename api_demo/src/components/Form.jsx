@@ -81,7 +81,7 @@ const Form = props => {
                     <input type="text" name="confirmPassword" id="" value={formState.confirmPassword} onChange={handleChange} />
                     { (validState.confirmPassword) ? <p>Your password and cofirm password must match</p> : null }
                 </p>
-                <button type="submit">Login</button>
+                <button className="btn btn-primary" type="submit">Login</button>
             </form>
             <div>
                 {

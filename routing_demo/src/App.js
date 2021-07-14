@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import {Router} from "@reach/router"
+import Home from "./components/Home";
+import About from "./components/About";
+import Detail from "./components/Detail";
+import Checkout from "./components/Checkout";
+import Error from "./components/Error"
 
 function App() {
+
+  // const [state, setState] = useState("edward")
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <fieldset>
+        <legend>App.js</legend>
+        <Navbar />
+        <Router>
+          <Home path="/" />
+          <About path="/about" />
+          <Detail path="/:param/:name" />
+          <Checkout path="/checkout" />
+          <Error path="/error" />
+        </Router>
+      </fieldset>
     </div>
   );
 }
