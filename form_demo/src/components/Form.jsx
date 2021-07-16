@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+cd .import React, {useEffect, useState} from "react";
 
 const Form = props => {
 
@@ -29,24 +29,29 @@ const Form = props => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        // // check for email validations
-        // if(! (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(formState.email)){
-        //     var email = true
-        // }
-        // // check for password validations
-        // if(formState.password.length < 8){
-        //     var password = true
-        // }
-        // if(formState.password !== formState.confirmPassword){
-        //     var confirmPassword = true
-        // }
+
+        var email = false
+        var password = false
+        var confirmPassword = false
+
+        // check for email validations
+        if(! (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(formState.email)){
+            email = true
+        }
+        // check for password validations
+        if(formState.password.length < 8){
+            password = true
+        }
+        if(formState.password !== formState.confirmPassword){
+            confirmPassword = true
+        }
         
-        // setValidState({
-        //     ...validState,
-        //     email,
-        //     password,
-        //     confirmPassword
-        // })
+        setValidState({
+            ...validState,
+            email,
+            password,
+            confirmPassword
+        })
         setLoggedUsers([...loggedUsers, formState])
         setFormState({
             email : "",
