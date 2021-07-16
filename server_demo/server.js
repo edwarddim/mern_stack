@@ -3,6 +3,8 @@ const express = require("express") // import express from "express"
 const app = express() // INSTANTIATING AN EXPRESS SERVER
 const port = 8000
 
+require("./config/mongoose.config.js")
+
 // 2. CONFIGURE YOUR EXPRESS SERVER
 app.use( express.json() ); // ALLOWS JSON USAGE
 app.use( express.urlencoded({ extended: true }) ); // ACCEPT POST REQUESTS
