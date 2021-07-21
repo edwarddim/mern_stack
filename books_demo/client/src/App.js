@@ -1,6 +1,8 @@
 import {Router} from "@reach/router"
 import CreateComponent from "./components/CreateComponent"
+import EditComponent from "./components/EditComponent"
 import ListComponent from "./components/ListComponent"
+
 
 function App() {
   return (
@@ -9,6 +11,7 @@ function App() {
       <Router>
         <ListComponent path="/" />
         <CreateComponent path="/new" />
+        <EditComponent path="/edit/:book_id" />
       </Router>
     </div>
   );
