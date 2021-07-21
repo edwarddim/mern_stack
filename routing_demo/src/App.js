@@ -3,8 +3,6 @@ import {Router} from "@reach/router"
 import Home from "./components/Home";
 import About from "./components/About";
 import Detail from "./components/Detail";
-import Checkout from "./components/Checkout";
-import Error from "./components/Error"
 
 function App() {
 
@@ -16,11 +14,16 @@ function App() {
         <legend>App.js</legend>
         <Navbar />
         <Router>
-          <Home path="/" />
-          <About path="/about" />
-          <Detail path="/:param/:name" />
-          <Checkout path="/checkout" />
-          <Error path="/error" />
+          {/* <AdminComponent path="/admin">
+            <AdminDash path="dashbaord" />
+          </AdminComponent> */}
+          {/* <UserComponent path="/user">
+            <UserDash path="dashboard" />
+          </UserComponent> */}
+          <Home path="/home">
+            <About path="about" />
+            <Detail path="detail" />
+          </Home>
         </Router>
       </fieldset>
     </div>

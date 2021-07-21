@@ -19,10 +19,6 @@ module.exports.createMessage = (req, res) => {
 module.exports.createComment = (req, res) => {
 
     const {message_id} = req.params
-    console.log(message_id)
-    console.log(req.body)
-
-    // return res.json({message: "test"})
 
     Comment.create(req.body)
         .then(newComment => {
@@ -34,5 +30,14 @@ module.exports.createComment = (req, res) => {
                 .then(updatedMessage => res.json(updatedMessage))
                 .catch(err => res.json(err))
         })
+        .catch(err => res.json(err))
+}
+
+module.exports.findComment = (req, res) => {
+
+    const {message_id, comment_id} = req.params
+
+    Message.find({_id : message_id, "comments._id": comment_id})
+        .then(comment => res.json(comment))
         .catch(err => res.json(err))
 }

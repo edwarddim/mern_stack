@@ -5,4 +5,5 @@ module.exports = app => {
     app.get("/api/messages", MessageController.allMessages)
     app.post("/api/messages", MessageController.createMessage)
     app.post("/api/comments/:message_id", MessageController.createComment)
+    app.get("/api/comments/:message_id/:comment_id", MessageController.findComment)
 }

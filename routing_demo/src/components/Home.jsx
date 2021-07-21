@@ -7,6 +7,7 @@ const Home =props => {
     const [time, setTime] = useState(new Date().toLocaleString());
 
     useEffect(() => {
+        alert("HOME COMPONENT IS MOUNTED")
         const int = setInterval(
             () => {
                 setTime(new Date().toLocaleString())
@@ -16,6 +17,7 @@ const Home =props => {
         );
  
         return function clearInt() {
+            alert("HOME COMPONENT IS DISMOUNTED")
             clearInterval(int);
         }
     }, [])
@@ -23,12 +25,9 @@ const Home =props => {
     return(
         <fieldset>
             <legend>Home.jsx</legend>
+            <Link to="/">GO TO INDEX ROUTE</Link>
             <h1>{time}</h1>
-            {
-                users.map((user_id , i) => {
-                    return <Link to={`/${user_id}/edward`} >User for {user_id}</Link>
-                })
-            }
+            {props.children}
         </fieldset>
     )
 }
