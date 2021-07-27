@@ -3,6 +3,8 @@ import axios from "axios"
 
 const CreateComponent = props => {
 
+    console.log(props)
+
     const {submitState, setSubmitState} = props
 
     const [formState, setFormState] = useState({
