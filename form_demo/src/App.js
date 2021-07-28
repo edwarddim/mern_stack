@@ -7,6 +7,7 @@ import Form from './components/Form'
 
 function App() {
 
+  console.log(process.env.REACT_APP_API_KEY)
   const [loggedUsers, setLoggedUsers] = useState([])
 
   return (

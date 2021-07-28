@@ -1,10 +1,11 @@
-cd .import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const Form = props => {
 
     const {setLoggedUsers, loggedUsers} = props
     // console.log("FUNCTION BEING PASSED THROUGH PROPS: ",setLoggedUsers)
     // console.log(loggedUsers)
+    console.log(process.env.REACT_APP_API_KEY)
 
     const [formState, setFormState] = useState({
         email : "",
