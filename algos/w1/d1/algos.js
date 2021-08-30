@@ -24,7 +24,21 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given nums after being sorted.
  */
-function bubbleSort(nums) {}
+function bubbleSort(nums) {
+  let count = 0;
+  let len = nums.length;
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 0; j < len - i - 1; j++) {
+      console.log(nums);
+      if (nums[j] > nums[j + 1]) {
+        let temp = nums[j];
+        nums[j] = nums[j + 1];
+        nums[j + 1] = temp;
+      }
+    }
+  }
+  return nums;
+}
 
 /*****************************************************************************/
 
@@ -62,4 +76,23 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given array after being sorted.
  */
-function selectionSort(nums) {}
+function selectionSort(nums) {
+  let smallIdx;
+  let temp;
+
+  for (let i = 0; i < nums.length; i++) {
+    smallIdx = i;
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[j] < nums[smallIdx]) {
+        smallIdx = j;
+      }
+    }
+    temp = nums[i];
+    nums[i] = nums[smallIdx];
+    nums[smallIdx] = temp;
+  }
+
+  return nums;
+}
+
+

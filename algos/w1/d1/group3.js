@@ -24,8 +24,26 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given nums after being sorted.
  */
-function bubbleSort(nums) {}
+function bubbleSort(nums) {
+  var comparingNum = 0;
+  while(true){
+    var bool = false;
+    for (var i = 0; i < nums.length; i ++){
+      if(nums[i] > nums[i+1]){
+        comparingNum = nums[i];
+        nums.splice(i, 1, nums[i+1]);
+        nums.splice(i+1, 1, comparingNum);
+        bool = true;
+      } 
+    }
+    if (!bool) {
+      return nums;
+    }
+  }
+}
 
+
+console.log(bubbleSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]));
 /*****************************************************************************/
 
 /* 
@@ -62,4 +80,25 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given array after being sorted.
  */
-function selectionSort(nums) {}
+function selectionSort(nums) {
+  var c = 0;
+  while (true) {
+    var min = nums[c];
+    var loc = c;
+    for (var i=c; i<nums.length; i++) {
+      if (nums[i] < min) {
+        min = nums[i]; 
+        loc = i;
+      }
+    }
+    if (c === nums.length) {
+      return nums;
+    }
+    else {
+      var temp = nums[c];
+      nums.splice(c, 1, min);
+      nums.splice(loc, 1, temp);
+      c++;
+    }
+  }
+}

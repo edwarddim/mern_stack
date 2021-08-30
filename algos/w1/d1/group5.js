@@ -24,7 +24,15 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given nums after being sorted.
  */
-function bubbleSort(nums) {}
+function bubbleSort(nums) {
+  // if the item on the left is larger than the item on the right use swapping algo
+  // for i in array.length
+  // compare current index to next index
+  // if current index is greater than the next index, swap values
+  // 
+
+  
+}
 
 /*****************************************************************************/
 
@@ -62,4 +70,7 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given array after being sorted.
  */
-function selectionSort(nums) {}
+function selectionSort(nums) {
+
+
+}

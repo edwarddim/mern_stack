@@ -24,7 +24,20 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given nums after being sorted.
  */
-function bubbleSort(nums) {}
+ function bubbleSort(nums) {
+  let len = nums.length;
+  for (let i = 0; i < len; i++) {
+      for (let j = 0; j < len; j++) {
+          if (nums[j] > nums[j + 1]) {
+              let tmp = nums[j];
+              nums[j] = nums[j + 1];
+              nums[j + 1] = tmp;
+          }
+      }
+  }
+  return nums;
+};
+console.log(bubbleSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]))
 
 /*****************************************************************************/
 
@@ -62,4 +75,26 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given array after being sorted.
  */
-function selectionSort(nums) {}
+ function selectionSort(nums) {
+  let n = nums.length;
+      
+  for(let i = 0; i < n; i++) {
+      // Finding the smallest number in the subarray
+      let min = i;
+      for(let j = i+1; j < n; j++){
+          if(nums[j] < nums[min]) {
+              min=j; 
+          }
+       }
+       if (min != i) {
+           // Swapping the elements
+           let tmp = nums[i]; 
+           nums[i] = nums[min];
+           nums[min] = tmp;      
+      }
+  }
+  return nums;
+}
+
+
+console.log(selectionSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]))
