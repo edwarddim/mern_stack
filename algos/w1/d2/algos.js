@@ -43,4 +43,16 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given array after being sorted.
  */
-function insertionSort(nums) {}
+function insertionSort(nums) {
+  // first sorted
+  for (let i = 1; i < nums.length; i++) {
+    for (let j = i; j > 0; j--) {
+      if (nums[j] < nums[j - 1]) {
+        let temp = nums[j];
+        nums[j] = nums[j - 1];
+        nums[j - 1] = temp;
+      }
+    }
+  }
+  return nums;
+}
