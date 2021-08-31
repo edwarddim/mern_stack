@@ -2,14 +2,14 @@
 
 // var name = "Edward"
 
-function test(){
-    var test = "something"
-    // let and const
-    for(let i = 0; i< 10; i++){
-        console.log(i)
+// function test(){
+//     var test = "something"
+//     // let and const
+//     for(let i = 0; i< 10; i++){
+//         console.log(i)
        
-    }
-}
+//     }
+// }
 
 
 // let name = "Edweard"
@@ -73,19 +73,19 @@ setTimeout(
 , 3000)
 
 
-function(name, age){
-    console.log(name)
-}
+// function(name, age){
+//     console.log(name)
+// }
 
-(name, age) => {
-    console.log(name)
-    console.log(age)
-}
+// (name, age) => {
+//     console.log(name)
+//     console.log(age)
+// }
 
 
 
 // Ternary Operators
-var age = 20
+// var age = 20
 if(age < 18){
     console.log("You are still a minor")
 }
