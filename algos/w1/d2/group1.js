@@ -43,4 +43,40 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given array after being sorted.
  */
-function insertionSort(nums) {}
+// function insertionSort(nums) {
+//   for (i = 1; i < nums.length; i++) {
+//     if (nums[i - 1] > nums[i]) {
+//       for (j = i - 1; j > 0; j--) {
+//         temp = nums[j - 1];
+//         nums[j - 1] = nums[j];
+//         nums[j] = temp;
+//       }
+//     }
+//   }
+//   return console.log(nums);
+// }
+// insertionSort(numsRandomOrder);
+
+const numsRandomOrder = [9, 2, 5, 6];
+
+function insertionSort(nums) {
+  for (i = 1; i < nums.length; i++) {
+    temp = nums[i - 1];
+    nums[i - 1] = nums[i];
+    nums[i] = temp;
+    console.log("Temp:", temp);
+
+    console.log(nums[i - 1]);
+    console.log(nums[i]);
+    console.log("&&&&&&&");
+
+    // if (nums[i - 1] > nums[i]) {
+    //     for (j = i - 1; j > 0; j--) {
+    //     nums[i - 1] = nums[i];
+    //     nums[i] = temp;
+    //     }
+    // }
+  }
+  return console.log(nums);
+}
+insertionSort(numsRandomOrder);

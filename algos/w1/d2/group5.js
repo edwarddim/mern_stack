@@ -1,4 +1,4 @@
-/* 
+/* Patrick, Dustine, Nick, Ryne , Kara
   - Visualization with playing cards (scroll down):
       https://www.khanacademy.org/computing/computer-science/algorithms/insertion-sort/a/insertion-sort
   - Array / bar visualization:
@@ -43,4 +43,35 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} The given array after being sorted.
  */
-function insertionSort(nums) {}
+function insertionSortSwap(nums) {
+  // first sorted
+  for (let i = 1; i < nums.length; i++) {
+    for (let j = i; j > 0; j--) {
+      if (nums[j] < nums[j - 1]) {
+        let temp = nums[j];
+        nums[j] = nums[j - 1];
+        nums[j - 1] = temp;
+      }
+    }
+  }
+  return nums;
+}
+
+//broken :'(
+function insertionSortShift(nums) {
+  //consider the first item is already sorted
+  for (var indexCompared = 1; indexCompared < nums.length; indexCompared++) {
+    // take whatever the current value of the index at i (one) and store it as a variable
+    var currentValueBeingCompared = nums[indexCompared];
+    var leftIndex = indexCompared - 1;
+    // continue to compare it to the prior index, while it is smaller than the prior value, swap it
+    while (leftIndex > 0 && nums[leftIndex] > currentValueBeingCompared) {
+      nums[leftIndex + 1] = currentValueBeingCompared;
+      leftIndex--;
+    }
+    //swap with the current value
+    nums[leftIndex + 1] = currentValueBeingCompared;
+  }
+  //return the array nums
+  return nums;
+}
