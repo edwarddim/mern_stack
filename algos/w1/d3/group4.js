@@ -1,3 +1,5 @@
+// Group members: Chenxi, Brian P, Chris H, Dustine, Ryne, Ryan P
+
 /* 
   Stable sort.
   Visualization:
@@ -36,6 +38,7 @@ const sortedA4 = [1, 2, 4, 5, 6, 9];
 const sortedB4 = [3, 7, 8, 10];
 const expectedMerge4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+
 /**
  * Efficiently merges two already sorted arrays into a new sorted array.
  * Do not mutate the given arrays.
@@ -46,7 +49,33 @@ const expectedMerge4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @returns {Array<number>} A new sorted array containing all the elements of
  *    both given halves.
  */
-function merge(left, right) {}
+ function merge(left, right) {
+// create an array to merge with
+  var array = [];
+  var i = 0;
+  var j = 0;
+  // do merge for both left and right
+  while (i < left.length && j < right.length) {
+    if (left[i] <= right[j]) {
+      array.push(left[i]);
+      i++;
+    } else {
+      array.push(right[j]);
+      j++;
+    }
+  }
+  // do merge for remaining part
+  while (i < left.length) {
+    array.push(left[i]);
+    i++;
+  }
+  while (j < right.length) {
+    array.push(right[j]);
+    j++;
+  }
+  // return the final result
+  return array;
+}
 
 // mergeSort
 const numsOrdered = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -63,4 +92,16 @@ const expectedSort = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} A New sorted array.
  */
-function mergeSort(nums) {}
+ function mergeSort(nums) {
+   //base case
+  if (nums.length == 1) {
+      return nums;
+  }
+  // slice left and right
+  var left = mergeSort(nums.slice(0, nums.length / 2));
+  var right = mergeSort(nums.slice(nums.length / 2));
+  // forward engeering and recursion
+  return merge(left, right);
+}
+
+

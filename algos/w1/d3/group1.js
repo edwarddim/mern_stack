@@ -46,7 +46,25 @@ const expectedMerge4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @returns {Array<number>} A new sorted array containing all the elements of
  *    both given halves.
  */
-function merge(left, right) {}
+function merge(left, right) {
+  let newArr = [];
+  let duration = left.length + right.length;
+  let i = 0;
+  let j = 0;
+  let counter = 0;
+  while (counter < duration) {
+    if (left[i] < right[j]) {
+      newArr.push(left[i]);
+      i++;
+    } else {
+      newArr.push(right[j]);
+      j++;
+    }
+
+    counter++;
+  }
+  return newArr;
+}
 
 // mergeSort
 const numsOrdered = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -63,4 +81,16 @@ const expectedSort = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} A New sorted array.
  */
-function mergeSort(nums) {}
+function mergeSort(nums) {
+  if (nums.length ==1){
+    return nums }
+  
+  const half = Math.ceil(nums.length / 2);    
+  const firstHalf = nums.splice(0, half)
+  const secondHalf = nums.splice(-half)
+  
+  mergeSort(firstHalf)
+  mergeSort(secondHalf)
+  
+  return merge(firstHalf, secondHalf)
+}

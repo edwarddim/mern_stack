@@ -46,21 +46,42 @@ const expectedMerge4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @returns {Array<number>} A new sorted array containing all the elements of
  *    both given halves.
  */
-function merge(left, right) {}
+function merge(left, right) {
 
-// mergeSort
-const numsOrdered = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const numsRandomOrder = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
-const numsReversed = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-const expectedSort = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let arr = []
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      arr.push(left.shift())
+    } else {
+      arr.push(right.shift())
+    }
 
-/**
- * Creates a new sorted array based on the given nums being recursively split
- * and merged.
- * Best: O(n log(n)) linearithmic.
- * Avg: O(n log(n)) linearithmic.
- * Worst: O(n log(n)) linearithmic.
- * @param {Array<number>} nums
- * @returns {Array<number>} A New sorted array.
- */
-function mergeSort(nums) {}
+  }
+  console.log([...arr, ...left, ...right])
+  return [...arr, ...left, ...right]
+}
+
+  // mergeSort
+  const numsOrdered = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const numsRandomOrder = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
+  const numsReversed = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+  const expectedSort = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  /**
+   * Creates a new sorted array based on the given nums being recursively split
+   * and merged.
+   * Best: O(n log(n)) linearithmic.
+   * Avg: O(n log(n)) linearithmic.
+   * Worst: O(n log(n)) linearithmic.
+   * @param {Array<number>} nums
+   * @returns {Array<number>} A New sorted array.
+   */
+  function mergeSort(array) {
+    const half = array.length / 2
+    if (array.length < 2) {
+      return array
+    }
+    const left = array.splice(0, half)
+    return merge(mergeSort(left), mergeSort(array))
+  }
+console.log(mergeSort(numsRandomOrder));
