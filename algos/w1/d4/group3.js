@@ -23,19 +23,37 @@ const nums1 = [11, 8, 14, 3, 6, 2, 7];
 const nums2 = [11, 8, 14, 3, 3, 3, 6, 2, 7];
 const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
 
-/**
- * Partitions the given array in-place by selecting the number at the middle
- * index to use it as a "pivot" value, then arranges all numbers less than the
- * pivot to be to it's left and all larger numbers to the right of the pivot.
- * - Time: O(?).
- * - Space: O(?).
- * @param {Array<number>} nums
- * @param {number} left The index indicating the start of the slice of array
- *    being processed.
- * @param {number} right The index indicating the end of the slice of array
- *    being processed.
- * @returns {Array<number>} The idx where left section of smaller items ends.
- */
-function partition(nums = [], left = 0, right = nums.length - 1) {}
+// /**
+//  * Partitions the given array in-place by selecting the number at the middle
+//  * index to use it as a "pivot" value, then arranges all numbers less than the
+//  * pivot to be to it's left and all larger numbers to the right of the pivot.
+//  * - Time: O(?).
+//  * - Space: O(?).
+//  * @param {Array<number>} nums
+//  * @param {number} left The index indicating the start of the slice of array
+//  *    being processed.
+//  * @param {number} right The index indicating the end of the slice of array
+//  *    being processed.
+//  * @returns {Array<number>} The idx where left section of smaller items ends.
+//  */
+function partition(nums = [], left = 0, right = nums.length - 1) {
+  const index = Math.floor(right - left / 2);
+  const pivot = nums[index];
 
+  while (true) {
+    if (left >= right) { //breaks while loop when left and right are equal or left passed right
+      return right;
+    }
+    while (nums[left] < pivot) { //walks left up until it hits a value greater than pivot
+      left++;
+    }
+    while (nums[right] > pivot) { // walks right down until it hits a value less than pivot
+      right--;
+    }
+    let temp = nums[right]; //swaps left & right
+    nums[right] = nums[left];
+    nums[left] = temp;
+  }
+}
+console.log(partition(nums1));
 module.exports = { partition };

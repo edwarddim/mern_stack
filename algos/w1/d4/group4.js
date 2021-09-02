@@ -1,3 +1,5 @@
+
+
 /* 
   Params: nums, left, right
     - left and right are indexes, for now, left will be 0, and right will be
@@ -36,6 +38,59 @@ const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
  *    being processed.
  * @returns {Array<number>} The idx where left section of smaller items ends.
  */
-function partition(nums = [], left = 0, right = nums.length - 1) {}
+function partitionOne(nums = [], left = 0, right = nums.length - 1) {
+  let pivotValue = nums[Math.floor(nums.length / 2)];
+  if (nums[left] > pivotValue){
+    let temp = nums[left];
+    nums[left] = something;
+    something = temp;
+    left++
+  }
+  else if (nums[right] < pivotValue){
+    let temp = nums[right];
+    nums[right] = soemthing;
+    something = nums[right];
+    right--
+  }
+  else if (nums[left] == pivotValue || nums[right] == pivotValue) {
+    return nums;
+  }
+  else {
+    left++;
+    right--;
+  }
+}
+
+//chenxi's solution below:  not work but i think the core idea follows 
+
+function partitionTwo(nums = nums1, left = 0, right = nums.length - 1) {
+  var pivot = nums[Math.floor(nums.length / 2)];
+  var i = left;
+  var j = right;
+  while (i < j) {
+      if ((nums[i] < pivot) && (nums[j] > pivot)) {
+          i++;
+          j--;
+      }
+      else if ((nums[i] > pivot) && (nums[j] > pivot)) {
+          j--;
+      }
+      else if ((nums[i] > pivot) && (nums[j] < pivot)) {
+          var temp = nums[i];
+          nums[i] = nums[j];
+          nums[j] = temp;
+          i++;
+          j--;
+      } else {
+          i++;
+      }
+  }
+  return nums;
+
+}
+
+
 
 module.exports = { partition };
+
+

@@ -1,4 +1,4 @@
-/* 
+/* Duy, Daniel, Kalyb, Vincent
   Params: nums, left, right
     - left and right are indexes, for now, left will be 0, and right will be
         the last idx.
@@ -36,6 +36,22 @@ const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
  *    being processed.
  * @returns {Array<number>} The idx where left section of smaller items ends.
  */
-function partition(nums = [], left = 0, right = nums.length - 1) {}
+function partition(nums = [], left = 0, right = nums.length - 1) {
+  var pivot = Math.floor(nums.length / 2); // leave as this for now since partition looks wild otherwise.
+  var i = left - 1;
+  var j = right + 1;
+  while (true) {
+    do {
+      i++;
+    } while (nums[i] < nums[pivot]);
+    do {
+      j--;
+    } while (nums[j] > nums[pivot]);
+    if (i >= j) {
+      return j;
+    }
+    [nums[i], nums[j]] = [nums[j], nums[i]];
+  }
+}
 
 module.exports = { partition };
