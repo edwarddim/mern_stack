@@ -39,31 +39,22 @@ const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
 function partition(nums = [], left = 0, right = nums.length - 1) {
   //middle index as a middle value (round up or down) 
   //everything is compared to this middle value
-  //set up a left (is 0) and right index (right is the end) tracker
-  //iterate - if left index is < middle, increment left without changing
-  //iterate - as long as right index is greater than middle, decrement without changing
-  let temp;
   let midVal = Math.ceil(nums.length/2);
-  while(right != midVal){
-    if(nums[left] < nums[midVal]){
-      left++;
-    } else {
-      //swap and increment left
-      [nums[left], nums[midVal] = [nums[midVal], nums[left]];
+  while(right > midVal && left < midVal){
+    //continue to increment left until we find a value greater than mid
+    while(nums[left] < nums[midVal]){
       left++;
     }
-    if(nums[right] > nums[midVal]){
-      right--;
-    } else {
-      //swap and decrement right
-      [nums[right], nums[midVal]] = [nums[midVal], nums[right]];
+    //continue to decrement right until we find a value smaller than mid
+    while(nums[right] > nums[midVal]){
       right--;
     }
-    
-    temp = nums[left];
-    nums[left] = nums[right];
-    nums[right] = temp;
-    
+    //now we have a left greater than mid and a right smaller than mid & we can swap them
+    // [a,b] = [b,a]; is the shorthand to swap without temp variable
+    [nums[left], nums[right]] = [nums[right], nums[left]];
+    //increment/decrement again (?)
+    left++;
+    right--;
   }
   return nums;
 }
@@ -86,12 +77,9 @@ console.log("3 AFTER:\n", partition(nums3));
 //[1, 17, 12, 3, 9, 13, 21, 4, 27]
 //midval = 9  (pivotVal, comparisonVal, etc.)
 //swapping in place
-// v                  v
+// v                             v
 //[1, 17, 12, 3, ~9~, 13, 21, 4, 27]
-//    v
-//[1, 17, 12, 3, ~9~, 13, 21, 4, 27]
-//  17 needs to move but to where?
- //   v                       v
+//    v                       v
 //[1, 17, 12, 3, ~9~, 13, 21, 4, 27]
 //swap the left and right 
 //[1, -4-, 12, 3, ~9~, 13, 21, -17-, 27]

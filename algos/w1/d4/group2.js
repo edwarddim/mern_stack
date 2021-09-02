@@ -37,7 +37,7 @@ const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
  * @returns {Array<number>} The idx where left section of smaller items ends.
  */
  function partition(nums, left = 0, right = nums.length - 1) {
-  var pivot = Math.floor(Math.random() * (right - left + 1))+left;
+  var pivot = Math.floor(nums.length / 2); // leave as this for now since partition looks wild otherwise.
   var i = left-1;
   var j = right+1;
   while(true){

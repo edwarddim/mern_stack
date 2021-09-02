@@ -45,7 +45,9 @@ function partition(nums = [], left = 0, right = nums.length - 1) {
     while(nums[right] > pivot){
       right--;
     }
-    [nums[left], nums[right]] = [nums[right], nums[left]]
+    if (left != right) {
+      [nums[left], nums[right]] = [nums[right], nums[left]];
+    }
   }
   return right;
 }
