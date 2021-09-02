@@ -36,6 +36,24 @@ const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
  *    being processed.
  * @returns {Array<number>} The idx where left section of smaller items ends.
  */
-function partition(nums = [], left = 0, right = nums.length - 1) {}
+function partition(nums = [], left = 0, right = nums.length - 1) {
+  const index = Math.floor(right - left / 2);
+  const pivot = nums[index];
+
+  while (true) {
+    if (left == right) { //breaks while loop when left and right are equal
+      return right;
+    }
+    while (nums[left] < pivot) { //walks left until it hits a value greater than pivot
+      left++;
+    }
+    while (nums[right] > pivot) { // walks right ""
+      right++;
+    }
+    let temp = nums[right]; //swaps left & right
+    nums[right] = nums[left];
+    nums[left] = temp;
+  }
+}
 
 module.exports = { partition };

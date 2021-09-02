@@ -22,7 +22,7 @@
 const nums1 = [11, 8, 14, 3, 6, 2, 7];
 const nums2 = [11, 8, 14, 3, 3, 3, 6, 2, 7];
 const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
-
+// [1, 17, 12, 3, 9, 13, 21, 4, 27]
 /**
  * Partitions the given array in-place by selecting the number at the middle
  * index to use it as a "pivot" value, then arranges all numbers less than the
@@ -32,10 +32,28 @@ const nums3 = [1, 17, 12, 3, 9, 13, 21, 4, 27];
  * @param {Array<number>} nums
  * @param {number} left The index indicating the start of the slice of array
  *    being processed.
- * @param {number} right The index indicating the end of the slice of array
+ * @param {number} right The index  indicating the end of the slice of array
  *    being processed.
  * @returns {Array<number>} The idx where left section of smaller items ends.
  */
-function partition(nums = [], left = 0, right = nums.length - 1) {}
+ function partition(nums, left = 0, right = nums.length - 1) {
+  var pivot = Math.floor(Math.random() * (right - left + 1))+left;
+  var i = left-1;
+  var j = right+1;
+  while(true){
+      do{
+        i++;
+      }while(nums[i] < nums[pivot]);
+      do{
+        j--;
+      }while(nums[j] > nums[pivot]);
+      if (i >= j) {
+        return j;
+      }
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+  }
+ }
+partition(nums1)
+console.log(nums1)
 
 module.exports = { partition };
