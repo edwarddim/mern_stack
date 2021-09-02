@@ -17,23 +17,6 @@ const Registration = (props) => {
     //     "fullNameAlpha" : false
     // })
 
-    const [validState, setValidState] = useState({
-        "fullName" : [],
-        "email" : false,
-        "password" : false,
-        "confirmPassword" : false,
-        "fullNameAlpha" : false
-    })
-
-
-    const changeHandler = (e) => {
-        const {name, value} = e.target
-        setFormState({
-            ...formState,
-            [name] : value
-        })
-    }
-
     // const submitHandler = (e) => {
     //     let fullName = false;
     //     let fullNameAlpha = false;
@@ -72,6 +55,32 @@ const Registration = (props) => {
     //     })
     // }
 
+    const changeHandler = (e) => {
+        const {name, value} = e.target
+        setFormState({
+            ...formState,
+            [name] : value
+        })
+    }
+    
+
+    /*
+    __      __   _ _     _       _   _                        _ _   _                                     
+    \ \    / /  | (_)   | |     | | (_)                      (_) | | |         /\                         
+     \ \  / /_ _| |_  __| | __ _| |_ _  ___  _ __   __      ___| |_| |__      /  \   _ __ _ __ __ _ _   _ 
+      \ \/ / _` | | |/ _` |/ _` | __| |/ _ \| '_ \  \ \ /\ / / | __| '_ \    / /\ \ | '__| '__/ _` | | | |
+       \  / (_| | | | (_| | (_| | |_| | (_) | | | |  \ V  V /| | |_| | | |  / ____ \| |  | | | (_| | |_| |
+        \/ \__,_|_|_|\__,_|\__,_|\__|_|\___/|_| |_|   \_/\_/ |_|\__|_| |_| /_/    \_\_|  |_|  \__,_|\__, |
+                                                                                                     __/ |
+                                                                                                    |___/ 
+    */
+    const [validState, setValidState] = useState({
+        "fullName" : [],
+        "email" : false,
+        "password" : false,
+        "confirmPassword" : false
+    })
+
     const submitHandler = (e) => {
         let fullName = [];
         let email = false;
@@ -104,14 +113,9 @@ const Registration = (props) => {
             fullName,
             email,
             password,
-            confirmPassword,
-            fullNameAlpha
+            confirmPassword
         })
     }
-
-
-
-
     return (
         <div>
             <h1>Registration</h1>
