@@ -47,4 +47,13 @@ const expected3 = [2, 3, 3, 6, 7, 8, 11, 14];
  *    given array being processed.
  * @returns {Array<number>} The given array after being sorted.
  */
-function quickSort(nums = [], left = 0, right = nums.length - 1) {}
+function quickSort(nums = [], left = 0, right = nums.length - 1) {
+  if (left >= right) return nums;
+
+  let pivotIdx = partition(nums, left, right);
+
+  quickSort(nums, left, pivotIdx - 1);
+  quickSort(nums, pivotIdx + 1, right);
+
+  return nums;
+}
