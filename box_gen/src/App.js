@@ -10,11 +10,10 @@ function App() {
     setArrState([...arrState, color])
   }
 
-
   return (
     <fieldset>
       <legend>App.js</legend>
-      <Form addToArray={addToArray} />
+      <Form addToArray={addToArray} name="Ed" />
       <BoxDisplay colors={arrState} />
     </fieldset>
   );

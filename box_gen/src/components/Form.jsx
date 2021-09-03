@@ -4,7 +4,7 @@ const Form = (props) => {
 
     const [colorState, setColorState] = useState("")
     const [dimension, setDimension] = useState("")
-    const {addToArray} = props
+    const {addToArray, name} = props
 
 
     const submitHandler = (e) =>{
