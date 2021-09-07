@@ -26,13 +26,13 @@ const pokémon = Object.freeze([
 
 
 // an array of pokémon objects where the id is evenly divisible by 3
-const arr1 = pokémon.filter((pokemon) => pokémon.id % 3 == 0)
+const arr1 = pokémon.filter((poke) => poke.id % 3 == 0)
 
 // an array with just the names of the pokémon
-const arr2 = pokémon.map((pokemon) => pokémon.name)
+const arr2 = pokémon.map((poke) => poke.name)
 
 // an array with just the names of pokémon with an id greater than 99
-const arr3 = pokemon.filter((poke) => poke.id > 99).map((poke) => poke.name)
+const arr3 = pokémon.filter((poke) => poke.id > 99).map((poke) => poke.name)
 
 // a count of the number of pokémon that are "normal" type
-const arr4 = pokemon.map((poke) => poke.types.includes("normal"))
+const arr4 = pokémon.map((poke) => poke.types.includes("normal"))

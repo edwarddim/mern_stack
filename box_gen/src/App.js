@@ -18,5 +18,4 @@ function App() {
     </fieldset>
   );
 }
-
 export default App;
