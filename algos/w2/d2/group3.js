@@ -32,16 +32,25 @@ const expected2 = 0;
   absolute difference = 0
 */
 
-/**
- * Calculates the absolute diagonal difference of a square matrix.
- * - Time: O(?).
- * - Space: O(?).
- * @param {Array<Array<number>>} sqrMatrix A 2d array of numbers representing
- *    a square matrix (rows and columns).
- * @returns {number} Represents the absolute difference between the top left to
- *    bottom right diagonal and the top right to bottom left diagonal.
- */
-function diagonalDifference(sqrMatrix) {}
+// /**
+//  * Calculates the absolute diagonal difference of a square matrix.
+//  * - Time: O(?).
+//  * - Space: O(?).
+//  * @param {Array<Array<number>>} sqrMatrix A 2d array of numbers representing
+//  *    a square matrix (rows and columns).
+//  * @returns {number} Represents the absolute difference between the top left to
+//  *    bottom right diagonal and the top right to bottom left diagonal.
+//  */
+function diagonalDifference(sqrMatrix) {
+  let sum1 = 0;
+  let sum2 = 0;
+  for (let i = 0; i < sqrMatrix.length; i++){
+    sum1 += sqrMatrix[i][i]
+    sum2 += sqrMatrix[i][sqrMatrix.length-1-i];
+  }
+
+  return Math.abs(sum1-sum2)
+}
 
 /*****************************************************************************/
 
@@ -80,4 +89,21 @@ const expected2 = [1, 2, 2, 2, 6, 6, 7, 10, 15, 20];
  *    should be based on the max amount that dupe appears from one set,
  *    not the combined amount from both sets.
  */
-function orderedMultisetUnion(sortedA, sortedB) {}
+function orderedMultisetUnion(sortedA, sortedB) {
+  let newArr = [];
+  if (sortedA.length > sortedB.length){
+    for (let i=0; i<sortedA.length; i++){
+      if (!sortedB.includes(sortedA[i]){
+
+      }
+
+    }
+  }
+
+
+
+
+
+
+
+}

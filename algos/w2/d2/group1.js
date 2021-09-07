@@ -41,7 +41,15 @@ const expected2 = 0;
  * @returns {number} Represents the absolute difference between the top left to
  *    bottom right diagonal and the top right to bottom left diagonal.
  */
-function diagonalDifference(sqrMatrix) {}
+function diagonalDifference(sqrMatrix) {
+  var rSum = 0;
+  var lSum = 0;
+  for (var i=0; i<sqrMatrix[0].length; i++) {
+    rSum += sqrMatrix[i][sqrMatrix[0].length-i-1];
+    lSum += sqrMatrix[i][i];
+  }
+  return Math.abs(rSum - lSum);
+}
 
 /*****************************************************************************/
 
@@ -80,4 +88,83 @@ const expected2 = [1, 2, 2, 2, 6, 6, 7, 10, 15, 20];
  *    should be based on the max amount that dupe appears from one set,
  *    not the combined amount from both sets.
  */
-function orderedMultisetUnion(sortedA, sortedB) {}
+function orderedMultisetUnion(sortedA, sortedB) {
+  var newArr = [];
+  while (sortedA.length > 0 && sortedB.length > 0) {
+    var rCount = 0;
+    var lCount = 0;
+
+    if (sortedA[0] === sortedB[0]) {
+      var targetItem = sortedA[0];
+      var walker = 0;
+      while (sortedA[walker] === targetItem || sortedB[walker] === targetItem) {
+        if (sortedA[walker] === targetItem) {
+          rCount++;
+        }
+        if (sortedB[walker] === targetItem) {
+          lCount++;
+        }
+        walker++;
+      }
+      if (rCount > lCount) {
+        newArr.push(sortedA.slice(0,rCount));
+        sortedA.splice(0,rCount);
+      } else {
+        newArr.push(sortedB.slice(0,lCount));
+        sortedB.splice(0,rCount);
+      }
+    }
+
+    else if (sortedA[0] > sortedB[0]) {
+      newArr.push(sortedA.shift());
+    } else {
+      newArr.push(sortedB.shift());
+    }
+  }
+  return newArr;
+}
+
+
+function orderedMultisetUnion2(sortedA, sortedB) {
+  var newArr = [];
+  while (sortedA.length > 0 && sortedB.length > 0) {
+    var rCount = 0;
+    var lCount = 0;
+
+    if (sortedA[0] === sortedB[0]) {
+      var targetItem = sortedA[0];
+      var walker = 0;
+      while (sortedA[walker] === targetItem || sortedB[walker] === targetItem) {
+        if (sortedA[walker] === targetItem) {
+          rCount++;
+        }
+        if (sortedB[walker] === targetItem) {
+          lCount++;
+        }
+        walker++;
+      }
+      if (rCount > lCount) {
+        newArr = newArr.concat(sortedA.slice(0,rCount));
+        sortedA.splice(0,rCount);
+        sortedB.splice(0,lCount);
+      } else {
+        newArr = newArr.concat(sortedB.slice(0,lCount));
+        sortedB.splice(0,rCount);
+        sortedA.splice(0,rCount);
+      }
+    }
+
+    else if (sortedA[0] < sortedB[0]) {
+      newArr.push(sortedA.shift());
+    } else {
+      newArr.push(sortedB.shift());
+    }
+  }
+  while (sortedA.length !== 0) {
+      newArr.push(sortedA.shift());
+  }
+  while (sortedB.length !== 0) {
+      newArr.push(sortedB.shift());
+  }
+  return newArr;
+}
