@@ -41,7 +41,16 @@ const expected2 = 0;
  * @returns {number} Represents the absolute difference between the top left to
  *    bottom right diagonal and the top right to bottom left diagonal.
  */
-function diagonalDifference(sqrMatrix) {}
+function diagonalDifference(sqrMatrix) {
+  let sum1 = 0;
+  let sum2 = 0;
+  for (let i = 0; i < sqrMatrix.length; i++) {
+    sum1 += sqrMatrix[i][i];
+    sum2 += sqrMatrix[i][sqrMatrix.length - 1 - i];
+  }
+
+  return Math.abs(sum1 - sum2);
+}
 
 /*****************************************************************************/
 
@@ -80,4 +89,37 @@ const expected2 = [1, 2, 2, 2, 6, 6, 7, 10, 15, 20];
  *    should be based on the max amount that dupe appears from one set,
  *    not the combined amount from both sets.
  */
-function orderedMultisetUnion(sortedA, sortedB) {}
+function orderedMultisetUnion(sortedA, sortedB) {
+  let a = 0;
+  let b = 0;
+  let arr = [];
+
+  // compare the arrays while both arrays are not at the end
+  while (a < sortedA.length && b < sortedB.length) {
+    // number in sortedA < sortedB
+    if (sortedA[a] < sortedB[b]) {
+      arr.push(sortedA[a]);
+      a++;
+      // number in both array is the same, copy either number, move both index
+    } else if (sortedA[a] == sortedB[b]) {
+      arr.push(sortedA[a]);
+      a++;
+      b++;
+      // number in sortedB < number in sortedA
+    } else {
+      arr.push(sortedB[b]);
+      b++;
+    }
+  }
+
+  while (a < sortedA.length) {
+    arr.push(sortedA[a]);
+    a++;
+  }
+
+  while (b < sortedB.length) {
+    arr.push(sortedB[b]);
+    b++;
+  }
+  return arr;
+}
