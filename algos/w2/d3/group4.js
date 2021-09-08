@@ -37,7 +37,9 @@ const expected7 = -1;
  * @param {Array<number>} waterLevels Non-empty .
  * @returns {number} The max water-level rise amount or -1 if none.
  */
-function measureWaterLevels(waterLevels) {}
+function measureWaterLevels(waterLevels) {
+
+}
 
 /*****************************************************************************/
 
@@ -84,4 +86,21 @@ const expected3 = [4, 5];
  *    i.e., if the element is in one array and NOT the other, it should be
  *    included in the return.
  */
-function symmetricDifferences(numsA, numsB) {}
+function symmetricDifferences(numsA, numsB) {
+
+}
+
+function symmetricDifferences1(numsA, numsB) {
+  var arr = [];
+  for(var i=0; i<numsA.length; i++){
+      if (!numsB.includes(numsA[i]) && !arr.includes(numsA[i])){
+          arr.push(numsA[i]);
+      }
+  }
+  for(var i=0; i<numsB.length; i++){
+      if (!numsA.includes(numsB[i]) && !arr.includes(numsB[i])){
+          arr.push(numsB[i]);
+      }
+  }
+  return arr;
+}

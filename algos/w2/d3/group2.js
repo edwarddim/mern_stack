@@ -28,16 +28,42 @@ const expected6 = -1;
 const riverLevels7 = [42];
 const expected7 = -1;
 
-/**
- * It ain't much, but it's honest work. A worker who measures water level
- * fluctuations in a river is asked to find the largest fluctuation in water
- * levels during a day, but only for rises in water levels.
- * - Time: O(?).
- * - Space: O(?).
- * @param {Array<number>} waterLevels Non-empty .
- * @returns {number} The max water-level rise amount or -1 if none.
- */
-function measureWaterLevels(waterLevels) {}
+// /**
+//  * It ain't much, but it's honest work. A worker who measures water level
+//  * fluctuations in a river is asked to find the largest fluctuation in water
+//  * levels during a day, but only for rises in water levels.
+//  * - Time: O(?).
+//  * - Space: O(?).
+//  * @param {Array<number>} waterLevels Non-empty .
+//  * @returns {number} The max water-level rise amount or -1 if none.
+//  */
+function measureWaterLevels(waterLevels) {
+  let i = 0;
+  let riseStart = 0;
+  let curRise = 0;
+  let highestRise = 0;
+  let rises = [];
+  while(i < waterLevels.length){
+    if (waterLevels[i+1]>waterLevels[i]){
+      if(waterLevels[i-1] == undefined or waterLevels[i-1]>waterLevels[i]){
+        riseStart = waterLevels[i]
+      }
+      i++
+    } else {
+      curRise = waterlevels[i]-riseStart
+      if (curRise > highestRise){
+        highestRise = curRise;
+      }
+      i++
+
+    }
+
+  }
+
+
+
+return highestRise > 0 ? highestRise : -1;
+}
 
 /*****************************************************************************/
 
@@ -68,20 +94,36 @@ const expected3 = [4, 5];
   Explanation: 1, 2, and 3 are shared so are excluded
     4 and 5 are included because they exist only in 1 array,
     but have duplicates, so only one copy of each is kept.
-*/
+// */
 
-/**
- * Produces the symmetric differences, aka disjunctive union of two sets.
- * Venn Diagram Visualization:
- * https://miro.medium.com/max/3194/1*N3Z94nCNu8IHsFenIAELJw.jpeg
- * - Time: O(?).
- * - Space: O(?).
- * @param  {Array<number>} numsA
- * @param  {Array<number>} numsB
- *    Both given sets are multisets in any order (contain dupes).
- * @returns {Array<number>} The union of the given sets but excluding the shared
- *    values (union without intersection).
- *    i.e., if the element is in one array and NOT the other, it should be
- *    included in the return.
- */
-function symmetricDifferences(numsA, numsB) {}
+// /**
+//  * Produces the symmetric differences, aka disjunctive union of two sets.
+//  * Venn Diagram Visualization:
+//  * https://miro.medium.com/max/3194/1*N3Z94nCNu8IHsFenIAELJw.jpeg
+//  * - Time: O(?).
+//  * - Space: O(?).
+//  * @param  {Array<number>} numsA
+//  * @param  {Array<number>} numsB
+//  *    Both given sets are multisets in any order (contain dupes).
+//  * @returns {Array<number>} The union of the given sets but excluding the shared
+//  *    values (union without intersection).
+//  *    i.e., if the element is in one array and NOT the other, it should be
+//  *    included in the return.
+//  */
+function symmetricDifferences(numsA, numsB) {
+  let newarr = []
+  for (let i = 0; i < numsA.length; i++) {
+      if (!numsB.includes(numsA[i]) && !newarr.includes(numsA[i])) {
+          newarr.push(numsA[i])
+      }
+  }
+  for (let i = 0; i < numsB.length; i++){
+      if (!numsA.includes(numsB[i]) && !newarr.includes(numsB[i])){
+          newarr.push(numsB[i])
+      }
+  }
+
+  return newarr
+
+
+}

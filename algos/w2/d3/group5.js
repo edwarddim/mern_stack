@@ -1,4 +1,4 @@
-/**
+/** 
  * From a Chipotle interview.
  * encodeStr algo was also given in this interview (aaabbcdd => a3b2cd2).
  *
@@ -37,7 +37,21 @@ const expected7 = -1;
  * @param {Array<number>} waterLevels Non-empty .
  * @returns {number} The max water-level rise amount or -1 if none.
  */
-function measureWaterLevels(waterLevels) {}
+function measureWaterLevels(waterLevels) {
+  var rise = -1;
+  var min = waterLevels[0];
+  for (var i=1; i<waterLevels.length; i++) {
+    if (waterLevels[i] - min > rise) {
+      rise = waterLevels[i] - min;
+    }
+    if (waterLevels[i] < min) {
+      min = waterLevels[i];
+    }
+  }
+  return rise;
+}
+
+
 
 /*****************************************************************************/
 
@@ -83,5 +97,35 @@ const expected3 = [4, 5];
  *    values (union without intersection).
  *    i.e., if the element is in one array and NOT the other, it should be
  *    included in the return.
+  
+
  */
-function symmetricDifferences(numsA, numsB) {}
+function symmetricDifferences(numsA, numsB) {
+  let dict1 = {};
+  let dict2 = {};
+  let len = numsA.length > numsB.length ? numsA.length : numsB.length;
+  for (let i=0; i<len; i++) {  // O(n)
+      if (numsA[i] !== undefined) {
+          dict1[numsA[i]] = numsA[i];
+      }
+      if (numsB[i] !== undefined) {
+          dict2[numsB[i]] = numsB[i];
+      }
+  }
+  let arr =[];
+  let keys1 = Object.keys(dict1); // O(n)
+  let keys2 = Object.keys(dict2); // O(n)
+  len = keys1.length > keys2.length ? keys1.length : keys2.length;
+  for (let i=0; i<len; i++) { // O(n)
+      if (dict1[keys2[i]] === undefined) { // O(1)
+          arr.push(keys2[i]);
+      }
+      if (dict2[keys1[i]] === undefined) { // O(1)
+          arr.push(keys1[i])
+      }
+  }
+  return arr;
+}
+// O(4n) == O(n)
+
+// var newSet = new Set(array)

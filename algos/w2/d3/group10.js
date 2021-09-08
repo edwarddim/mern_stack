@@ -1,4 +1,4 @@
-/**
+/** 
  * From a Chipotle interview.
  * encodeStr algo was also given in this interview (aaabbcdd => a3b2cd2).
  *
@@ -84,4 +84,6 @@ const expected3 = [4, 5];
  *    i.e., if the element is in one array and NOT the other, it should be
  *    included in the return.
  */
-function symmetricDifferences(numsA, numsB) {}
+function symmetricDifferences(numsA, numsB) {
+  //
+}

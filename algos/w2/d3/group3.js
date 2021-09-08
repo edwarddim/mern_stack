@@ -37,7 +37,6 @@ const expected7 = -1;
  * @param {Array<number>} waterLevels Non-empty .
  * @returns {number} The max water-level rise amount or -1 if none.
  */
-function measureWaterLevels(waterLevels) {}
 
 /*****************************************************************************/
 
