@@ -37,7 +37,21 @@ const expected7 = -1;
  * @param {Array<number>} waterLevels Non-empty .
  * @returns {number} The max water-level rise amount or -1 if none.
  */
-function measureWaterLevels(waterLevels) {}
+ function measureWaterLevels(waterLevels) {
+  //greedy algo
+  var maxDif = -1;
+  var minVal = Number.MAX_VALUE
+
+  for (var i = 0; i < waterLevels.length; i++) {
+    if (waterLevels[i] - minVal > maxDif && waterLevels[i] - minVal > 0) {
+      maxDif = waterLevels[i] - minVal;
+    }
+    if (waterLevels[i] - minVal < 0 || waterLevels[i] < waterLevels[i - 1]) {
+      minVal = waterLevels[i];
+    }
+  }
+  return maxDif;
+}
 
 /*****************************************************************************/
 
@@ -84,4 +98,34 @@ const expected3 = [4, 5];
  *    i.e., if the element is in one array and NOT the other, it should be
  *    included in the return.
  */
-function symmetricDifferences(numsA, numsB) {}
+function symmetricDifferences(numsA, numsB) {
+  let newarr = []
+  for (let i = 0; i < numsA.length; i++) {
+      if (!numsB.includes(numsA[i]) && !newarr.includes(numsA[i])) {
+          newarr.push(numsA[i])
+      }
+  }
+  for (let i = 0; i < numsB.length; i++){
+      if (!numsA.includes(numsB[i]) && !newarr.includes(numsB[i])){
+          newarr.push(numsB[i])
+      }
+  }
+
+  return newarr
+}
+
+function symmetricDifferencesDedupUseingSet(numsA, numsB) {
+  let newarr = []
+  for (let i = 0; i < numsA.length; i++) {
+      if (!numsB.includes(numsA[i])) {
+          newarr.push(numsA[i])
+      }
+  }
+  for (let i = 0; i < numsB.length; i++){
+      if (!numsA.includes(numsB[i])){
+          newarr.push(numsB[i])
+      }
+  }
+
+  return [...new Set(newarr)]
+}

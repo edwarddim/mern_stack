@@ -1,4 +1,4 @@
-/**
+/**Vincent, Dustine, Kara, Chenxi, Katelyn
  * From a Chipotle interview.
  * encodeStr algo was also given in this interview (aaabbcdd => a3b2cd2).
  *
@@ -37,7 +37,23 @@ const expected7 = -1;
  * @param {Array<number>} waterLevels Non-empty .
  * @returns {number} The max water-level rise amount or -1 if none.
  */
-function measureWaterLevels(waterLevels) {}
+    function measureWaterLevels(waterLevels) {
+  //greedy algo
+  var maxDif = -1;
+  var minVal = Number.MAX_VALUE
+  for (var i = 0; i < waterLevels.length; i++) {
+
+    if (waterLevels[i] - minVal < 0) {
+      minVal = waterLevels[i];
+    }
+    if (waterLevels[i] - minVal > maxDif) {
+      maxDif = waterLevels[i] - minVal;
+    }
+  }
+  return maxDif;
+}
+
+
 
 /*****************************************************************************/
 
@@ -51,19 +67,6 @@ function measureWaterLevels(waterLevels) {}
     - https://miro.medium.com/max/3194/1*N3Z94nCNu8IHsFenIAELJw.jpeg
 */
 
-const test1NumsA = [1, 2];
-const test1NumsB = [2, 1];
-const expected1 = [];
-// Explanation: 1 and 2 are in both arrays so are excluded
-
-const test2NumsA = [1, 2, 3];
-const test2NumsB = [4, 5, 6];
-const expected2 = [1, 2, 3, 4, 5, 6];
-// Explanation: neither array has shared values, so all are included
-
-const test3NumsA = [4, 1, 2, 3, 4];
-const test3NumsB = [1, 2, 3, 5, 5, 2];
-const expected3 = [4, 5];
 /* 
   Explanation: 1, 2, and 3 are shared so are excluded
     4 and 5 are included because they exist only in 1 array,
@@ -84,4 +87,47 @@ const expected3 = [4, 5];
  *    i.e., if the element is in one array and NOT the other, it should be
  *    included in the return.
  */
-function symmetricDifferences(numsA, numsB) {}
+ function symmetricDifferences(numsA, numsB) {
+  //make a return array
+  var returnArray = [];
+  //THE ISSUE WITH CONCAT IS IT DOESN'T PUSH ANY DUPLICATE VALUES THAT EXIST IN NUMSA OR NUMS B
+  //THAT DO NOT EXIST IN THE OTHER ARRAY
+  //we need to track the size of numsA and start j there? or find recursive solution
+  var concatArray = numsA.concat(numsB);
+  console.log("concat array", concatArray);
+  for(var i = 0; i < concatArray.length; i++){
+    var shouldBePushed = true;
+    for(var j = 0; j < concatArray.length; j++) {
+      console.log("i", concatArray[i], "j", concatArray[j]);
+      if(concatArray[i] === concatArray[j] && i !== j){
+        console.log("matched", concatArray[i], concatArray[j]);
+        shouldBePushed = false;
+        break;
+      }
+    }
+    if(shouldBePushed === true) {
+       console.log("non matched?", concatArray[i]) 
+      returnArray.push(concatArray[i]);
+    }
+  }
+  return returnArray;
+}
+
+const test1NumsA = [1, 2];
+const test1NumsB = [2, 1];
+const expected1 = [];
+console.log(symmetricDifferences(test1NumsA, test1NumsB))
+// Explanation: 1 and 2 are in both arrays so are excluded
+
+const test2NumsA = [1, 2, 3];
+const test2NumsB = [4, 5, 6];
+const expected2 = [1, 2, 3, 4, 5, 6];
+console.log(symmetricDifferences(test2NumsA, test2NumsB))
+// Explanation: neither array has shared values, so all are included
+
+const test3NumsA = [4, 1, 2, 3, 4];
+const test3NumsB = [1, 2, 3, 5, 5, 2];
+const expected3 = [4, 5];
+console.log(symmetricDifferences(test3NumsA, test3NumsB))
+// ^ this is the test case that fails because numsA has 4 2x and numsB has 5 2x therefore
+//it isn't adding to the new array. 
