@@ -24,6 +24,18 @@ const expected1 = [
  */
 function allNonConsecutive(sortedNums) {}
 
+function allNonConsecutive1(sortedNums) {
+  let arr = [];
+  for(let j=0; j<sortedNums.length-1; j++){
+      if(sortedNums[j+1] != sortedNums[j]+1){
+          arr.push({
+              i: j+1, n: sortedNums[j+1]
+          })
+      }
+  }
+  return arr
+}
+
 /*****************************************************************************/
 
 // Interview Algo given to alumni Oct 2019

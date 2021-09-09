@@ -24,6 +24,27 @@ const expected1 = [
  */
 function allNonConsecutive(sortedNums) {}
 
+// nonConsecutive
+const nonConsec = (sortedNums) => {
+  let nonConsecs = [];
+  for (let i = 0; i < sortedNums.length - 1; i++) {
+      if ((sortedNums[i]+1) != sortedNums[i+1]) {
+          nonConsecs.push({i: i+1, n: sortedNums[i+1]})
+      }
+  }
+  return nonConsecs
+}
+
+//second solution
+function allNonConsecutive(sortedNums) {
+  var result = [];
+  for (var i = 1; i < sortedNums.length; i++) {
+    if (sortedNums[i] - sortedNums[i - 1] > 1) {
+      result.push({ i, n:sortedNums[i] });
+    }
+  }
+  return result;
+}
 /*****************************************************************************/
 
 // Interview Algo given to alumni Oct 2019
@@ -45,6 +66,7 @@ const nums2 = [2, 5, 3, 6, 7, 0, 0, 23, 12];
 const sum2 = 16;
 const expected2 = [
   [2, 5, 3, 6],
+  //[2,5,3,6,0]
   [3, 6, 7],
   [3, 6, 7, 0],
   [3, 6, 7, 0, 0],
@@ -71,4 +93,21 @@ const expected3 = [
  *    this context means the numbers whose indexes are one after the other
  *    only.
  */
-function findConsqSums(nums, targetSum) {}
+
+function findConsqSums(nums, targetSum) {
+  let results = []
+  for(let i=0; i<nums.length; i++){
+    sum = 0;
+    idx = i;
+    while((targetSum >=0 && sum<=targetSum) || (targetSum < 0 && sum >= targetSum)){
+      sum += nums[idx];
+      if(sum === targetSum){
+        results.push(nums.slice(i,idx+1));
+      }
+      idx++;
+    } 
+  }
+  return results;
+}
+
+// sum != targetSum && idx < nums.length
