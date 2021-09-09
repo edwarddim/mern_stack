@@ -22,7 +22,26 @@ const expected1 = [
  * @property {number} n The non consecutive number itself.
  * @returns {NonConsecNums}
  */
-function allNonConsecutive(sortedNums) {}
+function allNonConsecutive(sortedNums) {
+  //have a return array for the objects
+  const returnArray = []
+  
+  //start iterating from 0 through the end
+  for(var i = 0; i < sortedNums.length; i++){
+    //if index+1 is not the same as array[index]+1, 
+    if(sortedNums[i+1] !== (sortedNums[i]+1) && i !== sortedNums.length - 1){
+      //push i and array[i+1] as a new object
+      returnArray.push(
+        {
+          i: i+1,
+          n: sortedNums[i+1]
+        }
+      );
+    }
+  }
+  //return array of objects
+  return returnArray;
+}
 
 /*****************************************************************************/
 
@@ -71,4 +90,18 @@ const expected3 = [
  *    this context means the numbers whose indexes are one after the other
  *    only.
  */
-function findConsqSums(nums, targetSum) {}
+function findConsqSums(nums, targetSum) {
+  let results = []
+  for(let i=0; i<nums.length; i++){
+    sum = 0;
+    idx = i;
+    while((targetSum >=0 && sum<=targetSum) || (targetSum < 0 && sum >= targetSum)){
+      sum += nums[idx];
+      if(sum === targetSum){
+        results.push(nums.slice(i,idx+1));
+      }
+      idx++;
+    } 
+  }
+  return results;
+}
