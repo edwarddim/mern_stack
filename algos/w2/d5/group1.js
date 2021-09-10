@@ -21,8 +21,20 @@ const expected1 = [0, 2];
  * @returns {Array<number>} The two indexes of the numbers in the given nums
  *    that add up to the targetSum.
  */
-function twoSum(nums, targetSum) {}
+ function twoSum(nums, targetSum) {
+   let returnArr = [];
+   for (let i = 0; i < nums.length - 1; i++) {
+     for (let j = i + 1; j < nums.length - 1; j++) {
+       if (nums[i] + nums[j] == targetSum) {
+         returnArr.push(i, j);
+       }
+     }
+   }
 
+   return returnArr;
+ }
+
+console.log(twoSum([2, 11, 7, 15], 9))
 /*****************************************************************************/
 
 // From a technical interview with an AWS engineer: https://youtu.be/t0OQAD5gjd8
@@ -62,4 +74,33 @@ const expected3 = [1, 2, 3];
  * @param {number} k Represents the amount of numbers that should be returned.
  * @returns {Array<number>} The k most frequently occurring numbers.
  */
-function kMostFrequent(nums, k) {}
+
+function kMostFrequent(nums, k) {
+  let dict = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (!dict[nums[i]]) {
+      dict[nums[i]] = 1;
+    } else {
+      dict[nums[i]] += 1;
+    }
+  }
+  let sortable = [];
+  for (entry in dict) {
+    sortable.push([entry, dict[entry]]);
+  }
+
+
+  sortable.sort((a, b) => {
+    return b[1] - a[1];
+  });
+  console.log(sortable);
+  // sortable.slice(0,k)
+  let arr = [];
+  for (let j = 0; j < k; j++) {
+    arr.push(parseInt(sortable[j][0]));
+  }
+  return arr;
+}
+
+
+
