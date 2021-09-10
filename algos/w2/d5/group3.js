@@ -21,7 +21,18 @@ const expected1 = [0, 2];
  * @returns {Array<number>} The two indexes of the numbers in the given nums
  *    that add up to the targetSum.
  */
-function twoSum(nums, targetSum) {}
+function twoSum(nums, targetSum) {
+  var result = [];
+  for(var i=0; i < nums.length; i++){
+    for(var j = i+1; j <nums.length; j++){
+      if (arr[i] +arr[j] === targetSum){
+          result.push(i);
+          result.push(j);
+      }
+    }
+  }
+  return result 
+}
 
 /*****************************************************************************/
 
@@ -62,4 +73,8 @@ const expected3 = [1, 2, 3];
  * @param {number} k Represents the amount of numbers that should be returned.
  * @returns {Array<number>} The k most frequently occurring numbers.
  */
-function kMostFrequent(nums, k) {}
+function kMostFrequent(nums, k) {
+  var result = [];
+  for (var i=0; i<nums.length; i++)
+    
+}

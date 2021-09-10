@@ -21,7 +21,18 @@ const expected1 = [0, 2];
  * @returns {Array<number>} The two indexes of the numbers in the given nums
  *    that add up to the targetSum.
  */
-function twoSum(nums, targetSum) {}
+function twoSum(nums, targetSum) {
+  //create a map to store 1)key: the sum value we need, 2)value: the index of current element
+  var sumMap = new Map();
+  for (var i = 0; i < nums.length; i++) {
+    // if the current element is the sum value we need, we return it
+    if (sumMap.has(nums[i])) {
+      return [sumMap.get(nums[i]), i];
+    }
+    // if not, store the key-value pair in hashmap
+    sumMap.set(targetSum - nums[i], i);
+  }
+}
 
 /*****************************************************************************/
 
@@ -62,4 +73,28 @@ const expected3 = [1, 2, 3];
  * @param {number} k Represents the amount of numbers that should be returned.
  * @returns {Array<number>} The k most frequently occurring numbers.
  */
-function kMostFrequent(nums, k) {}
+function kMostFrequent(nums, k) {
+  let dict = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (!dict[nums[i]]) {
+      dict[nums[i]] = 1;
+    } else {
+      dict[nums[i]] += 1;
+    }
+  }
+  let sortable = [];
+  for (entry in dict) {
+    sortable.push([entry, dict[entry]]);
+  }
+
+  sortable.sort((a, b) => {
+    return b[1] - a[1];
+  });
+  console.log(sortable);
+  // sortable.slice(0,k)
+  let arr = [];
+  for (let j = 0; j < k; j++) {
+    arr.push(parseInt(sortable[j][0]));
+  }
+  return arr;
+}

@@ -21,7 +21,22 @@ const expected1 = [0, 2];
  * @returns {Array<number>} The two indexes of the numbers in the given nums
  *    that add up to the targetSum.
  */
-function twoSum(nums, targetSum) {}
+
+//solution 2
+function twoSum2(nums, targetSum) {
+  //create a map to store 1)key: the sum value we need, 2)value: the index of current element
+  var sumMap = new Map();
+  for (var i = 0; i < nums.length; i++) {
+    // if the current element is the sum value we need, we return it
+    if (sumMap.has(nums[i])) {
+      return ([sumMap.get(nums[i]), i])
+    }
+    // if not, store the key-value pair in hashmap
+    sumMap.set(targetSum - nums[i], i)
+  }
+}
+
+console.log(twoSum(nums1, targetSum1))
 
 /*****************************************************************************/
 
@@ -62,4 +77,32 @@ const expected3 = [1, 2, 3];
  * @param {number} k Represents the amount of numbers that should be returned.
  * @returns {Array<number>} The k most frequently occurring numbers.
  */
-function kMostFrequent(nums, k) {}
+function kMostFrequent(nums, k) {
+  var countMap = new Map();
+  for (var i = 0; i < nums.length; i++) {
+    // if number is already a key
+    if (countMap.has(nums[i])) {
+      countMap.set(nums[i],countMap.get(num[i])+1);
+    }else{
+      // if number is not a key yet
+      countMap.set(nums[i],1);
+    }
+  }
+
+// Create a list from elements of HashMap
+let list = [...map];
+// Sort the list
+list.sort((o1, o2) => {
+  if (o1[1] == o2[1])
+    return o2[0] - o1[0];
+  else
+    return o2[1] - o1[1];
+})
+
+// create an array to push the value
+var result = [];
+for (let i = 0; i < k; i++) {
+  result.push(list[i][0]);
+}
+return result;
+}
