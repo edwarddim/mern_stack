@@ -39,7 +39,17 @@ const expected2 = [
  *    like [key, val]
  * @returns {output}
  */
-function entries(obj) {}
+function entries(obj) {
+  let returnArr = []
+  let proto = Object.getPrototypeOf(obj)
+
+  for (const entry in obj){
+    if (!(entry in proto)){
+      returnArr.push([entry, obj[entry]])   
+    }
+  }
+  return returnArr
+}
 
 /*****************************************************************************/
 
@@ -65,13 +75,27 @@ const expected2 =
   "INSERT INTO users (first_name, last_name, age, is_admin) VALUES ('John', 'Doe', 30, false);";
 // Explanation: no quotes around the int or the bool, technically in SQL the bool would become a 0 or 1, but don't worry about that here.
 
-/**
- * Generates a SQL insert statement from the inputs
- * - Time: O(?).
- * - Space: O(?).
- * @param {string} tableName
- * @param {Object} columnValuePairs
- * @returns {string} A string formatted as a SQL insert statement where the
- *    columns and values are extracted from columnValuePairs.
- */
-function insert(tableName, columnValuePairs) {}
+// /**
+//  * Generates a SQL insert statement from the inputs
+//  * - Time: O(?).
+//  * - Space: O(?).
+//  * @param {string} tableName
+//  * @param {Object} columnValuePairs
+//  * @returns {string} A string formatted as a SQL insert statement where the
+//  *    columns and values are extracted from columnValuePairs.
+//  */
+function insert(tableName, insertData) {
+  let returnString = ''
+  let keyString = ''
+  let valueString = ''
+
+  for (const cat in insertData){
+    keyString += cat + ', '
+    valueString += typeof(insertData[cat]) === 'string' ? `'${insertData[cat]}', ` : insertData[cat] + ', ';
+  }
+ 
+  return `INSERT INTO ${tableName} (${keyString.slice(0, -2)}) VALUES (${valueString.slice(0, -2)});`
+
+}
+
+

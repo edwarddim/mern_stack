@@ -1,4 +1,4 @@
-/* 
+/* Vincent, Ryne, Karalynn, Chenxi,  Karalynn, Chenxi, Duy
   Recreate Object.entries method
   Given an object,
   return an array of arrays of the object's key value pairs, where each key value pair is a 2 item array
@@ -39,7 +39,17 @@ const expected2 = [
  *    like [key, val]
  * @returns {output}
  */
-function entries(obj) {}
+function entries(obj) {
+  //one main array
+  var arrayOfArrays = [];
+  //iterate KVP
+  for(let [key, value] of Object.entries(obj)) {
+    //push one sub array for each KVP arr[0] key, arr[1] value
+    arrayOfArrays.push([key, value]);
+  }
+  //return main array 
+  return arrayOfArrays;
+}
 
 /*****************************************************************************/
 
@@ -74,4 +84,16 @@ const expected2 =
  * @returns {string} A string formatted as a SQL insert statement where the
  *    columns and values are extracted from columnValuePairs.
  */
-function insert(tableName, columnValuePairs) {}
+function insert(tableName, columnValuePairs) {
+  var startString = "INSERT INTO " + tableName + " (";
+  var midString = ") VALUES (";
+  var endString = ");";
+  var columnString = "";
+  var valueString = "";
+  for (let [key, value] of Object.entries(columnValuePairs)) {
+    columnString +=  key + ", "; //pop the last 2 for erroneous space and comma
+    valueString += (typeOf(value) === "string" ? ("'" + value + "'" + ", ") : ( value + ", ")); //pop the last 2 for erroneous space and comma
+}
+  var returnString = startString + (columnString.slice(0, -2)) + midString + (valueString.slice(0,-2)) + endString;
+  return returnString;
+}

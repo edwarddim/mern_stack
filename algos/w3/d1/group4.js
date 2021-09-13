@@ -39,8 +39,20 @@ const expected2 = [
  *    like [key, val]
  * @returns {output}
  */
-function entries(obj) {}
 
+function entries(obj) {
+  var temp = []
+  var tempLength = Object.keys(obj)
+  for (i=0; i<tempLength.length; i++) {
+    temp.push([Object.keys(obj)[i], Object.values(obj)[i]])
+  }
+  return temp
+};
+
+console.log(entries(obj1))
+// [ [ 'name', 'Pizza' ], [ 'calories', 9001 ] ]
+var result = entries(obj1);
+console.log(result);
 /*****************************************************************************/
 
 /* 
@@ -74,4 +86,7 @@ const expected2 =
  * @returns {string} A string formatted as a SQL insert statement where the
  *    columns and values are extracted from columnValuePairs.
  */
-function insert(tableName, columnValuePairs) {}
+function insert(tableName, columnValuePairs) {
+  var tempString = `INSERT INTO ${table}`;
+
+}

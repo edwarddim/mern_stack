@@ -39,7 +39,17 @@ const expected2 = [
  *    like [key, val]
  * @returns {output}
  */
-function entries(obj) {}
+function entries(obj) {
+  let proto = Object.getPrototypeOf(obj);
+  let keyValArr = [];
+  for (key in obj) {
+    if (!(key in proto)) {
+      keyValArr.push([`${key}`, `${obj[key]}`]);
+    }
+  }
+  return keyValArr;
+}
+console.log(entries(obj2));
 
 /*****************************************************************************/
 
@@ -74,4 +84,43 @@ const expected2 =
  * @returns {string} A string formatted as a SQL insert statement where the
  *    columns and values are extracted from columnValuePairs.
  */
-function insert(tableName, columnValuePairs) {}
+function insert(tableName, columnValuePairs) {
+  let returnStr = "";
+  returnStr = `"INSERT INTO ${tableName} (`;
+  for ([key, value] of Object.entries(columnValuePairs)) {
+    returnStr += `${key}, `;
+  }
+  returnStr = returnStr.substring(0, returnStr.length - 2) + ") VALUES (";
+  for ([key, value] of Object.entries(columnValuePairs)) {
+    if (typeof value === typeof "string") {
+      returnStr += `'${value}', `;
+    } else {
+      returnStr += `${value}, `;
+    }
+  }
+  returnStr = returnStr.substring(0, returnStr.length - 2) + ');"';
+
+  return returnStr;
+}
+console.log(insert(table, insertData2));
+
+function insert1(tableName, columnValuePairs) {
+  let returnString = "";
+  let columnString = "";
+  let valueString = "";
+  for (let [k, v] of Object.entries(columnValuePairs)) {
+    columnString += `${k}, `;
+    valueString += `'${v}', `;
+  }
+  returnString =
+    "INSERT INTO " +
+    tableName +
+    " (" +
+    columnString.slice(0, -2) +
+    ")" +
+    " VALUES " +
+    "(" +
+    valueString.slice(0, -2) +
+    ");";
+  return returnString;
+}
