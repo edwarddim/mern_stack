@@ -39,7 +39,20 @@ const expected2 = [
  *    like [key, val]
  * @returns {output}
  */
-function entries(obj) {}
+ function entries(obj) {
+  let res = []
+  for(let key in obj){
+    res.push([key, obj[key]])
+  }
+  return res
+}
+
+
+console.log(entries({
+  firstName: "Foo",
+  lastName: "Bar",
+  age: 13,
+}))
 
 /*****************************************************************************/
 
@@ -74,4 +87,19 @@ const expected2 =
  * @returns {string} A string formatted as a SQL insert statement where the
  *    columns and values are extracted from columnValuePairs.
  */
-function insert(tableName, columnValuePairs) {}
+ function insert(tableName, columnValuePairs) {
+  let str1 = ""
+  let str2 = ""
+  for(let key in columnValuePairs){
+    str1 += key + ", "
+    str2 += columnValuePairs[key] + ", "
+  }
+  return `INSERT INTO ${tableName} (${str1.slice(0, -2)}) VALUES (${str2.slice(0, -2)});`
+}
+
+console.log(insert("users",{
+  first_name: "John",
+  last_name: "Doe",
+  age: 30,
+  is_admin: false,
+}))

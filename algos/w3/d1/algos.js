@@ -39,7 +39,17 @@ const expected2 = [
  *    like [key, val]
  * @returns {output}
  */
-function entries(obj) {}
+function entries(obj) {
+  let returnArr = []
+  let proto = Object.getPrototypeOf(obj)
+
+  for (const entry in obj){
+    if (!(entry in proto)){
+      returnArr.push([entry, obj[entry]])   
+    }
+  }
+  return returnArr
+}
 
 /*****************************************************************************/
 
@@ -74,4 +84,14 @@ const expected2 =
  * @returns {string} A string formatted as a SQL insert statement where the
  *    columns and values are extracted from columnValuePairs.
  */
-function insert(tableName, columnValuePairs) {}
+function insert(tableName, columnValuePairs) {
+  // functional programming approach
+  // built methods that return new arrays
+  const columns = Object.keys(columnValuePairs).join(", ")
+
+  const values = Object.values(columnValuePairs)
+    .map((val) => (typeof val === "string" ? `'${val}'` : val))
+    .join(", ")
+
+  return `INSERT INTO ${tableName} (${columns}) VALUES (${values});`
+}
