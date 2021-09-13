@@ -7,6 +7,7 @@ const BookSchema = mongoose.Schema({
     },
     pages : {
         type : Number,
+        required: [true, "Pages must be required"],
         min : [0, "You cannot have negative pages"]
     },
     author : {
