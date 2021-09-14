@@ -37,7 +37,15 @@ const expected2 = [
  * @param {Array<Object>} collection
  * @returns {Array<Object>} The found objects.
  */
-function findObjects(criteria, collection) {}
+ function findObjects(criteria, collection) {
+  let result
+  for(let key in criteria){
+    result = collection.filter(person => person[key] === criteria[key]);
+    }
+  return result
+ }
+ 
+ console.log(findObjects(searchCriteria2, items))
 
 /*****************************************************************************/
 
@@ -113,4 +121,22 @@ const expected3 = null;
  * @param {Array<Object>} collection
  * @returns {?Object} The object that was updated or null if no object found.
  */
-function findByIdAndUpdate(id, updatedVals, collection) {}
+ function findByIdAndUpdate(id, updatedVals, collection) {
+  let personArr = collection.filter(item => item.id === id)
+  if (personArr.length != 0) {
+    person = personArr[0]
+  } else {
+    return null;
+  }
+
+  for (let key in person){
+    if(updatedVals[key]){
+      // console.log(key);
+      person[key] = updatedVals[key];
+    }
+  }
+  return person
+}
+console.log(findByIdAndUpdate(id1, updateData1, students))
+console.log(findByIdAndUpdate(id2, updateData2, students))
+console.log(findByIdAndUpdate(id3, updateData3, students))

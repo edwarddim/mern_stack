@@ -24,7 +24,18 @@ module.exports.oneBook = (req, res) => {
         .catch(err => res.json(err))
 
 }
-
 // UPDATE
+module.exports.updateBook = (req, res) => {
+    const {id} = req.params
+    Book.findOneAndUpdate({_id : id}, req.body, {new:true, runValidators:true})
+        .then(updatedBook => res.json(updatedBook))
+        .catch(err => res.status(400).json(err))
+}
 
 // DELETE
+module.exports.deleteBook = (req, res) => {
+    const {id} = req.params
+    Book.deleteOne({_id: id})
+        .then(confirmation => res.json(confirmation))
+        .catch(err => res.status(400).json(err))
+}

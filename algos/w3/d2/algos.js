@@ -3,6 +3,8 @@
   primitives (ints, strings, booleans) and a list of objects.
   return any object that matches all the key value pairs in the search
   criteria object.
+
+  BONUS: Complete algo in Functional Programming
 */
 
 const items = [
@@ -37,7 +39,28 @@ const expected2 = [
  * @param {Array<Object>} collection
  * @returns {Array<Object>} The found objects.
  */
-function findObjects(criteria, collection) {}
+ function findObjects(criteria, collection) {
+  var toReturn = [];
+  for (var i=0; i<collection.length; i++) {
+      var toAdd = true;
+      for (const [key, value] of Object.entries(criteria)) {
+          if (collection[i][key] !== value) {
+              toAdd = false;
+              break;
+          }
+      }
+      if (toAdd) {
+          toReturn.push(collection[i]);
+      }
+  }
+  return toReturn;
+}
+
+const findObjectsFunc = (criteria, collection) => {
+  collection.filter((student) => {
+    Object.keys(criteria).every((key) => student[key] === criteria[key] )
+  })
+}
 
 /*****************************************************************************/
 
@@ -113,4 +136,15 @@ const expected3 = null;
  * @param {Array<Object>} collection
  * @returns {?Object} The object that was updated or null if no object found.
  */
-function findByIdAndUpdate(id, updatedVals, collection) {}
+ function findByIdAndUpdate(id, updatedVals, collection) {
+  for(let i = 0; i < collection.length;i++){
+      if(collection[i].id === id){
+          for(const [key,value] of Object.entries(updatedVals)){
+              if(collection[i][key]){
+                  collection[i][key] = value;
+              }
+          }
+          return collection[i];
+      }
+  }
+}

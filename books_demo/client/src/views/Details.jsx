@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import {useParams} from "react-router-dom"
+import {useParams, Link, useHistory } from "react-router-dom"
 
 const Details = () => {
 
     const {id} = useParams()
+    const history = useHistory()
     const [bookState, setBookState] = useState(null)
 
     useEffect(() => {
@@ -13,18 +14,26 @@ const Details = () => {
             .catch(err => console.log(err))
     }, [])
 
+    const deleteHandler = () => {
+        axios.delete(`http://localhost:8000/api/books/${id}`)
+            .then(res => history.push("/dashboard"))
+            .catch(err => console.log(err))
+    }
+
     return (
-        <>
-            {
+        <fieldset>
+            <legend>Details.jsx</legend>
+            {   
                 (bookState) ?         
-                <fieldset>
-                    <legend>Details.jsx</legend>
+                <>
                     <h1>Title: {bookState.title}</h1>
                     <h1>Written By: {bookState.author}</h1>
                     <h1>Pages: {bookState.pages}</h1>
-                </fieldset> : <h1>Loading....</h1>
+                    <Link to={`/books/${bookState._id}/edit`}>Edit</Link>
+                    <button onClick={deleteHandler}>Delete</button>
+                </> : <h1>Loading....</h1>
             }
-        </>
+        </fieldset> 
     )
 }
 

@@ -1,4 +1,4 @@
-/* 
+/* Katelyn, Hadiya, Patrick, Dustine, Karalynn
   Given a search criteria object whose values will only be
   primitives (ints, strings, booleans) and a list of objects.
   return any object that matches all the key value pairs in the search
@@ -37,7 +37,18 @@ const expected2 = [
  * @param {Array<Object>} collection
  * @returns {Array<Object>} The found objects.
  */
-function findObjects(criteria, collection) {}
+function findObjects(criteria, collection) {
+  //return array for the results
+  var matchingObjects = [];
+  //iterate through array of objects collection
+  //iterate through kvp of collection 
+  for(const [key, value] of Object.entries())
+  //boolean indicator for complete match - initial false
+    //compare each key/value of criteria, if one doesn't match object from collection, keep false
+    // ^ this could be done by putting each kvp of criteria into an array 
+
+  //return the match
+}
 
 /*****************************************************************************/
 
@@ -113,4 +124,4 @@ const expected3 = null;
  * @param {Array<Object>} collection
  * @returns {?Object} The object that was updated or null if no object found.
  */
-function findByIdAndUpdate(id, updatedVals, collection) {}
+function findByIdAndUpdate(id, updatedVals, collection) { }

@@ -2,6 +2,7 @@ import Create from "./views/Create";
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import Dashbaord from "./views/Dashbaord";
 import Details from "./views/Details";
+import Update from "./views/Update";
 
 function App() {
 
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route exact path="/books/:id">
             <Details />
+          </Route>
+          <Route exact path="/books/:id/edit">
+            <Update />
           </Route>
         </Switch>
       </fieldset>

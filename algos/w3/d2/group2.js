@@ -37,7 +37,22 @@ const expected2 = [
  * @param {Array<Object>} collection
  * @returns {Array<Object>} The found objects.
  */
-function findObjects(criteria, collection) {}
+function findObjects(criteria, collection) {
+  var toReturn = [];
+  for (var i=0; i<collection.length; i++) {
+      var toAdd = true;
+      for (const [key, value] of Object.entries(criteria)) {
+          if (!(collection[i][key] === value)) {
+              toAdd = false;
+              break;
+          }
+      }
+      if (toAdd) {
+          toReturn.push(collection[i]);
+      }
+  }
+  return toReturn;
+}
 
 /*****************************************************************************/
 
@@ -113,4 +128,16 @@ const expected3 = null;
  * @param {Array<Object>} collection
  * @returns {?Object} The object that was updated or null if no object found.
  */
-function findByIdAndUpdate(id, updatedVals, collection) {}
+function findByIdAndUpdate(id, updatedVals, collection) {
+  for (var i=0; i<collection.length; i++) {
+    if (collection[i].id === id) {
+        for (const [key, value] of Object.entries(updatedVals)) {
+            if (collection[i][key] !== undefined) {
+                collection[i][key] = value;
+            }
+        }
+        break;
+    }
+  }
+  return collection[i] === undefined ? null : collection[i];
+}

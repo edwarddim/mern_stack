@@ -1,10 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios"
-import { useHistory } from 'react-router-dom'
 
-const Create = () => {
+const Update = () => {
 
+    const {id} = useParams()
     const history = useHistory()
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/books/${id}`)
+            .then(res => setFormState(res.data))
+            .catch(err => console.log(err))
+    }, [])
 
     const [formState, setFormState] = useState({
         title : "",
@@ -24,9 +31,9 @@ const Create = () => {
 
     const submitHandler = e => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/books", formState)
+        axios.put(`http://localhost:8000/api/books/${id}`, formState)
             .then(res => {
-                history.push("/dashboard")
+                history.push(`/books/${id}`)
             })
             .catch(err => {
                 // console.log("CATCH: ", err.response.data)
@@ -41,7 +48,7 @@ const Create = () => {
 
     return (
         <fieldset>
-            <legend>Create.jsx</legend>
+            <legend>Update.jsx</legend>
             <form onSubmit={submitHandler}>
                 <p>
                     Title:
@@ -58,10 +65,10 @@ const Create = () => {
                     <input type="text" name="author" id="" onChange={changeHandler} value={formState.author} />
                     {(validState.author) ? <p style={{color:"red"}}>{validState.author}</p> : null }
                 </p>
-                <button type="submit">Create</button>
+                <button type="submit">Update</button>
             </form>
         </fieldset>
     )
 }
 
-export default Create
+export default Update
