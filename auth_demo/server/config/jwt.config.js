@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 // CREATE A FUNCTION THAT AUTHENTICATE AND WE CAN PLUG INTO ANY ROUTES WE WANT
 // PROTECTED
 
-console.log(process.env.SECRET_KEY)
 module.exports.authenticate = (req, res, next) => {
   console.log("COOKIE: ",req.cookies)
   jwt.verify(req.cookies.usertoken, process.env.SECRET_KEY , (err, payload) => {

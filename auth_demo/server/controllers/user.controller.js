@@ -30,8 +30,6 @@ module.exports.login = (req,res) => {
                 res.status(400).json({ msg: "invalid login attempt: USER NOT FOUND" });
             }
             else{
-                console.log(req.body.password)
-                console.log(user.password)
                 bcrypt.compare(req.body.password, user.password)
                     .then(passwordIsValid => {
                         if(passwordIsValid){

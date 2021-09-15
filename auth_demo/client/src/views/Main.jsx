@@ -35,7 +35,9 @@ const Main = () => {
         e.preventDefault()
         axios.post("http://localhost:8000/api/users/login", loginState, {withCredentials:true})
             .then(res => console.log(res))
-            .catch(err => console.log(err.response.data))
+            .catch(err => {
+                console.log(err.response.data)
+            })
     }
 
     const registerSubmit = (e) =>{
@@ -59,7 +61,6 @@ const Main = () => {
             .then(res => console.log(res))
             .catch(err => {
                 console.log(err.response)
-                // console.log(err.response.status)
             })
     }
 
@@ -114,10 +115,11 @@ const Main = () => {
                     </p>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
-                <button onClick={getAllUsers}>GET ALL USERS</button>
-                <button onClick={logOut}>LOGOUT</button>
+                <div>
+                    <button onClick={getAllUsers}>GET ALL USERS</button>
+                    <button onClick={logOut}>LOGOUT</button>
+                </div>
         </fieldset>
     )
 }
-
 export default Main
