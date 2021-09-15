@@ -91,7 +91,17 @@ const expected4 = [
  * @param {string} searchFor The value of the given key to search for.
  * @returns {Array<Objects>} The matched items.
  */
-function filterByKey(items, searchFor, searchBy) {}
+function filterByKey(items, searchFor, searchBy) {
+  let res = []
+  let len = searchFor.length
+for(let person of items){
+  if(person[searchBy].slice(0, len) == searchFor){
+      res.push(person)
+  }
+}
+return res
+}
+
 
 module.exports = { filterByKey };
 
@@ -189,4 +199,16 @@ function coronaVirusAtRisk(persons) {}
  * - Time O(?).
  * - Space O(?).
  */
-function coronaVirusAtRiskFunctional(persons) {}
+ function coronaVirusAtRisk(persons) {
+ let res =[]
+ for(let person of persons){
+   if(person.isSocialDistancing == false){
+     for(let friend of person.friends){
+       if(friend.isSocialDistancing == false && friend.hasCovid == true){
+         res.push(person.firstName + " " + person.lastName)
+       }
+     }
+   }
+ }
+ return res.filter((item, index) => res.indexOf(item) == index)
+}

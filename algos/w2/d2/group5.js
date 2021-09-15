@@ -95,25 +95,8 @@ const expected2 = [1, 2, 2, 2, 6, 6, 7, 10, 15, 20];
  *    not the combined amount from both sets.
  */
 function orderedMultisetUnion(sortedA, sortedB) {
-  let newArr = []
-  let temp
-  let count
-  for (let i = 0; i < sortedA.length; i++) {
-    temp = sortedA[i]
-    if (newArr.length == 0) {
-      newArr.push(temp)
-    }
-    for (let j = 0; j < sortedB.length; j++) {
-      if (sortedB[j] == temp) {
-        count++
-      }
-    }
-    while(count > 0){
-      newArr.push(temp)
-      count--
-    }
-  }
-  return newArr
+  let a
+  
 }
 result = orderedMultisetUnion(numsA1, numsB1)
 console.log(result)

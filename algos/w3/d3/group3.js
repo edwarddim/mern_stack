@@ -30,7 +30,7 @@ const people = [
     lastName: "Kim",
   },
 ];
-
+// https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/string/startswith
 const searchFor1 = "Jo";
 const searchBy1 = "firstName";
 const expected1 = [
@@ -91,7 +91,18 @@ const expected4 = [
  * @param {string} searchFor The value of the given key to search for.
  * @returns {Array<Objects>} The matched items.
  */
-function filterByKey(items, searchFor, searchBy) {}
+function filterByKey(items, searchFor, searchBy, searchMethod) {
+  return items.filter((item) => item[searchBy].startsWith(searchFor));
+}
+
+function filterByKey1(items, searchFor, searchBy, searchMethod) {
+  switch(searchMethod){
+    case 'startsWith':
+      return items.filter((item) => item[searchBy].startsWith(searchFor));
+    case 'includes':
+      return items.filter((item) => item[searchBy].includes(searchFor));
+  }
+}
 
 module.exports = { filterByKey };
 
@@ -159,19 +170,19 @@ const people = [
 
 const expected = ["Person One", "Person Three"];
 
-/**
- * @typedef {Object} Friend
- * @property {string} firstName
- * @property {string} lastName
- * @property {boolean} isSocialDistancing
- * @property {boolean} hasCovid
- *
- * @typedef {Object} Person
- * @property {Array<Friend>} friends
- * @property {string} firstName
- * @property {string} lastName
- * @property {boolean} isSocialDistancing
- */
+// /**
+//  * @typedef {Object} Friend
+//  * @property {string} firstName
+//  * @property {string} lastName
+//  * @property {boolean} isSocialDistancing
+//  * @property {boolean} hasCovid
+//  *
+//  * @typedef {Object} Person
+//  * @property {Array<Friend>} friends
+//  * @property {string} firstName
+//  * @property {string} lastName
+//  * @property {boolean} isSocialDistancing
+//  */
 
 /**
  * Finds the people who are at risk of contracting Covid.
@@ -183,7 +194,22 @@ const expected = ["Person One", "Person Three"];
  *    1. not practicing social distancing.
  *    2. have a friend who is not practicing social distancing whom hasCovid.
  */
-function coronaVirusAtRisk(persons) {}
+ function coronaVirusAtRisk(persons) {
+  let returnArr = []
+  for (let y =0; y < persons.length; y++) {
+    if (!persons[y].isSocialDistancing) {
+      //check whether friends are practicing distancing
+      //check if non distancing friends have covid
+      for (let index = 0; index < persons[y].friends.length; index++) {
+        if(!persons[y].friends[index].isSocialDistancing && persons[y].friends[index].hasCovid){
+          returnArr.push(`${persons[y].firstName} ${persons[y].lastName}`)
+        }
+      }
+    }
+  }
+  let set = new Set(returnArr)
+  return [...set]
+}
 
 /**
  * - Time O(?).

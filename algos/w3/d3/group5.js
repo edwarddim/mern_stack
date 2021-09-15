@@ -1,4 +1,4 @@
-/* 
+/* Dustine, Trevor, Rica , Kara
   Given an array of objects, a searchFor string, and searchBy key that exists in the object
   return a new array of only those objects whose value for the given key starts with the given search string
   You can assume the key will exist on the object and the value of that key will be a string
@@ -91,7 +91,16 @@ const expected4 = [
  * @param {string} searchFor The value of the given key to search for.
  * @returns {Array<Objects>} The matched items.
  */
-function filterByKey(items, searchFor, searchBy) {}
+function filterByKey(items, searchFor, searchBy, searchMethod) {
+  switch(searchMethod){
+    case 'startsWith':
+        return items.filter((item) => item[searchBy].toLowerCase().startsWith(searchFor.toLowerCase()));
+    case 'includes':
+        return items.filter((item) => item[searchBy].toLowerCase().includes(searchFor.toLowerCase()));
+    case 'endsWith':
+        return items.filter((item) => item[searchBy].toLowerCase().endsWith(searchFor.toLowerCase()));
+  }
+}
 
 module.exports = { filterByKey };
 
@@ -183,10 +192,39 @@ const expected = ["Person One", "Person Three"];
  *    1. not practicing social distancing.
  *    2. have a friend who is not practicing social distancing whom hasCovid.
  */
-function coronaVirusAtRisk(persons) {}
+ function coronaVirusAtRisk(persons) {
+  var atRiskPeople = [];
+  persons.forEach((person)=> {
+          if (person.isSocialDistancing === false) {
+              var atRisk = false;
+              person.friends.forEach((friend) => {
+                  if(friend.isSocialDistancing === false && friend.hasCovid === true) {
+                      atRisk = true;
+                  }
+              })
+              if(atRisk === true) {
+                  atRiskPeople.push((person.firstName + " " + person.lastName));
+              }
+          }
+  })
+  return atRiskPeople;
+}
 
 /**
  * - Time O(?).
  * - Space O(?).
  */
-function coronaVirusAtRiskFunctional(persons) {}
+// returns entire object not just names
+function coronaVirusAtRiskFunctional(persons) {
+  return persons.filter((person) => {
+      return (!person.isSocialDistancing && person.friends.filter((friend) => {
+              if(!friend.isSocialDistancing && friend.hasCovid){
+                 return person = person.firstName + " " + person.lastName;
+              }
+      }))
+  })
+}
+
+function coronaVirusAtRiskFunctional2(persons) {
+  return persons.filter((person) => !person.isSocialDistancing && person.friends.filter((friend) => friend.hasCovid && !friend.isSocialDistancing).length ? true : false).map((person) => person['firstName'] + ' ' + person['lastName']);
+}

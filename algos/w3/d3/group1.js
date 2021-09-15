@@ -91,9 +91,21 @@ const expected4 = [
  * @param {string} searchFor The value of the given key to search for.
  * @returns {Array<Objects>} The matched items.
  */
-function filterByKey(items, searchFor, searchBy) {}
+ function filterByKey(items, searchFor, searchBy) {
+  var newArr = [];
+  for(var i = 0;i < items.length;i++){
+    if(items[i][searchBy].startsWith(searchFor)){
+      newArr.push(items[i])
+    }
+  }
+return newArr;
+  
+}
 
-module.exports = { filterByKey };
+var result = filterByKey(people, searchFor1, searchBy1);
+console.log(result);
+
+// module.exports = { filterByKey };
 
 /*****************************************************************************/
 

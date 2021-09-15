@@ -91,7 +91,13 @@ const expected4 = [
  * @param {string} searchFor The value of the given key to search for.
  * @returns {Array<Objects>} The matched items.
  */
-function filterByKey(items, searchFor, searchBy) {}
+function filterByKey(items, searchFor, searchBy) {
+  return items.filter((item) => item[searchBy].toLowerCase().startsWith(searchFor.toLowerCase()));
+
+
+}
+console.log(filterByKey(people,searchFor1, searchBy1 ))
+
 
 module.exports = { filterByKey };
 
@@ -189,4 +195,6 @@ function coronaVirusAtRisk(persons) {}
  * - Time O(?).
  * - Space O(?).
  */
-function coronaVirusAtRiskFunctional(persons) {}
+function coronaVirusAtRiskFunctional(persons) {
+
+}

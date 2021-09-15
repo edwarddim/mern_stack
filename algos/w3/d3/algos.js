@@ -91,7 +91,18 @@ const expected4 = [
  * @param {string} searchFor The value of the given key to search for.
  * @returns {Array<Objects>} The matched items.
  */
-function filterByKey(items, searchFor, searchBy) {}
+function filterByKey(items, searchFor, searchBy, searchMethod) {
+  return items.filter((item) => item[searchBy].startsWith(searchFor));
+}
+
+function filterByKey1(items, searchFor, searchBy, searchMethod) {
+  switch (searchMethod) {
+    case "startsWith":
+      return items.filter((item) => item[searchBy].startsWith(searchFor));
+    case "includes":
+      return items.filter((item) => item[searchBy].includes(searchFor));
+  }
+}
 
 module.exports = { filterByKey };
 
@@ -189,4 +200,16 @@ function coronaVirusAtRisk(persons) {}
  * - Time O(?).
  * - Space O(?).
  */
-function coronaVirusAtRiskFunctional(persons) {}
+function coronaVirusAtRiskFunctional(persons) {
+  let res = [];
+  for (let person of persons) {
+    if (person.isSocialDistancing == false) {
+      for (let friend of person.friends) {
+        if (friend.isSocialDistancing == false && friend.hasCovid == true) {
+          res.push(person.firstName + " " + person.lastName);
+        }
+      }
+    }
+  }
+  return res.filter((item, index) => res.indexOf(item) == index);
+}
