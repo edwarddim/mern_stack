@@ -2,13 +2,18 @@ const mongoose = require("mongoose")
 
 
 const CommentSchema = mongoose.Schema({
-    body:String
+    body:{
+        type:String,
+        required:[true, "Comment must be required"]
+    }
 }, {timestamps:true})
 
 
 const MessageSchema = mongoose.Schema({
-    title:String,
-    image:String,
+    title:{
+        type:String,
+        required:[true, "Message must be required"]
+    },
     comments: [CommentSchema]
 }, {timestamps: true})
 
