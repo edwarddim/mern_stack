@@ -9,6 +9,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-require("./routes/message.route")(app)
+const routes = require("./routes/message.routes")
+routes(app)
 
 app.listen(port, ()=> console.log("EXPRESS ON 8000"))
