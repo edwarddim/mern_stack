@@ -67,8 +67,35 @@ const expected5 = user;
  * @param {Array<string>} keys
  * @returns {any} The value at end of path of given keys or null.
  */
-function lens(obj, keys) {}
 
+function lens(obj, keys) {
+  for (var i=0; i<keys.length; i++) {
+      obj = obj[keys[i]];
+      if (obj === undefined) {
+          return null;
+      }
+  }
+  return obj;
+}
+
+function lensProb(obj, keys) {
+  for (var i=0; i<keys.length; i++) {
+    obj ? null : obj = obj[keys[i]];
+  }
+return obj;
+}
+
+// 
+function lens(obj, keys) {
+  for (i=0; i<keys.length; i++) {
+      if (keys[i] in obj) {
+          console.log(true)
+      }
+  }
+  
+}
+
+lens(user, keys1)
 /*****************************************************************************/
 
 /* 
@@ -132,4 +159,30 @@ const expected3 = 0; // live squid key doesn't exist in available ingredients
  * @param {Ingredients} available
  * @returns {number} Max servings of the recipe that can be made.
  */
-function getMaxServings(recipe, available) {}
+function getMaxServings(recipe, available) {
+
+
+
+
+
+
+
+  
+}
+
+function getMaxServings2(recipe, available) {
+  var maxServings;
+  for (const [keys] of Object.entries(recipe)) {
+    if (available[keys] === undefined || maxServings === 0) {
+      return 0;
+    } else {
+      let numOfServings = Math.floor(available[keys] / recipe[keys]);
+      if (maxServings === undefined) {
+        maxServings = numOfServings;
+      } else if (maxServings > numOfServings) {
+        maxServings = numOfServings;
+      }
+    }
+  }
+  return maxServings;
+}

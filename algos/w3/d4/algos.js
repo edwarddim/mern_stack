@@ -67,7 +67,18 @@ const expected5 = user;
  * @param {Array<string>} keys
  * @returns {any} The value at end of path of given keys or null.
  */
-function lens(obj, keys) {}
+ function lens(obj, keys) {
+  let workingObj = { ...obj } //create a copy of object to manipulate
+  for (let i = 0; i < keys.length; i++) { //for each key in the keys
+    if (workingObj[keys[i]] === undefined) { //if the key doesn't exist the in object, send back null
+      return null;
+    } else { //if it does, we can go deeper
+      workingObj = workingObj[keys[i]] //navigate workingObj deeper into our object
+    }
+
+  }
+  return workingObj
+}
 
 /*****************************************************************************/
 
@@ -132,4 +143,19 @@ const expected3 = 0; // live squid key doesn't exist in available ingredients
  * @param {Ingredients} available
  * @returns {number} Max servings of the recipe that can be made.
  */
-function getMaxServings(recipe, available) {}
+ function getMaxServings(recipe, available) {
+  var maxServings;
+  for (const [keys] of Object.entries(recipe)) {
+      if (available[keys] === undefined || maxServings === 0) {
+          return 0;
+      } else {
+          let numOfServings = Math.floor(available[keys] / recipe[keys])
+          if (maxServings === undefined) {
+              maxServings = numOfServings;
+          } else if (numOfServings < maxServings) {
+              maxServings = numOfServings;
+          }
+      }
+  }
+  return maxServings;
+}

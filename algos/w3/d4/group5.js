@@ -67,7 +67,27 @@ const expected5 = user;
  * @param {Array<string>} keys
  * @returns {any} The value at end of path of given keys or null.
  */
-function lens(obj, keys) {}
+ function lens(obj, keys) {
+  let tempKey = ""
+  let tempObj = {}
+  let val = keys[keys.length-1]
+  let returnVal
+  // let value = keys[0]
+  for (let i = 0; i < keys.length-1; i++) {
+      console.log(`KEY: ${tempKey}  OBJ: ${tempObj}  VAL: ${val}`);
+      tempKey = keys[i]
+      for (const [key] of Object.entries(tempObj)) {
+          if (key === tempKey) {
+              tempObj = obj[tempKey]
+          }
+          else {
+              returnVal = null
+          }
+      }
+  }
+  returnVal = tempObj[val]
+  return returnVal
+}
 
 /*****************************************************************************/
 

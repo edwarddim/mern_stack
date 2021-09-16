@@ -1,4 +1,4 @@
-/* 
+/*  Jeremy, Li Yen, Karalynn,  Spencer, Chenxi
   Optional chaining is a newer syntax that can help with this problem in general (not necessarily intended to be used here): 
     https://levelup.gitconnected.com/new-javascript-features-in-2019-optional-chaining-null-coalescing-a7fd38f4ef2d
   The more you deal with objects, especially ones with many nested objects, where you
@@ -45,13 +45,13 @@ const user = {
 };
 
 const keys1 = ["personalInfo", "address", "city"];
-const expected1 = "wallas";
+let expected1 = "wallas";
 
 const keys2 = ["personalInfo", "address", "country"];
-const expected2 = null;
+let expected2 = null;
 
 const keys3 = ["personalInfo", "mainHobby", "yearsActive"];
-const expected3 = null;
+let expected3 = null;
 
 const keys4 = ["favorites", "number"];
 const expected4 = 0;
@@ -67,8 +67,33 @@ const expected5 = user;
  * @param {Array<string>} keys
  * @returns {any} The value at end of path of given keys or null.
  */
-function lens(obj, keys) {}
+// function lens(obj, keys) {
+//   keyIndex = 0
+//   for(key in obj){
+//     if(obj.key === obj.keys[keyIndex]){
 
+
+//     }
+
+//   } else{
+//     return null
+//   }
+// }
+
+function lens2(obj, keys) {
+  let workingObj = { ...obj } //create a copy of object to manipulate
+  for (let i = 0; i < keys.length; i++) { //for each key in the keys
+    if (workingObj[keys[i]] === undefined) { //if the key doesn't exist the in object, send back null
+      return null;
+    } else { //if it does, we can go deeper
+      workingObj = workingObj[keys[i]] //navigate workingObj deeper into our object
+    }
+
+  }
+  return workingObj
+}
+
+lens2(user, keys1)
 /*****************************************************************************/
 
 /* 
@@ -109,17 +134,17 @@ const available1 = {
   "everything nice": 1,
   "triple point water": 5,
 };
-const expected1 = 1;
+expected1 = 1;
 // because only 1 live squid is available and that is the limiting ingredient
 
 // same as available1, except live squid has 10.
 const available2 = { ...available1, ["live squid"]: 10 };
-const expected2 = 10;
+expected2 = 10;
 
 // same as available1 except live squid key is deleted.
 const available3 = { ...available1 };
 delete available3["live squid"];
-const expected3 = 0; // live squid key doesn't exist in available ingredients
+expected3 = 0; // live squid key doesn't exist in available ingredients
 
 /**
  * Determines how many servings can be made of the given recipe.
@@ -132,4 +157,24 @@ const expected3 = 0; // live squid key doesn't exist in available ingredients
  * @param {Ingredients} available
  * @returns {number} Max servings of the recipe that can be made.
  */
-function getMaxServings(recipe, available) {}
+ function getMaxServings(recipe, available) {
+  //variable to store the minimum value, start at Number.MAX_SAFE_INTEGER;
+  var numServingsPossible = Number.MAX_SAFE_INTEGER;
+  //iterate through KVPs of recipe
+  for(const [rKey, rValue] of Object.entries(recipe)) {
+    //store a value for the division of available/recipes FLOOR
+    let numberOfServingsForThisKey = 0;
+  //find where they are the same, find quantity by diving and using floor
+      if(available[rKey]) {
+        numberOfServingsForThisKey = Math.floor((available[rKey])/rValue);
+      }
+    //inside 1st loop, out of 2nd, if value stored < min, reassign
+    if(numberOfServingsForThisKey < numServingsPossible) {
+      numServingsPossible = numberOfServingsForThisKey;
+    }
+  }
+  //return the min value
+  return numServingsPossible;
+  }
+
+// console.log(getMaxServings(recipe1, available1))

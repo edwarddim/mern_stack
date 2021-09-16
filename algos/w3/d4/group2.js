@@ -67,7 +67,14 @@ const expected5 = user;
  * @param {Array<string>} keys
  * @returns {any} The value at end of path of given keys or null.
  */
-function lens(obj, keys) {}
+function lens(obj, keys) {
+  var i = "";
+  for (var i = obj.length-1; i>0 ; i--){
+    console.log(keys)
+  }
+  
+
+  }
 
 /*****************************************************************************/
 
