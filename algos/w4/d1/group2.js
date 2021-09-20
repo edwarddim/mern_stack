@@ -34,7 +34,16 @@ const expected3 = [];
  * @callback cb A callback function that expects to receive an array element.
  * @returns {Array<any>} The given array with only the remaining items.
  */
-function dropIt(arr, cb) {}
+ function dropIt(arr, cb) {
+  let returnArr = [...arr];
+  for (let i=0;i<arr.length;i++){
+    if (!cb(arr[i])){
+      returnArr.shift()
+    }else break
+  }
+  return returnArr
+}
+console.log(dropIt(nums1,callback3))
 
 /*****************************************************************************/
 
@@ -74,4 +83,38 @@ const expected6 = false;
  * @param {string} str
  * @returns {boolean} Whether the given str can be rearranged into a palindrome.
  */
-function canStringBecomePalindrome(str) {}
+// function canStringBecomePalindrome(str) {
+// let countObj = {}
+// let count = 0
+// for (i =0; i<str.length;i++){
+//   countObj
+
+
+
+// }
+
+
+// }
+function canStringBecomePalindrome(str) {
+  let dict = {};
+  let count = 0;
+  if (str == "") return false;
+  for (let i = 0; i < str.length; i++) {
+    if (!dict[str[i]]) {
+      dict[str[i]] = 1
+    } else {
+      dict[str[i]] += 1
+    }
+  }
+  for (let entry in dict){
+    if (dict[entry] % 2 == 1){
+      count++
+    }
+    if (count >= 2){
+      return false
+    }
+  }
+  return true
+  
+}
+console.log(canStringBecomePalindrome(str4))

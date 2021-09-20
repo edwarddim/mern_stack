@@ -1,5 +1,5 @@
 // https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/drop-it
-
+//Daniel, Katelyn, Karalynn, Rica
 /*
   Input: arr, callback
   Output: arr (with elements removed)
@@ -34,7 +34,10 @@ const expected3 = [];
  * @callback cb A callback function that expects to receive an array element.
  * @returns {Array<any>} The given array with only the remaining items.
  */
-function dropIt(arr, cb) {}
+ function dropIt(arr, cb) {
+  return arr.filter(num => cb(num))
+}
+
 
 /*****************************************************************************/
 
@@ -74,4 +77,17 @@ const expected6 = false;
  * @param {string} str
  * @returns {boolean} Whether the given str can be rearranged into a palindrome.
  */
-function canStringBecomePalindrome(str) {}
+ function canStringBecomePalindrome(str) {
+  if (str.length === 0) {
+    return false;
+  }
+  var setOfLetters = {};
+  for(var i=0; i < str.length; i++) {
+    setOfLetters.hasOwnProperty(str[i]) ? setOfLetters[str[i]] = (setOfLetters[str[i]]+1) : setOfLetters[str[i]] = 1;
+  }
+  var numOfOdds = 0;
+  for(const [key, value] of Object.entries(setOfLetters)) {
+    value % 2 != 0 ? numOfOdds++ : null;
+  }
+  return numOfOdds <= 1 ? true : false;
+}  

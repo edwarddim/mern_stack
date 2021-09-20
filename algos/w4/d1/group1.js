@@ -25,6 +25,7 @@ const nums3 = [...nums1];
 const callback3 = (elem) => false;
 const expected3 = [];
 
+
 /**
  * Removes every element in the array, starting from idx 0 until the callback
  * function returns true when passed the iterated element.
@@ -34,8 +35,15 @@ const expected3 = [];
  * @callback cb A callback function that expects to receive an array element.
  * @returns {Array<any>} The given array with only the remaining items.
  */
-function dropIt(arr, cb) {}
-
+ function dropIt(arr, cb) {
+  let newArr = []
+  for (let index = 0; index < arr.length; index++) {
+    if (cb(arr[index])) {
+      newArr.push(arr[index])
+    }
+  }
+  return newArr
+}
 /*****************************************************************************/
 
 /* 
@@ -74,4 +82,25 @@ const expected6 = false;
  * @param {string} str
  * @returns {boolean} Whether the given str can be rearranged into a palindrome.
  */
-function canStringBecomePalindrome(str) {}
+ function canStringBecomePalindrome(str) {
+  let strObj = {}
+  let odd = 0;
+  if (str == false || str.length < 1) return false;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] in strObj) {
+      strObj[str[i]] += 1;
+    } else {
+      strObj[str[i]] = 1;
+    }
+  }
+  for (const key in strObj) {
+    if (strObj[key] % 2  === 1){
+      odd++;
+    }
+  }
+  if (odd > 1) {
+    return false;
+  } else{
+    return true;
+  }
+}

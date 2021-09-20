@@ -34,7 +34,9 @@ const expected3 = [];
  * @callback cb A callback function that expects to receive an array element.
  * @returns {Array<any>} The given array with only the remaining items.
  */
-function dropIt(arr, cb) {}
+function dropIt(arr, cb) {
+  return arr.filter(elem => cb(elem));
+}
 
 /*****************************************************************************/
 
@@ -66,6 +68,8 @@ const expected5 = true;
 const str6 = "abc";
 const expected6 = false;
 
+
+
 /**
  * Determines whether or not it is possible for the string's characters to be
  * rearranged into a palindrome.
@@ -74,4 +78,28 @@ const expected6 = false;
  * @param {string} str
  * @returns {boolean} Whether the given str can be rearranged into a palindrome.
  */
-function canStringBecomePalindrome(str) {}
+function canStringBecomePalindrome(str) {
+  if (str.length === 0){
+    return false;
+  }
+  let dict = {};
+  // store element count in a dictionary
+  for(let i=0; i<str.length; i++){
+    if(!dict[str[i]]){
+      dict[str[i]] = 1
+    } else {
+      dict[str[i]]++
+    }
+  }
+  // check whether there's more than one odd count of elements
+  let oddCount = 0;
+  for(let key in dict){
+    if(dict[key]%2 == 1){
+      oddCount += 1;
+    }
+    if(oddCount > 1){
+      return false;
+    }
+  }
+  return true;
+}

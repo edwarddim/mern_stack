@@ -34,7 +34,13 @@ const expected3 = [];
  * @callback cb A callback function that expects to receive an array element.
  * @returns {Array<any>} The given array with only the remaining items.
  */
-function dropIt(arr, cb) {}
+function dropIt(arr, cb) {
+  for (var i = 0; i < arr.length; i++) {
+    if (cb(arr[i])) break;
+  }
+
+  return arr.slice(i);
+}
 
 /*****************************************************************************/
 
@@ -75,3 +81,4 @@ const expected6 = false;
  * @returns {boolean} Whether the given str can be rearranged into a palindrome.
  */
 function canStringBecomePalindrome(str) {}
+
