@@ -75,8 +75,39 @@ const expected = {
  * @returns {Object<string, Array<Object>>} The hash category hash table with
  *    string keys and array of objects as values.
  */
-function groupObjects(items) {}
+ function groupObjects(items) {
+  items = [...items]
+  let hash = []
+  for (key in items) {
+      let newKey = items[key].category.toLowerCase()
+      hash[newKey] = []
+  }
+  for (higherKey in hash) {
+      // console.log(higherKey)
+      for (lowerKey in items) {
+          // console.log(items[lowerKey])
+          if (higherKey.toString().toLowerCase() === items[lowerKey].category.toString().toLowerCase()) {
 
+              hash[higherKey].push(items[lowerKey])
+          }
+      }
+  }
+  return (hash)
+}
+
+function groupObjects2(items) {
+  let returnObj = {}
+  for (let i=0; i<items.length;i++){
+      returnObj[items[i].category.toLowerCase()] = []
+  }
+  for (let i=0; i<items.length;i++){
+      returnObj[items[i].category.toLowerCase()] = [...returnObj[items[i].category.toLowerCase()], items[i]]
+  }
+
+  return returnObj
+}
+
+console.log(groupObjects2(objects))
 /*****************************************************************************/
 
 /* 
@@ -117,4 +148,37 @@ const expected4 = false;
  * @returns {boolean} Whether the given strings are equal after backspaces
  *    have been processed.
  */
-function backspaceStringCompare(S, T) {}
+ function backspaceStringCompare(S) {
+  let newArr = []
+  
+  for (i = 0; i< S.length; i++){
+      newArr.push(S[i])
+  }
+  for(j = 0; j< newArr.length; j++){
+
+      if( newArr[j] === "#"){
+          newArr[j] = ''
+          newArr[j - 1] = ''
+      }
+      newArr = newArr.join()
+      for(k = 0; k <newArr.length; k++){
+          newArr = newArr.replace(',','')
+          
+      }
+      let newArr2 = []
+      for (i = 0; i< newArr.length; i++){
+          newArr2.push(newArr[i])
+      }
+      newArr = newArr2
+  }
+  
+  newArr = newArr.join()
+  newArr = newArr.replace(",","")
+  return newArr
+}
+function comparer(string1, string2){
+  return (backspaceStringCompare(string1) === backspaceStringCompare(string2))
+
+
+}
+console.log((S1, S2))

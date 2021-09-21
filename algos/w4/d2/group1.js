@@ -77,6 +77,21 @@ const expected = {
  */
 function groupObjects(items) {}
 
+
+function groupObjects(items) {
+  let grouped = {}
+  let cat;
+  for (let i = 0; i < items.length; i++) {
+    cat = items[i].category.toLowerCase()
+    if (!(cat in grouped)) {
+      grouped[cat] = [items[i]]
+    } else  {
+      grouped[cat].push(items[i])
+    }
+  }
+  return grouped;
+}
+console.log(groupObjects(objects));
 /*****************************************************************************/
 
 /* 
@@ -117,4 +132,27 @@ const expected4 = false;
  * @returns {boolean} Whether the given strings are equal after backspaces
  *    have been processed.
  */
-function backspaceStringCompare(S, T) {}
+function backspaceStringCompare(S, T) {
+  let sArr = [];
+  let tArr = [];
+
+  for(let i=0; i<S.length; i++){
+    if(S[i] === '#'){
+      sArr.pop();
+    } else {
+      sArr.push(S[i]);
+    }
+  }
+
+  for(let i=0; i<T.length; i++){
+    if(T[i] === '#'){
+      tArr.pop();
+    } else {
+      tArr.push(T[i]);
+    }
+  }
+  // console.log("S Arr: ", sArr);
+  // console.log("T Arr: ", tArr);
+
+  return sArr.toString() === tArr.toString();
+}

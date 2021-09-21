@@ -1,4 +1,4 @@
-/* 
+/* Vincent, Karalynn, Daniel, Dustine 
   Given an array of objects that contain a category key,
   return a hash table to group the objects by their category.
   Make the grouping case-insensitive.
@@ -75,7 +75,22 @@ const expected = {
  * @returns {Object<string, Array<Object>>} The hash category hash table with
  *    string keys and array of objects as values.
  */
-function groupObjects(items) {}
+ function groupObjects(items) {
+  var newHashTable = {};
+  for (var i = 0; i < items.length; i++) {
+      var searchKey = items[i]["category"].toLowerCase();
+      if (!newHashTable.hasOwnProperty(searchKey)) {
+          newHashTable[searchKey] = [];
+      }
+      //this way it will have an array by the tie it hits 2nd if statement
+      //not sure why it didn't work the other way
+      if
+      if(newHashTable.hasOwnProperty(searchKey)){
+          newHashTable[searchKey].push(items[i]);
+      }
+  }
+  return newHashTable;
+}
 
 /*****************************************************************************/
 
@@ -117,4 +132,25 @@ const expected4 = false;
  * @returns {boolean} Whether the given strings are equal after backspaces
  *    have been processed.
  */
-function backspaceStringCompare(S, T) {}
+function backspaceStringCompare(arrOne, arrTwo) {
+return (myLittleHelper(arrOne) === myLittleHelper(arrTwo));
+}
+
+function myLittleHelper(arr) {
+  var myLittleString = "";
+  for (var i = arr.length - 1; i >= 0; i--) {
+      //if not #, push into the respective variable
+      if (arr[i] !== "#") {
+          myLittleString += arr[i];
+      }
+      let numOfDecrements = 0;
+      while (arr[i] === "#") {
+          numOfDecrements++;
+          i--;
+      }
+      for(var j=0; j < numOfDecrements; j++) {
+          i--;
+      }
+  }
+  return myLittleString;
+}

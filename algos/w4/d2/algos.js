@@ -75,7 +75,19 @@ const expected = {
  * @returns {Object<string, Array<Object>>} The hash category hash table with
  *    string keys and array of objects as values.
  */
-function groupObjects(items) {}
+function groupObjects(items) {
+  let grouped = {}
+  let cat;
+  for (let i = 0; i < items.length; i++) {
+    cat = items[i].category.toLowerCase()
+    if (!(cat in grouped)) {
+      grouped[cat] = [items[i]]
+    } else  {
+      grouped[cat].push(items[i])
+    }
+  }
+  return grouped;
+}
 
 /*****************************************************************************/
 
@@ -88,7 +100,7 @@ function groupObjects(items) {}
 */
 
 const S1 = "ab#c";
-const T1 = "ad#c";
+const T1 = "ad#c"; 
 const expected1 = true;
 // Explanation: Both S and T become "ac"
 
@@ -117,4 +129,32 @@ const expected4 = false;
  * @returns {boolean} Whether the given strings are equal after backspaces
  *    have been processed.
  */
-function backspaceStringCompare(S, T) {}
+ function backspaceStringCompare(S, T) {
+  const sBackspaced = getBackspacedStack(S);
+  const tBackspaced = getBackspacedStack(T);
+
+  if (sBackspaced.length !== tBackspaced.length) {
+    return false;
+  }
+
+  for (let i = 0; i < sBackspaced.length; i++) {
+    if (sBackspaced[i] !== tBackspaced[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function getBackspacedStack(str) {
+  const backspacedStack = [];
+
+  for (const char of str) {
+    if (char !== "#") {
+      backspacedStack.push(char);
+    } else if (backspacedStack.length > 0) {
+      backspacedStack.pop();
+    }
+  }
+
+  return backspacedStack;
+}

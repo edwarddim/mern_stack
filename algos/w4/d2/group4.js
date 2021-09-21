@@ -75,7 +75,17 @@ const expected = {
  * @returns {Object<string, Array<Object>>} The hash category hash table with
  *    string keys and array of objects as values.
  */
-function groupObjects(items) {}
+function groupObjects(items) {
+  var hashCat = {};
+  for (var i=0; i<items.length; i++) {
+      if (items[i]['category'].toLowerCase() in hashCat) {
+          hashCat[items[i]['category'].toLowerCase()].push(items[i]);
+      } else {
+          hashCat[items[i]['category'].toLowerCase()] = [items[i]];
+      }
+  }
+  return hashCat;
+}
 
 /*****************************************************************************/
 
@@ -117,4 +127,38 @@ const expected4 = false;
  * @returns {boolean} Whether the given strings are equal after backspaces
  *    have been processed.
  */
-function backspaceStringCompare(S, T) {}
+function backspaceStringCompare(S, T) {
+  var string1 = '';
+  var string2 = '';
+  var k = S.length - 1;
+  var j = T.length - 1;
+  var kBack = 0;
+  var jBack = 0;
+  while (k >= 0 || j >= 0) {
+      if (S[k] === '#') {
+          kBack++;
+          k--;
+      } else {
+          if (kBack > 0) {
+              kBack--;
+              k--;
+          } else if (S[k] !== undefined) {
+              string1 = S[k] + string1;
+              k--;
+          }
+      }
+      if (T[j] === '#') {
+          jBack++;
+          j--;
+      } else {
+          if (jBack > 0) {
+              jBack--;
+              j--;
+          } else if (T[j] !== undefined) {
+              string2 = T[j] + string2;
+              j--;
+          }
+      }
+  }
+  return string1 === string2;
+}
