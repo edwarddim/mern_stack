@@ -1,4 +1,4 @@
-/* 
+/* Patrick, Rica, Hadiya, Dustine, Karalynn
 Given to alumni by Riot games in 2021.
 */
 
@@ -13,8 +13,39 @@ const expected1 = "a184b70c42";
  * @param {string} s An incorrectly hashed string.
  * @returns {string} The correctly rehashed string alphabetized.
  */
-function rehash(s) {}
+function rehashPseudo(s) {
+  //create a new object with the key of the letter and the value of the number beside it
+  //if the new object doesn't contain the letter, push the new KVP 
+  //if it does contain it, add the values
+  //sort the keys
+  //create a string
+  //for each KVP, concat the key and summed values
+  //return the string
+}
 
+function rehash(s) {
+  let myString = '';
+  let myHash = {}
+  for (let i = 0; i < s.length; i++) {
+    let j = i + 1;
+    let numString = ''
+    if ((/[a-zA-Z]/).test(s[i]) && !(s[i] in myHash)) {
+      myHash[s[i]] = 0;
+    }
+    while (!(/[a-zA-Z]/).test(s[j])) {
+      numString += s[j]
+      j++;
+    }
+    myHash[s[i]] += parseInt(numString)
+    i = j - 1;
+  }
+  const keyArr = Object.keys(myHash).sort()
+  for (let i = 0; i < keyArr.length; i++) {
+    myString += (keyArr[i] + myHash[keyArr[i]])
+
+  }
+  return myString;
+}
 /*****************************************************************************/
 
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
@@ -47,4 +78,24 @@ const expected4 = 4;
  * - Time: O(?).
  * - Space: O(?).
  */
-function lengthOfLongestSubString(str) {}
+ function lengthOfLongestSubString(str) {
+  var arrayOfPossible = [];
+  for (var i = 0; i < str.length; i++) {
+      var currentI = i;
+      var arrayOfChars = [];
+      while (!arrayOfChars.includes(str.charAt(i))) {
+          arrayOfChars.push(str.charAt(i));
+          i++;
+      }
+      var stringPushed = arrayOfChars.join("").trim();
+      arrayOfPossible.push(stringPushed);
+      i = currentI;
+  }
+  var highestCount = 0;
+  for (var j = 0; j < arrayOfPossible.length; j++) {
+      if (arrayOfPossible[j].length > highestCount) {
+          highestCount = arrayOfPossible[j].length;
+      }
+  }
+  return highestCount;
+}

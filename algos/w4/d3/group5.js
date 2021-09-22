@@ -13,7 +13,29 @@ const expected1 = "a184b70c42";
  * @param {string} s An incorrectly hashed string.
  * @returns {string} The correctly rehashed string alphabetized.
  */
-function rehash(s) {}
+function rehash(s) {
+  var lastLetter = 0;
+  var hashDict = {};
+  for (var i=1; i<s.length; i++) {
+      if (isNaN(s[i])) {
+          if (s[lastLetter] in hashDict) {
+              hashDict[s[lastLetter]] += parseInt(s.slice(lastLetter + 1, i));
+              lastLetter = i;
+          } else {
+              hashDict[s[lastLetter]] = parseInt(s.slice(lastLetter + 1, i));
+              lastLetter = i;
+          }
+      }
+  }
+  s[lastLetter] in hashDict ? hashDict[s[lastLetter]] += parseInt(s.slice(lastLetter + 1, i)) : hashDict[s[lastLetter]] = parseInt(s.slice(lastLetter + 1, i));
+  var newHash = '';
+  Object.keys(hashDict)
+    .sort()
+    .forEach(function(key) {
+        newHash += key + hashDict[key];
+     });
+  return newHash;
+}
 
 /*****************************************************************************/
 
@@ -47,4 +69,20 @@ const expected4 = 4;
  * - Time: O(?).
  * - Space: O(?).
  */
-function lengthOfLongestSubString(str) {}
+function lengthOfLongestSubString(str) {
+  if (str.length === 1 || str.length <= max) {
+    return max;
+  }
+  var slice = '';
+  for (var i=0; i<str.length; i++) {
+      if (slice.includes(str[i])) {
+          break;
+      } else {
+          slice = str.slice(0, i+1);
+      }
+  }
+  if (slice.length > max) {
+      max = slice.length;
+  }
+  return lengthOfLongestSubString(str.slice(1, str.length), max);
+}

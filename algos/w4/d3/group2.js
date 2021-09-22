@@ -13,7 +13,39 @@ const expected1 = "a184b70c42";
  * @param {string} s An incorrectly hashed string.
  * @returns {string} The correctly rehashed string alphabetized.
  */
-function rehash(s) {}
+ function rehash(s) {
+  let obj = {}
+  let i = 0;
+  let currentKey = ''
+  let currentValue = ''
+  while(i < s.length){
+      if (isNaN(s[i])){
+          obj[s[i]] = s[i] in obj ? obj[s[i]] : 0;
+          currentKey = s[i]
+          i++
+      } else {
+          if (!isNaN(s[i+1])){
+              currentValue += s[i] 
+              i++
+          } else {
+              currentValue += s[i]
+              obj[currentKey] += parseInt(currentValue)
+              i++
+              currentValue = ''
+          }
+
+      }
+  }
+
+  let myString = ''
+  const keyArr = Object.keys(obj).sort()
+  for (let i = 0; i < keyArr.length; i++) {
+    myString += (keyArr[i] + obj[keyArr[i]])
+
+  }
+  return myString;
+}
+rehash(str1)
 
 /*****************************************************************************/
 

@@ -13,7 +13,28 @@ const expected1 = "a184b70c42";
  * @param {string} s An incorrectly hashed string.
  * @returns {string} The correctly rehashed string alphabetized.
  */
-function rehash(s) {}
+function rehash(s) {
+  let myString = "";
+  let myHash = {};
+  for (let i = 0; i < s.length; i++) {
+    let j = i + 1;
+    let numString = "";
+    if (/[a-zA-Z]/.test(s[i]) && !(s[i] in myHash)) {
+      myHash[s[i]] = 0;
+    }
+    while (!/[a-zA-Z]/.test(s[j])) {
+      numString += s[j];
+      j++;
+    }
+    myHash[s[i]] += parseInt(numString);
+    i = j - 1;
+  }
+  const keyArr = Object.keys(myHash).sort();
+  for (let i = 0; i < keyArr.length; i++) {
+    myString += keyArr[i] + myHash[keyArr[i]];
+  }
+  return myString;
+}
 
 /*****************************************************************************/
 
@@ -47,4 +68,24 @@ const expected4 = 4;
  * - Time: O(?).
  * - Space: O(?).
  */
-function lengthOfLongestSubString(str) {}
+function lengthOfLongestSubString(str) {
+  var record = 0;
+  var tracker = 0;
+  var newArray = [];
+  for (let i = 0; i < str.length; i++) {
+    tracker = i;
+    while (!newArray.includes(str[i]) && str[i] != undefined) {
+      console.log("Hello");
+      newArray.push(str[i]);
+      i++;
+    }
+
+    if (newArray.length > record) {
+      record = newArray.length;
+    }
+
+    i = tracker;
+    newArray = [];
+  }
+  return record;
+}

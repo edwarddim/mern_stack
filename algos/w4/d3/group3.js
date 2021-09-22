@@ -13,8 +13,34 @@ const expected1 = "a184b70c42";
  * @param {string} s An incorrectly hashed string.
  * @returns {string} The correctly rehashed string alphabetized.
  */
-function rehash(s) {}
+ function rehash(s) {
+  let objArr = []
+  for (i = 0; i < s.length; i++) {
+      if (isNaN(s[i])) {
+          let letter = s[i]
+          let number = ""
+          let j = i + 1
+          let obj = {}
+          while (!isNaN(s[j])) {
+              number = number.concat(s[j])
+              j++
+              obj[letter] = number
+              objArr.push(obj)
+          }
 
+      }
+  }
+  for (key1 in objArr){
+      console.log(objArr[key1])
+      // for(key2 in objArr){
+      //     if (objArr[key1] = objArr[key2]){
+      //         objArr[key] =
+
+      //     }
+      // }
+  }
+}
+rehash(str1)
 /*****************************************************************************/
 
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
@@ -48,3 +74,27 @@ const expected4 = 4;
  * - Space: O(?).
  */
 function lengthOfLongestSubString(str) {}
+
+function lengthOfLongestSubString(str) {
+  var record = 0
+  var tracker = 0
+  var newArray = []
+  for(let i = 0; i< str.length;i++){
+      tracker = i
+      while(!newArray.includes(str[i]) && str[i] != undefined){
+          console.log("Hello")
+          newArray.push(str[i])
+          i++
+      }
+
+      if(newArray.length > record){
+          record = newArray.length
+      }
+
+      i = tracker
+      newArray = []
+  }
+  return record
+}
+
+console.log(lengthOfLongestSubString(str1))

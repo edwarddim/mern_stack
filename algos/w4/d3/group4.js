@@ -1,4 +1,4 @@
-/* 
+/* t
 Given to alumni by Riot games in 2021.
 */
 
@@ -13,7 +13,27 @@ const expected1 = "a184b70c42";
  * @param {string} s An incorrectly hashed string.
  * @returns {string} The correctly rehashed string alphabetized.
  */
-function rehash(s) {}
+function rehash(s) {
+  firstOccur = []
+  split = []
+
+  var i = 0 
+ for(var i = 0; i < s.length; i++){
+  if(isNaN(s[i])){
+    firstOccur.push(s[i])
+    console.log(s.indexOf(firstOccur), ': ', s.includes(firstOccur))
+    i++
+} else {
+  
+    i++
+}
+ }
+  
+
+  console.log('firstOccur: ', firstOccur)
+}
+
+rehash(str1)
 
 /*****************************************************************************/
 
