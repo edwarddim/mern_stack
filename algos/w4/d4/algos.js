@@ -33,7 +33,33 @@ const expected4 = 2;
  * @param {number[]} heights
  * @returns {number} Representing the max area of a container.
  */
-function containerWithMostWater(heights) {}
+function containerWithMostWater(heights) {
+  //greedy algo - starting from the largest length
+  // the starting two pointers
+  var i = 0;
+  var j = heights.length - 1;
+  // the starting height index from both sides
+  var leftIndex = 0;
+  var rightIndex = heights.length - 1;
+  var height = 0;
+  var max = 0;
+  while (i < j) {
+    // try to update the height to a higher one
+    if (heights[leftIndex] < heights[i]) {
+      leftIndex = i;
+    }
+    if (heights[rightIndex] < heights[j]) {
+      rightIndex = j;
+    }
+    // the height will be the lower one between the two
+    height = Math.min(heights[leftIndex], heights[rightIndex]);
+    // try to update the max area
+    max = Math.max(max, height * (rightIndex - leftIndex));
+    i++;
+    j--;
+  }
+  return max;
+}
 
 /*****************************************************************************/
 
@@ -82,4 +108,29 @@ const expected6 = 1;
  * - Time: O(?).
  * - Space: O(?).
  */
-function compareVersionNumbers(v1, v2) {}
+function compareVersionNumbers(v1, v2) {
+  var version1 = v1.split(".");
+  var version2 = v2.split(".");
+  var length = version1.length;
+  if (version2.length > length) {
+    length = version2.length;
+  }
+  console.log(version1);
+  console.log(version2);
+
+  for (let i = 0; i < length; i++) {
+    if (parseInt(version1[i]) > parseInt(version2[i])) {
+      return 1;
+    } else if (parseInt(version1[i]) < parseInt(version2[i])) {
+      return -1;
+    } else if (parseInt(version1[i]) == parseInt(version2[i])) {
+      continue;
+    } else if (version1.length == length) {
+      return 1;
+    } else if (version2.length == length) {
+      return -1;
+    }
+  }
+
+  return 0;
+}

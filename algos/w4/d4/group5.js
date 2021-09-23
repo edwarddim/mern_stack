@@ -33,7 +33,22 @@ const expected4 = 2;
  * @param {number[]} heights
  * @returns {number} Representing the max area of a container.
  */
-function containerWithMostWater(heights) {}
+ function containerWithMostWater(heights) {
+  let maxArea = 0;
+  for (let i = 0; i < heights.length; i++){
+      for (let j = i+1 ; j < heights.length; j++){
+          if ( heights[i] > heights[j]){
+             maxArea = heights[j] * (j-i) > maxArea ? heights[j] * (j-i) : maxArea;
+          } else {
+              maxArea = heights[i] * (j-i) > maxArea ? heights[i] * (j-i) : maxArea;
+          }
+      }
+  }
+
+  return maxArea;
+
+}
+containerWithMostWater(heights4)
 
 /*****************************************************************************/
 
@@ -82,4 +97,7 @@ const expected6 = 1;
  * - Time: O(?).
  * - Space: O(?).
  */
-function compareVersionNumbers(v1, v2) {}
+function compareVersionNumbers(v1, v2) {
+
+
+}

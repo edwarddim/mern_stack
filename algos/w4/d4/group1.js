@@ -33,7 +33,59 @@ const expected4 = 2;
  * @param {number[]} heights
  * @returns {number} Representing the max area of a container.
  */
-function containerWithMostWater(heights) {}
+ function containerWithMostWater(heights) {
+  let area = 0
+  for (i = 0; i < heights.length; i++){
+      for(j = i + 1; j <heights.length - i + 1; j++){
+          let count = j -i
+          let tallestHeight
+          if (heights[i] < heights[j]){
+              tallestHeight = heights[i]
+          } else{
+              tallestHeight = heights[j]
+          }
+          if(count * tallestHeight > area){
+              area = (count * tallestHeight)
+              // console.log(area)
+          }
+      }
+  }
+  return area
+}
+
+console.log(containerWithMostWater(heights4))
+
+//solution 2 from Chenxi:
+
+function containerWithMostWater(heights) {
+    //greedy algo - starting from the largest length
+    // the starting two pointers
+    var i = 0;
+    var j = heights.length - 1;
+    // the starting height index from both sides
+    var leftIndex = 0;
+    var rightIndex = heights.length - 1;
+    var height = 0;
+    var max = 0;
+    while (i < j) {
+      // try to update the height to a higher one
+      if (heights[leftIndex] < heights[i]) {
+        leftIndex = i;
+      }
+      if (heights[rightIndex] < heights[j]) {
+        rightIndex = j;
+      }
+      // the height will be the lower one between the two
+      height = Math.min(heights[leftIndex], heights[rightIndex]);
+      // try to update the max area
+      max = Math.max(max, height * (rightIndex - leftIndex));
+      i++;
+      j--;
+    }
+    return max;
+  }
+
+
 
 /*****************************************************************************/
 
@@ -83,3 +135,16 @@ const expected6 = 1;
  * - Space: O(?).
  */
 function compareVersionNumbers(v1, v2) {}
+
+function compareVersionNumbers(v1, v2) {
+    let splitV1 = v1.split('.').map(split => parseInt(split)).join('')
+    let splitV2 = v2.split('.').map(split => parseInt(split)).join('')
+    console.log(splitV2, splitV1);
+    if (splitV2 > splitV1) {
+      return -1
+    } else if (splitV1 > splitV2) {
+      return 1
+    } else {
+      return 0
+    }
+  }

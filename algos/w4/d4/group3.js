@@ -83,3 +83,31 @@ const expected6 = 1;
  * - Space: O(?).
  */
 function compareVersionNumbers(v1, v2) {}
+
+function compareVersionNumbers(v1, v2) { 
+  var version1 = v1.split(".")
+  var version2 = v2.split(".")
+  var length = version1.length
+  if(version2.length > length){
+      length = version2.length
+  }
+  console.log(version1)
+  console.log(version2)
+
+  for(let i = 0; i < length; i++){
+
+      if(parseInt(version1[i]) > parseInt(version2[i])){
+          return 1
+      }else if(parseInt(version1[i]) < parseInt(version2[i])){
+          return -1
+      }else if(parseInt(version1[i]) == parseInt(version2[i])){
+          continue
+      }else if(version1.length == length){
+          return 1
+      }else if(version2.length == length){
+          return -1
+      }
+  }
+
+  return 0
+}

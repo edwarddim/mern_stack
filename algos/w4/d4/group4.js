@@ -33,7 +33,25 @@ const expected4 = 2;
  * @param {number[]} heights
  * @returns {number} Representing the max area of a container.
  */
-function containerWithMostWater(heights) {}
+function containerWithMostWater(heights) {
+  let lHeight;
+  let maxArea = 0;
+  for(let i=0; i<heights.length; i++){
+    lHeight= heights[i];
+    for(let j=i+1; j<heights.length; j++){
+      if(heights[j] < lHeight){
+        area = heights[j] * (j-i);
+      } else {
+        area = lHeight * (j-i)
+      }
+
+      if (area > maxArea){
+        maxArea = area
+      }
+    }
+  }
+  return maxArea;
+}
 
 /*****************************************************************************/
 
@@ -82,4 +100,28 @@ const expected6 = 1;
  * - Time: O(?).
  * - Space: O(?).
  */
-function compareVersionNumbers(v1, v2) {}
+ function compareVersionNumbers(v1, v2) {
+  let subStrings1 = v1.split('.')
+  let subStrings2 = v2.split('.')
+  let numsArr1 = []
+  let numsArr2 = []
+  let len = 0
+  if (subStrings1.length > subStrings2.length) {
+      len = subStrings1.length
+  } else {
+      len = subStrings2.length
+  }
+  for (let i = 0; i < len; i++) {
+      numsArr1.push(parseInt(subStrings1[i]))
+      numsArr2.push(parseInt(subStrings2[i]))
+      if (numsArr1[i] > numsArr2[i]) return 1
+      if (numsArr1[i] < numsArr2[i]) return -1
+      if (isNaN(numsArr1[i])) {
+          return -1
+      }
+      if (isNaN(numsArr2[i])) {
+          return 1
+      }
+  }
+  return 0
+}
