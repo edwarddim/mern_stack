@@ -38,7 +38,59 @@ const expected3 = [-1, -1]; // not found.
  * @returns {Array<number, number>} The song pair indexes, or [-1, -1] if no
  *    pair is found.
  */
-function amazonMusicRuntime(busDuration, songDurations) {}
+function amazonMusicRuntime(busDuration, songDurations) {
+    var target = busDuration - 30;
+    var remainder = {};
+    var pair = [-1, -1];
+    for (var i=0; i<songDurations.length; i++) {
+        remainder[songDurations[i]] = i;
+    };
+    for (var i=0; i<songDurations.length; i++) {
+        if (target - songDurations[i] in remainder && remainder[target - songDurations[i]] !== i) {
+            if (songDurations[i] > songDurations[pair[0]] || pair[0] === -1) {
+                pair = [i, remainder[target - songDurations[i]]];
+            };
+        };
+    };
+    return pair;
+}
+function amazonMusicRuntime2(busDuration, songDurations) {
+    busDuration -=  30
+    let returnArr = []
+    for (let i = 0; i<songDurations.length; i++){
+        for(let j = i + 1; j <songDurations.length + 1; j++){
+            if(songDurations[i] + songDurations[j] === busDuration){
+                let newObj = {}
+                newObj[i] = songDurations[i]
+                newObj[j] = songDurations[j]
+                returnArr.push(newObj)
+            }
+        }
+    }
+    let returnReturnArr = []
+    let count = 0
+    if(returnArr.length === 0){
+        return [-1,-1]
+    }
+    let highest = 0 
+    for (k = 0; k < returnArr.length; k++){
+        for(const [key,value] of Object.entries(returnArr[k])){
+            if (returnArr[k][key] > highest){
+                returnReturnArr.push(returnArr[k])
+                // console.log(returnArr[k][key])
+                highest = returnArr[k][key]
+                count++
+            }
+        }
+    }
+    // console.log(returnReturnArr)
+    returnFinalArr = []
+    for (key in returnReturnArr[count-1]){
+        returnFinalArr.push(parseInt(key))
+    }
+    return returnFinalArr
+}
+
 
 /*****************************************************************************/
 
@@ -80,4 +132,16 @@ const expected5 = false;
  * @param {string} s2
  * @returns {boolean}
  */
-function canBuildS1FromS2(s1, s2) {}
+function canBuildS1FromS2(s1, s2) {
+    if (s1.length !== s2.length) return false;
+    var char1 = {};
+    var char2 = {};
+    s1 = s1.toLowerCase();
+    s2 = s2.toLowerCase();
+    for (var i=0; i<s1.length; i++) {
+        char1[s1[i]] = s1[i] in char1 ? char1[s1[i]] + 1 : 1;
+        char2[s2[i]] = s2[i] in char2 ? char2[s2[i]] + 1 : 1;
+    };
+    const keySort = obj => Object.keys(obj).sort().reduce((res, key) => (res[key] = obj[key], res));
+    return (keySort(char1) === keySort(char2));
+};

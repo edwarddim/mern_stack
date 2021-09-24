@@ -80,4 +80,16 @@ const expected5 = false;
  * @param {string} s2
  * @returns {boolean}
  */
-function canBuildS1FromS2(s1, s2) {}
+function canBuildS1FromS2(s1, s2)
+{
+    let count = new Array();
+    count.fill(0);
+    for (let i = 0; i < s1.length; i++)
+        count[s1[i]]++;
+    for (let i = 0; i < s2.length; i++) {
+        if (count[s2[i]] == 0)
+            return false;
+        count[s2[i]]--;
+    }
+    return true;
+}

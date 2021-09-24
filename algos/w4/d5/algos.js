@@ -38,7 +38,19 @@ const expected3 = [-1, -1]; // not found.
  * @returns {Array<number, number>} The song pair indexes, or [-1, -1] if no
  *    pair is found.
  */
-function amazonMusicRuntime(busDuration, songDurations) {}
+function amazonMusicRuntime(busDuration, songDurations) {
+  let sorted = [...songDurations] 
+    sorted.sort((a,b) => b-a)
+    for (let i=0;i<songDurations.length;i++){
+        for (let j=i+1;j<songDurations.length;j++){
+            if (sorted[i] + sorted[j] === (busDuration - 30)){
+                return [songDurations.indexOf(sorted[i]), songDurations.indexOf(sorted[j])] 
+            }
+        }
+    }
+
+return [-1,-1]
+}
 
 /*****************************************************************************/
 
@@ -80,4 +92,47 @@ const expected5 = false;
  * @param {string} s2
  * @returns {boolean}
  */
-function canBuildS1FromS2(s1, s2) {}
+function canBuildS1FromS2(s1, s2) {
+  let count = new Array();
+    count.fill(0);
+    for (let i = 0; i < s1.length; i++)
+        count[s1[i]]++;
+    for (let i = 0; i < s2.length; i++) {
+        if (count[s2[i]] == 0)
+            return false;
+        count[s2[i]]--;
+    }
+    return true;
+}
+
+function canBuildS1FromS2(neededChars, availableChars) {
+  if (availableChars.length < neededChars.length) {
+    return false;
+  }
+
+  const availableCharsFreq = {};
+
+  for (const availableChar of availableChars) {
+    const availableCharLower = availableChar.toLowerCase();
+
+    if (availableCharsFreq.hasOwnProperty(availableCharLower)) {
+      availableCharsFreq[availableCharLower]++;
+    } else {
+      availableCharsFreq[availableCharLower] = 1;
+    }
+  }
+
+  for (const neededChar of neededChars) {
+    const neededCharLower = neededChar.toLowerCase();
+
+    if (
+      availableCharsFreq.hasOwnProperty(neededCharLower) === false ||
+      availableCharsFreq[neededCharLower] === 0
+    ) {
+      return false;
+    } else {
+      availableCharsFreq[neededCharLower]--;
+    }
+  }
+  return true;
+}

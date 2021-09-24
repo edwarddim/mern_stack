@@ -38,7 +38,42 @@ const expected3 = [-1, -1]; // not found.
  * @returns {Array<number, number>} The song pair indexes, or [-1, -1] if no
  *    pair is found.
  */
-function amazonMusicRuntime(busDuration, songDurations) {}
+ function amazonMusicRuntime(busDuration, songDurations) {
+    let sorted = [...songDurations] 
+    sorted.sort((a,b) => b-a)
+    for (let i=0;i<songDurations.length;i++){
+        for (let j=i+1;j<songDurations.length;j++){
+            if (sorted[i] + sorted[j] === (busDuration - 30)){
+                return [songDurations.indexOf(sorted[i]), songDurations.indexOf(sorted[j])] 
+            }
+        }
+    }
+
+return [-1,-1]
+}
+
+function amazonMusicRuntime2(busDuration, songDurations) {
+    let sortedSongs = [...songDurations].sort((a,b) => b-a)
+    let target = 30
+    let indexOne = sortedSongs[0]
+    let indexTwo = 0
+    for (let i = 0; i < sortedSongs.length; i++) {
+        if (busDuration - (sortedSongs[0] + sortedSongs[i]) === target) {
+            indexTwo = sortedSongs[i]
+            break
+        } else return [-1, -1]
+    }
+    for (let i = 0; i < songDurations.length; i++) {
+        if (songDurations[i] === indexOne){
+            indexOne = i
+        }
+        if (songDurations[i] === indexTwo){
+            indexTwo = i
+        }
+    }
+    return [indexOne, indexTwo]
+}
+
 
 /*****************************************************************************/
 
@@ -80,4 +115,16 @@ const expected5 = false;
  * @param {string} s2
  * @returns {boolean}
  */
-function canBuildS1FromS2(s1, s2) {}
+ function canBuildS1FromS2(s1, s2) {
+    s1 = s1.toLowerCase()
+    s2 = s2.toLowerCase()
+    let chars1 = s1.split("")
+    let chars2 = s2.split("")
+    for (let i = 0; i < chars1.length; i++){
+        if (chars2.includes(chars1[i])){
+            let idx = chars2.indexOf(chars1[i])
+            chars2.splice(idx,1)
+        } else return false
+    }
+    return true
+}
