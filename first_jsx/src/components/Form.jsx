@@ -14,7 +14,6 @@ class Form extends Component{
         console.log("I'm Clicked!!")
         this.setState({
             clicked : this.state.clicked + 1,
-            name : "Edward Im"
         })
     }
 
