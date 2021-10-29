@@ -3,6 +3,7 @@ import './App.css';
 import Counter from './components/Counter';
 import Form from './components/Form';
 import CombineForm from './components/CombineForm';
+import Registration from './components/Registration';
 
 function App() {
   return (
@@ -11,8 +12,10 @@ function App() {
       <Counter startNum={2} />
       <Counter startNum={3} /> */}
 
-      <CombineForm />
-      <Form />
+      {/* <CombineForm />
+      <Form /> */}
+
+      <Registration />
 
     </div>
   );
