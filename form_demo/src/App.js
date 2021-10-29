@@ -4,6 +4,8 @@ import Counter from './components/Counter';
 import Form from './components/Form';
 import CombineForm from './components/CombineForm';
 import Registration from './components/Registration';
+import RegistrationArray from './components/RegistrationArray';
+import UserList from './components/UserList';
 
 function App() {
   return (
@@ -15,8 +17,9 @@ function App() {
       {/* <CombineForm />
       <Form /> */}
 
-      <Registration />
-
+      {/* <Registration /> */}
+      {/* <RegistrationArray /> */}
+      <UserList />
     </div>
   );
 }
