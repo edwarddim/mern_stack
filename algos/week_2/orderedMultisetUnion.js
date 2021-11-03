@@ -41,7 +41,8 @@ function orderedMultisetUnion(sortedA, sortedB) {
       }
   
       if (sortedA[idxA] === sortedB[idxB]) {
-        union.push(sortedA[idxA++]);
+        union.push(sortedA[idxA]);
+        idxA++;
         idxB++; // since both were same, increment both
       } else if (sortedA[idxA] < sortedB[idxB]) {
         union.push(sortedA[idxA++]);
