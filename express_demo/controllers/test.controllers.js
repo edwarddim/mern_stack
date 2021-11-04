@@ -1,5 +1,4 @@
-
-module.exports.getRequest = (req, res) => {
+module.exports.getUser = (req, res) => {
     res.json({
         "message" : "Hello World",
         "numArr" : [1,2,3,4,5,56,6],
@@ -8,13 +7,13 @@ module.exports.getRequest = (req, res) => {
     });
 }
 
-module.exports.postRequest = (req, res) => {
+module.exports.createUser = (req, res) => {
     console.log(req.body)
 
     response.json("You just made a POST request")
 }
 
-module.exports.putRequest = (req, res) => {
+module.exports.updateUser = (req, res) => {
     response.json(["You just made a PUT request"])
 }
 
