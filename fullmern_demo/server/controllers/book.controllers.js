@@ -16,3 +16,24 @@ module.exports.allBooks = (req,res) => {
         .then(allBooks => res.json(allBooks))
         .catch(err => res.json(err))
 }
+
+module.exports.oneBook = (req,res) => {
+    const {book_id} = req.params
+    Book.findOne({_id: book_id})
+        .then(oneBook => res.json(oneBook))
+        .catch(err => res.json(err))
+}
+
+module.exports.deleteBook = (req, res) => {
+    const {book_id} = req.params
+    Book.deleteOne({_id : book_id})
+        .then(deletedBook => res.json(deletedBook))
+        .catch(err => res.json(err))
+}
+
+module.exports.updateBook = (req, res) => {
+    const {book_id} = req.params
+    Book.findByIdAndUpdate({_id : book_id}, req.body, {runValidators:true, new:true})
+        .then(updatedBook => res.json(updatedBook))
+        .catch(err => res.json(err))
+}
