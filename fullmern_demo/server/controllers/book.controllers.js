@@ -6,9 +6,12 @@ module.exports.test = (req, res) => {
 
 module.exports.createBook = (req, res) => {
     console.log(req.body)
-    Book.create(req.body)
+    Book.create(req.body) 
         .then(newBook => res.json(newBook)) // SUCCESS
-        .catch(err => res.json(err)) //UNSUCCESS
+        .catch(err => {
+            console.log("VALIDATIONS HAVE FAILED")
+            res.status(400).json(err)
+        }) //UNSUCCESS
 }
 
 module.exports.allBooks = (req,res) => {
@@ -35,5 +38,5 @@ module.exports.updateBook = (req, res) => {
     const {book_id} = req.params
     Book.findByIdAndUpdate({_id : book_id}, req.body, {runValidators:true, new:true})
         .then(updatedBook => res.json(updatedBook))
-        .catch(err => res.json(err))
+        .catch(err => res.status(400).json(err))
 }

@@ -8,6 +8,11 @@ const Edit = () => {
     const [pages, setPages] = useState()
     const [author, setAuthor] = useState()
 
+    const [loaded, setLoaded] = useState(false)
+
+    //Create an array to store errors from the API
+    const [errors, setErrors] = useState([]); 
+
     const history = useHistory()
 
     const [bookState, setBookState] = useState()
@@ -23,6 +28,7 @@ const Edit = () => {
                 setTitle(res.data.title)
                 setPages(res.data.pages)
                 setAuthor(res.data.author)
+                setLoaded(true)
             })
             .catch(err => console.log(err))
     }, [])
@@ -39,14 +45,22 @@ const Edit = () => {
                 console.log(res.data)
                 history.push(`/books/${id}`)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                const errorResponse = err.response.data.errors
+                console.log(errorResponse)
+                const errorArr = []
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr)
+            }) // UNSUCCESFUL CREATION OF THE BOOK
     }
 
     return (
         <fieldset>
             <legend>Edit.jsx</legend>
             {
-                (author) ?
+                (loaded) ?
                 <form onSubmit={submitHandler}>
                     <p>
                         Title:
@@ -63,6 +77,7 @@ const Edit = () => {
                     <button>Update</button>
                 </form> : <h1>Loading....</h1>
             }
+            {errors.map((err, index) => <p key={index}>{err}</p>)}
         </fieldset>
     )
 }

@@ -9,6 +9,8 @@ const Form = (props) => {
     const [pages, setPages] = useState()
     const [author, setAuthor] = useState()
 
+    //Create an array to store errors from the API
+    const [errors, setErrors] = useState([]); 
 
     const submitHandler = e =>{
         e.preventDefault()
@@ -20,10 +22,19 @@ const Form = (props) => {
         }
         axios.post("http://localhost:8000/api/books/new", postData)
             .then(res => {
-                console.log(res.data)
+                console.log(res)
                 changeSubmitted()
-            })
-            .catch(err => console.log(err))
+                setErrors([])
+            }) // SUCCESSFUL CREATION OF THE BOOK
+            .catch(err => {
+                const errorResponse = err.response.data.errors
+                console.log(errorResponse)
+                const errorArr = []
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr)
+            }) // UNSUCCESFUL CREATION OF THE BOOK
     }
 
     return (
@@ -44,6 +55,7 @@ const Form = (props) => {
                 </p>
                 <button>Create</button>
             </form>
+            {errors.map((err, index) => <p key={index}>{err}</p>)}
         </fieldset>
     )
 }
