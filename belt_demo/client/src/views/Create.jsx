@@ -42,11 +42,11 @@ const Create = () => {
             <form onSubmit={submitHandler}>
                 <p>
                     First Name:
-                    <input type="text" name="" onChange={e => setFirstName(e.target.value)} />
+                    <input type="text" name="" value={firstName} onChange={e => setFirstName(e.target.value)} />
                 </p>
                 <p>
                     Last Name:
-                    <input type="text" name="" onChange={e => setlastName(e.target.value)} />
+                    <input type="text" name="" value={lastName} onChange={e => setlastName(e.target.value)} />
                 </p>
                 <button>Create</button>
             </form>
