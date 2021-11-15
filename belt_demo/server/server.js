@@ -12,7 +12,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended:true }))
 
-
 // 3. ATTACH ROUTES TO YOUR EXPRESS SERVER
 const beltRoutes = require("./routes/betl.routes")
 beltRoutes(app)

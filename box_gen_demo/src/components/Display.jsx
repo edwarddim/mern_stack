@@ -18,5 +18,4 @@ const Display = (props) => {
         </fieldset>
     )
 }
-
 export default Display
