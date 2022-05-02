@@ -48,4 +48,78 @@ console.log(email)
 
 
 const animals = ['horse', 'dog', 'fish', 'cat', 'bird'];
-const [a,b,c,d,e,f,g,h] = animals
+// const [a,b,c,d,e,f,g,h] = animals
+
+// console.log("NORMAL ",animals)
+// console.log("SPREAD OPERATOR", ...animals)
+
+// const allAnimals = [ 'dragons','centaurs', ...animals ]
+// console.log("ALL ANIMALS:", allAnimals)
+
+
+const user = { 
+    firstName: 'Bob', 
+    lastName: 'Marley', 
+    email: 'bob@marley.com', 
+    password: 'sekureP@ssw0rd9', 
+    username: 'barley', 
+    createdAt: 1543945177623
+};
+
+const updatedUser = {
+    ...user,
+    updatedAt : 1543945177623,
+    firstName : "Edward"
+}
+
+// console.log('NORMAL',updatedUser)
+
+
+// ARROW FUNCTIONS
+function sayHello(){
+    console.log("Hello!")
+}
+
+// const sayHello = () => {
+//     console.log("Hello")
+// }
+
+const sayGoodbye = function(){
+    console.log('Goodbye')
+}
+
+// 1. CALLBACK FUNCTION
+// 2. TIME TO WAIT IN MILLISECONDS
+// setTimeout(function(){
+//     console.log("2 seconds is over")
+// }, 2000)
+
+
+// setTimeout(() => {
+//     console.log("1")
+//     console.log("2")
+//     console.log("over")
+// }, 2000)
+
+// 1. For one liners, arrow functions do not require curly braces
+// 2. For one liners, the return statement is implicit
+
+const square = (n) => {
+    return n * n
+}
+const hello = () => console.log("Hello")
+
+console.log("What is being returned?", square(3))
+console.log("What is being returned?",hello())
+
+// TERNARAY OPERATORS
+var age = 18
+if(age < 18){
+    console.log("You are a minor")
+}
+else{
+    console.log("You are a major")
+}
+
+(age < 18) ? console.log("You are a minor") : console.log("You are a major")
+console.log((age < 18) ? "MINOR" : "MAJOR")
