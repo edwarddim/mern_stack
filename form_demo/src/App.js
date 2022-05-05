@@ -3,6 +3,7 @@ import './App.css';
 import Display from './components/Display';
 import Form from './components/Form'
 import React, {useState} from 'react'
+import CombineForm from './components/CombineForm';
 
 function App() {
 
@@ -24,8 +25,9 @@ function App() {
   return (
     <fieldset>
       <legend>App.js</legend>
-      <Form />
-      <Display firstName="Edward" lastName="Im" age={32} hairColor="Black" />
+      {/* <Form />
+      <Display firstName="Edward" lastName="Im" age={32} hairColor="Black" /> */}
+      <CombineForm />
       <button onClick={clickHandler}>Click Me!! {clickState.clicked}</button>
     </fieldset>
   );
