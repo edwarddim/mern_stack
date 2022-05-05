@@ -15,14 +15,11 @@ class App extends Component {
   }
 
   clickHandler = () => {
-    // console.log("I have been clicked")
-    // console.log(this.state.clicked)
     let {clicked} = this.state
     this.setState({
-      'clicked' : clicked+1,
+      clicked : clicked+1,
     })
-    // console.log(this.state)
-  } 
+  }
 
   render(){
       return (
