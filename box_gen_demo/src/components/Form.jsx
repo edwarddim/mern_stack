@@ -4,6 +4,7 @@ const Form = (props) => {
 
     // INPUT STATE
     const [color, setColor] = useState("")
+    
 
     const submitHandler = (event) => {
         event.preventDefault()
