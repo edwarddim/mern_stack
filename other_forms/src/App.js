@@ -14,17 +14,35 @@ function App() {
     setUsers([...users, userObj])
   }
 
-  // CREATE A FUNCTINO THAT REMOVES A USER FROM LIST
+  // CREATE A FUNCTION THAT REMOVES A USER FROM LIST
   const removeUser = (indexToDelete) => {
     const newUsers = users.filter((_, i) => indexToDelete !== i)
     setUsers(newUsers)
+  }
+
+
+  // CREATE A FUNCTION THAT FLIPS JOB READY
+  const jobFlip = (searchIndex, jobReadyBool) => {
+    // const newUsers = users.map((user, index) =>{
+    //   if(searchIndex === index){
+    //     user.jobReady = jobReadyBool
+    //   }
+    //   return user
+    // })
+
+
+    const newUsers = [...users]
+    newUsers[searchIndex].jobReady = jobReadyBool
+
+    setUsers(newUsers)
+
   }
 
   return (
     <fieldset>
       <legend>App.js</legend>
       <Form addUser={addUser} />
-      <Display removeUser={removeUser} users={users} />
+      <Display jobFlip={jobFlip} removeUser={removeUser} users={users} />
     </fieldset>
   );
 }
