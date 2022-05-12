@@ -1,89 +1,89 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from 'react'
 
-const Form = props => {
+const Form = (props) => {
 
-    const {setLoggedUsers, loggedUsers} = props
-    // console.log("FUNCTION BEING PASSED THROUGH PROPS: ",setLoggedUsers)
-    // console.log(loggedUsers)
-    console.log(process.env.REACT_APP_API_KEY)
+    // STATE FOR KEEPING TRACK OF INPUT
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
 
-    const [formState, setFormState] = useState({
-        email : "",
-        password : "",
-        confirmPassword : ""
-    })
+    // STATE FOR KEEPING TRACK OF VALIDATIONS
+    const [firstNameError, setFirstNameError] = useState("")
+    const [lastNameError, setLastNameError] = useState("")
 
-    const [validState, setValidState] = useState({
-        email : false,
-        password : false,
-        confirmPassword : false
-    })
-
-
-    const handleChange = event => {
-        const {name, value} = event.target
-        setFormState({
-            ...formState,
-            [name] : value
-        })
-    }
-
-    const handleSubmit = event => {
+    const submitHandler = (event) => {
+        // Stopping the form from making a POST request
         event.preventDefault()
+        console.log("REGISTERING: ", firstName, lastName)
 
-        var email = false
-        var password = false
-        var confirmPassword = false
-
-        // check for email validations
-        if(! (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(formState.email)){
-            email = true
-        }
-        // check for password validations
-        if(formState.password.length < 8){
-            password = true
-        }
-        if(formState.password !== formState.confirmPassword){
-            confirmPassword = true
-        }
-        
-        setValidState({
-            ...validState,
-            email,
-            password,
-            confirmPassword
-        })
-        setLoggedUsers([...loggedUsers, formState])
-        setFormState({
-            email : "",
-            password : "",
-            confirmPassword : ""
-        })
+        // RESET THE STATES BACK TO NOTHING
+        setFirstName("")
+        setLastName("")
     }
 
-    return(
+    const firstNameHandler = (event) => {
+        setFirstName(event.target.value)
+        // FIRST NAME MUST BE REQUIRED
+        if(event.target.value.length < 1){
+            setFirstNameError("FIRST NAME MUST BE REQUIRED")
+        }
+        // FIRST NAME MUST BE LONGER THAN 2 CHARS
+        else if(event.target.value.length < 2){
+            setFirstNameError("FIRST NAME MUST BE LONGER THAN 2 CHARS")
+        }
+        // VALIDATIONS PASS, CLEAR OUT ERROR MESSAGES
+        else{
+            setFirstNameError("")
+        }
+    }
+
+    const lastNameHandler = (event) => {
+        setLastName(event.target.value)
+        // LAST NAME MUST BE REQUIRED
+        if(event.target.value.length < 1){
+            setLastNameError("LAST NAME MUST BE REQUIRED")
+        }
+        // LAST NAME MUST BE LONGER THAN 2 CHARS
+        else if(event.target.value.length < 2){
+            setLastNameError("LAST NAME MUST BE LONGER THAN 2 CHARS")
+        }
+        // VALIDATIONS PASS, CLEAR OUT ERROR MESSAGES
+        else{
+            setLastNameError("")
+        }
+    }
+
+    return (
         <fieldset>
             <legend>Form.jsx</legend>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submitHandler}>
                 <p>
-                    Email:
-                    <input type="text" name="email" value={formState.email} onChange={handleChange} id="" />
-                    { (validState.email) ? <p>Your email must be valid pattern</p> : null }
+                    First Name:
+                    <input 
+                        onChange={firstNameHandler }
+                        value={firstName}
+                        type="text" 
+                        name="firstName" 
+                    />
+                    {
+                        firstNameError ? <p style={{color:'red'}}>{firstNameError}</p> : null
+                    }
                 </p>
                 <p>
-                    Password:
-                    <input type="text" name="password" id="" value={formState.password} onChange={handleChange} />
-                    { (validState.password) ? <p>Your password must be longer than 8 chars</p> : null }
+                    Last Name:
+                    <input
+                        onChange={lastNameHandler }
+                        value={lastName} 
+                        type="text" 
+                        name="lastName" 
+                    />
+                    {
+                        lastNameError ? <p style={{color:'red'}}>{lastNameError}</p> : null
+                    }
                 </p>
-                <p>
-                    Confirm Password:
-                    <input type="text" name="confirmPassword" id="" value={formState.confirmPassword} onChange={handleChange} />
-                    { (validState.confirmPassword) ? <p>Your password and cofirm password must match</p> : null }
-                </p>
-                <button type="submit">Login</button>
+                <button>Register</button>
             </form>
         </fieldset>
-
     )
 }
-export default Form;
+
+export default Form

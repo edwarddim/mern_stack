@@ -1,11 +1,15 @@
+import logo from './logo.svg';
 import './App.css';
-import Form from './components/Form';
+import Main from './components/Main';
+import MainUseEffect from './components/MainUseEffect';
 
 function App() {
   return (
-    <div>
-      <Form />
-    </div>
+    <fieldset>
+      <legend>App.js</legend>
+      {/* <Main /> */}
+      <MainUseEffect />
+    </fieldset>
   );
 }
 

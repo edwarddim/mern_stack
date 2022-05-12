@@ -1,80 +1,57 @@
-function axios(){
-    // GENERATE RANDOM NUM 0-9
-    const chance = Math.floor(Math.random() * 10)
+// const noTuesdays = new Promise( (resolve, reject) => {
+//     // CHECK TO SEE IF TODAY IS MONDAY
+//     if(new Date().getDay() !== 2) {
+//         resolve("Good, it's not Tuesday!");
+//     } else {
+//         reject("Someone has a case of the Tuesday!");
+//     }
+// });
+
+// noTuesdays
+//     .then(res => console.log("SUCCESS: ",res)) // successful
+//     .catch(err => console.log("ERROR: ", err)) // unsuccessful
+
+
+
+
+// const axios = new Promise((resolve, reject) => {
+//     // THE API ONLY WORKS 9 OUT OF 10 TIMES
+//     const chance = Math.floor(Math.random() * 10)
+
+//     // THE API CALL WAS SUCCESSFUL
+//     if(chance > 0){
+//         resolve({"SUCCESS": "The API responded this time"})
+//     }
+//     // THE API CALL WAS UNSUCCESSFUL
+//     else{
+//         reject({"ERROR": "The API DID NOT responded this time"})
+//     }
+// })
+
+// axios
+//     .then(res => console.log("THEN: ", res))
+//     .catch(err => console.log("CATCH: ", err))
+
+
+const createUser = (userName) => {
     return new Promise((resolve, reject) => {
-        // WAS THE AXIOS REQUEST SUCCESSFUL?
-        if(chance <= 8){
-            resolve({
-                message:"SUCCESS",
-                data: "This was a success"
-            })
-        }
-        // WAS THE AXIOS REQUEST UNSUCCESSFUL?
-        else{
-            reject({
-                message:"UNSUCCESSFUL",
-                data : "This was a failure"
-            })
-        }
-    })
-}
-
-
-// axios()
-//     .then(res => console.log("RES: ", res))
-//     .catch(err => console.log("ERR: ", err))
-
-function create(body){
-    const promiseFunctinon = new Promise((resolve, reject) => {
         setTimeout(() => {
-            if(body.length < 3){
+            // VALIDATE THE NAME
+            if(userName.length < 3){
                 reject({
-                    error: "VALIDATION MESSAGE: Author name must be longer than 3 characters"
+                    "ValidationMessage" : "User name must be longer than 3 chars",
+                    userName
                 })
             }
             else{
                 resolve({
-                    _id : "fjiewoa;jfruh134j84r93htfg",
-                    name : body,
-                    createdAt : new Date(),
-                    updatedAt : new Date()
+                    'id' : "1233456",
+                    userName
                 })
             }
-        }, 500)
+        }, 1000)
     })
-    return promiseFunctinon
 }
-
-
-// create("edward")
-//     .then(res => {
-//         console.log(res)
-//         return axios()
-//             .then(res => console.log(res))
-//     })
-//     .catch(err => console.log(err))
-
-
-// async / await
-const test = async () => {
-    try{
-        const response = await create("edward")
-        const axios_res = await axios()
-        console.log(response)
-        console.log(axios_res)
-        console.log("After Response")
-    }
-    catch(err){
-        console.log("CATCH STATEMENT: ", err)
-    }
-}
-// test()
-
-
-Promise.all([
-    create("edward"),
-    axios(),
-    axios()
-])
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+createUser("Ed")
+    .then(res => console.log("THEN: ", res))
+    .catch(err => console.log("CATCH: ", err))

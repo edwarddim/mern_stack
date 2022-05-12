@@ -1,15 +1,21 @@
-import React from "react"
+// IMPORT DEPENDENCIES
+import React from 'react'
 
-const Display = props => {
+// CREATE THE COMPONENT
+const Display = (props) => {
 
-    const {user} = props
-    console.log(user)
+    const {firstName, lastName, age, hairColor} = props
 
-    return(
+    return (
         <fieldset>
             <legend>Display.jsx</legend>
-            <h1>{user.email} has logged in</h1>
+            <h1>Hello World</h1>
+            <h1>First Name: {firstName}</h1>
+            <h1>Last Name: {lastName}</h1>
+            <h1>Age: {age}</h1>
+            <h1>Hair Color: {hairColor}</h1>
         </fieldset>
     )
 }
-export default Display; 
+// EXPORT THE COMPONENT
+export default Display
