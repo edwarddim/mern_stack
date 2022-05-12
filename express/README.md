@@ -17,18 +17,21 @@ Most of the functionality that Express gives us is already possible with Node an
 
 ### Designing an API from the Server Side!
 
-RESTful API
-Resources exposed by endpoints
+**RESTful API**
 
-SWAPI - Planets, People
+- Resources exposed by endpoints
 
-Superheroes Resource
-GET all superheroes: api/superheroes
-POST create superhero: api/superheroes
+For example, in the SWAPI (Star Wars API), planets and people are resources that are exposed via endpoints (ie. /people/ -- get all the people resources /people/:id/ -- get a specific people resource)
 
-GET one superhero: api/superheroes/:id
-PUT update one superhero: api/superheroes/:id
-DELETE one superhero: api/superheroes/:id
+We will be designing a RESTful API that exposes a superheroes resource at the following endpoints:
+- GET all superheroes: api/superheroes
+- POST create superhero: api/superheroes
+
+- GET one superhero: api/superheroes/:id
+- PUT update one superhero: api/superheroes/:id
+- DELETE one superhero: api/superheroes/:id
+
+The above is representative of a set of RESTful routes.
 
 ### With Express, we can:
 
@@ -41,8 +44,11 @@ Although Express is a minimalist framework, [there are many middleware packages]
 
 Today, we'll take a look at how easy it is to set up a web server thanks to Express.
 
-- npm init -y
-- npm i express
-- require express
+- create a project directory
+- cd into that directory
+- npm init -y (creates a package.json)
+- npm i express (installs express as a dependency)
+- create a server.js
+- require express in server.js (const express = require('express'))
 - create app
 - listen on a port
