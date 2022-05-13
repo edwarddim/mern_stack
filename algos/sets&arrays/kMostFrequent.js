@@ -2,7 +2,7 @@
 
 /* 
   Given an unsorted non-empty array of integers and int k, return the k most frequent elements (in any order)
-  You can assume there is always a valid solution
+  You can assume there is always a valid solution.
 
   These example inputs are sorted for readability, but the input is NOT guaranteed to be sorted and the output does NOT need to be in any specific order
 */
