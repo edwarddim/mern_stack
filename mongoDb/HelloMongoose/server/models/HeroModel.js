@@ -13,4 +13,3 @@ const HeroSchema = new mongoose.Schema({
 
 const Hero = mongoose.model("Hero", HeroSchema);
 
-module.exports = Hero;

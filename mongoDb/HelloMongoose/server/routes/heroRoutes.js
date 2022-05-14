@@ -6,4 +6,3 @@ module.exports = (app) => {
   app.get("/api/heroes/:id", HeroController.findOne);
   app.put("/api/heroes/:id", HeroController.update);
   app.delete("/api/heroes/:id", HeroController.delete);
-};
