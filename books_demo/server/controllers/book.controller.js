@@ -19,6 +19,12 @@ module.exports.allBooks = (req,res) => {
         .catch(err => res.json(err))
 }
 
+module.exports.oneBook = (req, res) => {
+	Book.findOne({ _id: req.params.book_id })
+		.then(oneBook => res.json(oneBook))
+		.catch(err => res.status(400).json({ err }));
+};
+
 // UPDATE
 
 // DELETE
