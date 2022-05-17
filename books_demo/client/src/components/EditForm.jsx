@@ -12,6 +12,9 @@ const EditForm = () => {
     const [pages, setPages] = useState(0)
     const [author, setAuthor] = useState("")
 
+    // STATE FOR BACK-END VALIDATIONS MESSAGES
+    const [err, setErr] = useState([])
+
     // GET PATH VARIABLE FROM REACT ROUTER
     const { book_id } = useParams()
 
@@ -23,7 +26,9 @@ const EditForm = () => {
                 setPages(pages)
                 setAuthor(author)
             })
-            .catch(err => console.log(err))
+            .catch(err =>{
+
+            })
     },[])
 
     const updateHandler = (event) =>{
@@ -37,7 +42,19 @@ const EditForm = () => {
         // MAKE PUT REQUEST TO EXPRESS WITH bookObj
         axios.put("http://localhost:8000/api/books/"+book_id, bookObj)
             .then(res => navigate('/') )
-            .catch(err => console.log(err))
+            .catch(err => {
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                const errorObj = {}
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+
+                    errorObj[key] = errorResponse[key].message
+                }
+                // setErrorObj(errorObj)
+                console.log("ERROR OBJ: ", errorObj)
+                setErr(errorArr)
+            })
     }
 
 
@@ -59,6 +76,13 @@ const EditForm = () => {
                 </p>
                 <button>Update</button>
             </form>
+            {
+                err.map((errorMessage) => {
+                    return(
+                        <p>{errorMessage}</p>
+                    )
+                })
+            }
         </fieldset>
     )
 }

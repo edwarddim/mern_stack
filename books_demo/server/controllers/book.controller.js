@@ -8,8 +8,11 @@ module.exports.test = (req,res) => {
 // CREATE
 module.exports.create =  (req,res) => {
     Book.create(req.body)
-        .then(newBook => res.json(newBook))
-        .catch(err => res.json(err))
+        .then(newBook => res.json(newBook)) // successful creation
+        .catch(err => {
+            // console.log(err)
+            res.status(400).json(err)
+        }) // unsuccessful creation
 }
 
 // READ
@@ -28,10 +31,10 @@ module.exports.oneBook = (req, res) => {
 // UPDATE
 module.exports.updateBook = (req, res) => {
     // findOneAndUpdate takes three arguments, query, payload, boolean
-    Book.findOneAndUpdate({ _id: req.params.book_id }, req.body, { new: true })
+    Book.findOneAndUpdate({ _id: req.params.book_id }, req.body, { new: true, runValidators:true })
       .then(updatedBook => res.json( updatedBook ))
       .catch(err => res.status(400).json( err ));
-  };
+};
 
 // DELETE
 
