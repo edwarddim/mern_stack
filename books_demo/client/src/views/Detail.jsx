@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
-import { useParams } from "react-router-dom"
+import { useParams, Link, useNavigate } from "react-router-dom"
 
 const Detail = () => {
 
+    const navigate = useNavigate()
     // STATE FOR HOLDING ONE BOOK
     const [book, setBook] = useState()
 
@@ -17,6 +18,12 @@ const Detail = () => {
     }, [])
 
 
+    const deleteHandler = (id) => {
+        axios.delete("http://localhost:8000/api/books/"+id)
+          .then(res => navigate("/"))
+          .catch()
+    }
+
     return (
         <fieldset>
             <legend>Detail.jsx</legend>
@@ -26,6 +33,13 @@ const Detail = () => {
                     <h1>Title: {book.title}</h1>
                     <h1>Pages: {book.pages}</h1>
                     <h1>Author: {book.author}</h1>
+                    <Link to={`/${book._id}/edit`}>
+                        Edit
+                    </Link>
+                    <Link to={"/"+book_id+"/edit"}>
+                        Edit
+                    </Link>
+                    <button onClick={(e) => deleteHandler(book._id)}>Delete</button>
                 </div> : <h1>Loading....</h1>
             }
         </fieldset>

@@ -11,7 +11,7 @@ const Form = (props) => {
     const {refresh} = props
 
     // HANDLER FUNCTIONS
-    const submitHandler = event => {
+    const createHandler = event => {
         event.preventDefault()
         // CREATE AN OBJECT WITH THE BOOK INFO
         const bookObj = {
@@ -34,7 +34,7 @@ const Form = (props) => {
     return (
         <fieldset>
             <legend>FormComponent.jsx</legend>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={createHandler}>
                 <p>
                     Title:
                     <input type="text" name="title" onChange={(e) => setTitle(e.target.value)} value={title} />

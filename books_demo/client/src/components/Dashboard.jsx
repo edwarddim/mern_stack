@@ -8,7 +8,7 @@ const Dashboard = (props) => {
   const [allBooks, setAllBooks] = useState([])
 
   // DESTRUCTURE FROM PROPS
-  const {refreshState} = props
+  const {refreshState, refresh} = props
 
   useEffect(() => {
     // MAKE A CALL TO EXPRESS, GET ALL BOOKS
@@ -16,6 +16,13 @@ const Dashboard = (props) => {
       .then(res => setAllBooks(res.data)) // INCOMING BOOKS ARE SET TO STATE
       .catch(err => console.log(err))
   }, [refreshState])
+
+
+  const deleteHandler = (id) => {
+    axios.delete("http://localhost:8000/api/books/"+id)
+      .then(res => refresh())
+      .catch()
+  }
 
 
   return (
@@ -28,6 +35,7 @@ const Dashboard = (props) => {
               <Link to={"/" + book._id}>
                 <h1>{book.title} - {book.author}</h1>
               </Link>
+              <button onClick={(e) => deleteHandler(book._id)}>Delete</button>
             </div>
           )
         })

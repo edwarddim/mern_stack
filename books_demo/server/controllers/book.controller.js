@@ -22,9 +22,21 @@ module.exports.allBooks = (req,res) => {
 module.exports.oneBook = (req, res) => {
 	Book.findOne({ _id: req.params.book_id })
 		.then(oneBook => res.json(oneBook))
-		.catch(err => res.status(400).json({ err }));
+		.catch(err => res.status(400).json(err));
 };
 
 // UPDATE
+module.exports.updateBook = (req, res) => {
+    // findOneAndUpdate takes three arguments, query, payload, boolean
+    Book.findOneAndUpdate({ _id: req.params.book_id }, req.body, { new: true })
+      .then(updatedBook => res.json( updatedBook ))
+      .catch(err => res.status(400).json( err ));
+  };
 
 // DELETE
+
+module.exports.deleteBook = (req, res) => {
+    Book.deleteOne({ _id: req.params.book_id })
+      .then(result => res.json({ result }))
+      .catch(err => res.status(400).json({ err }));
+};
