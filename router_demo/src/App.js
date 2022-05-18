@@ -13,10 +13,12 @@ function App() {
     <BrowserRouter>
       <fieldset>
         <legend>App.js</legend>
+        <PokeForm />
+        <hr />
         <Routes>
-          <Route path="/" element={<PokeForm />}>
-            <Route path="pokemon/:pokemonName" element={<Pokemon />} />
-          </Route>
+          {/* <Route path="/" element={<PokeForm />}>
+          </Route> */}
+          <Route path="pokemon/:pokemonName" element={<Pokemon />} />
         </Routes>
 
 

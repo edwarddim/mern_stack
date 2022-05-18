@@ -21,7 +21,7 @@ const PokeForm = () => {
                 <input onChange={(e) => setPokeName(e.target.value)} type="text" name="pokeName" id="" />
                 <button>Submit</button>
             </form>
-            <Outlet />
+            {/* <Outlet /> */}
         </fieldset>
     )
 }
