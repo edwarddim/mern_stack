@@ -104,16 +104,25 @@ function test(){ // NAMED FUNCTION
 function hello(name){
     console.log("HELLO " + name)
 }
-hello("NAMED")
+// hello("NAMED")
 
 
 // ARROW FUNCTION
-const helloArrow = (name) => console.log("HELLO " + name)
-helloArrow("ARROW")
+const helloArrow = (name) => "HELLO " + name // return statements are implicit
+console.log( "HERE: ", helloArrow("ARROW"))
+
+
+
+
+const multiLineArrow = (name) => { // return statments need to be explicit
+    return "HELLO " + name;
+}
+console.log("MULTI HERE: ", multiLineArrow("MULTI LINE"))
+
 
 
 // ANONYMOUS FUNCTION
 const helloAnon = function(name){
     console.log("HELLO " + name)
 }
-helloAnon("ANON")
+// helloAnon("ANON")
