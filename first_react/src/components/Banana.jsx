@@ -10,6 +10,7 @@ export default class Banana extends Component{
             <fieldset>
                 <legend>Banana.jsx</legend>
                 <h1>BANANA</h1>
+                {this.props.children}
             </fieldset>
         )
     }
