@@ -3,6 +3,8 @@ import './App.css';
 import Form from './components/Form';
 import Banana from './components/Banana';
 import { Component } from 'react';
+import FormFunc from './components/FormFunc';
+import Counter from './components/Counter';
 
 class App extends Component {
   // STATE
@@ -32,14 +34,20 @@ class App extends Component {
     return (
       <fieldset>
         <legend>App.js</legend>
-        <button onClick={this.clickHandler}>Click</button>
+        <Counter />
+
+
+
+
+
+        {/* <button onClick={this.clickHandler}>Click</button>
 
         <hr />
         <h1>Counter : {this.state.count}</h1>
-        <button onClick={this.counter}>Counter</button>
+        <button onClick={this.counter}>Counter</button> */}
 
-        <Form position={this.state.position} name="Edward Im" age={31} location="Alhambra" hairColor="black" />
-
+        {/* <Form position={this.state.position} name="Edward Im" age={31} location="Alhambra" hairColor="black" />
+        <FormFunc position={this.state.position} name="Edward Im" age={31} location="Alhambra" hairColor="black" /> */}
         {/* --------------------------------------------------------- */}
         {/* --------------------------------------------------------- */}
         {/* --------------------------------------------------------- */}
