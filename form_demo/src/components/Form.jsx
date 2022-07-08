@@ -13,10 +13,12 @@ const Form = () => {
 
     const createUser = (event) => {
         event.preventDefault();
-
     }
 
     const nameHandler = (name) => {
+        // TAKE THE INPUT AND SET IT TO STATE
+        setName(name)
+        // CHECK FOR VALIDATIONS
         if(name.length < 4){
             setNameValid(false)
         }
