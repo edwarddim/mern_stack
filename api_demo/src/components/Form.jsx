@@ -13,9 +13,9 @@ const Form = () => {
 
     useEffect(() => {
         // AXIOS
-        // axios.get("https://api.github.com/users/t-segars")
-        //     .then(finalResponse => setAPI(finalResponse.data)) // SUCCESSFUL
-        //     .catch(error => console.log(error)) // UNSUCESSFUL
+        axios.get("https://api.github.com/users/t-segars")
+            .then(finalResponse => setAPI(finalResponse.data)) // SUCCESSFUL
+            .catch(error => console.log(error)) // UNSUCESSFUL
     },[])
 
     const submitHandler = (event) => {
