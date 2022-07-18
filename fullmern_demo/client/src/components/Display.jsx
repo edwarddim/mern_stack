@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 const Display = (props) => {
 
@@ -19,7 +20,9 @@ const Display = (props) => {
               return(
                 <tr key={user._id}>
                   <td>{user._id}</td>
-                  <td>{user.name}</td>
+                  <td>
+                    <Link to={"/"+user._id}>{user.name}</Link>
+                  </td>
                   <td>{user.age}</td>
                   <td>{user.hairColor}</td>
                 </tr>

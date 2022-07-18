@@ -16,6 +16,11 @@ module.exports.getAllUsers = (req, res) => {
 }
 
 // READ ONE
+module.exports.getOneUser = (req, res) => {
+    User.findOne({_id:req.params.user_id})
+        .then(oneUser => res.json(oneUser) )
+        .catch(error => res.json(error))
+}
 
 // UPDATE
 

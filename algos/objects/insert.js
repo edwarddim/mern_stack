@@ -7,9 +7,22 @@
 
 const table = "users";
 const insertData1 = { first_name: "John", last_name: "Doe" };
+
+
 const expected1 =
   "INSERT INTO users (first_name, last_name) VALUES ('John', 'Doe');";
 
+
+
+
+
+
+
+
+
+
+
+  
 // Bonus:
 const insertData2 = {
   first_name: "John",
@@ -31,9 +44,3 @@ const expected2 =
  *    columns and values are extracted from columnValuePairs.
  */
 function insert(tableName, columnValuePairs) {}
-
-/**
- * - Time: O(?).
- * - Space: O(?).
- */
-function insertFunctional(tableName, columnValuePairs) {}
