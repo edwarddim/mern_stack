@@ -9,10 +9,10 @@ const Display = (props) => {
       <legend>Display.jsx</legend>
       <table>
         <thead>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Hair Color</th>
+          <td>ID</td>
+          <td>Name</td>
+          <td>Age</td>
+          <td>Hair Color</td>
         </thead>
         <tbody>
           {

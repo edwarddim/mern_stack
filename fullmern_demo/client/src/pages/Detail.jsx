@@ -9,7 +9,7 @@ const Detail = () => {
     // PARAMS
     const { user_id } = useParams()
     useEffect(() => {
-        axios.get("http://localhost:8000/api/users/" + user_id)
+        axios.get("http://localhost:8000/api/users/"+user_id)
             .then(response => setUser(response.data))
             .catch(error => console.log(error))
     }, [])
