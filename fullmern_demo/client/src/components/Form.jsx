@@ -3,11 +3,14 @@ import axios from "axios"
 
 const Form = (props) => {
 
-    const {refresh} = props
+    const { refresh } = props
     // STATE
     const [name, setName] = useState()
     const [age, setAge] = useState()
     const [hairColor, setHairColor] = useState()
+
+    //Create an array to store errors from the API
+    const [errors, setErrors] = useState([]);
 
 
     const createUser = (event) => {
@@ -22,13 +25,22 @@ const Form = (props) => {
             .then(newUser => {
                 console.log(newUser)
                 refresh()
+                setErrors([])
             })
-            .catch(error => console.log(error))
+            .catch(err => {
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr)
+            })
     }
 
     return (
         <fieldset>
             <legend>Form.jsx</legend>
+            {errors.map((err, index) => <p key={index}>{err}</p>)}
             <form onSubmit={createUser}>
                 <p>
                     Name:

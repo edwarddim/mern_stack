@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
     name:{
         type:String,
-        required:[true, "NAME IS REQUIRED"]
+        required:[true, "NAME IS REQUIRED"],
+        minLength:[4, "Name must be at least 4 chars long"]
     },
     age:{
         type:Number,

@@ -8,6 +8,9 @@ const Edit = () => {
     const [age, setAge] = useState()
     const [hairColor, setHairColor] = useState()
 
+    //Create an array to store errors from the API
+    const [errors, setErrors] = useState([]);
+
     const { user_id } = useParams()
     const navigate = useNavigate()
 
@@ -15,20 +18,20 @@ const Edit = () => {
         axios.get("http://localhost:8000/api/users/" + user_id)
             .then(response => {
                 console.log(response.data)
-                const {name, age, hairColor} = response.data
+                const { name, age, hairColor } = response.data
                 setName(name)
                 setAge(age)
                 setHairColor(hairColor)
             })
-            .catch(error => console.log(error))
+            .catch()
     }, [])
 
     const deleteUser = () => {
-        axios.delete("http://localhost:8000/api/users/"+user_id)
+        axios.delete("http://localhost:8000/api/users/" + user_id)
             .then(response => navigate("/"))
             .catch(error => console.log(error))
     }
-    
+
     const updateUser = (event) => {
         event.preventDefault()
         const userObj = {
@@ -36,14 +39,22 @@ const Edit = () => {
             age,
             hairColor
         }
-        axios.put("http://localhost:8000/api/users/"+user_id, userObj)
+        axios.put("http://localhost:8000/api/users/" + user_id, userObj)
             .then(response => navigate("/"))
-            .catch(error => console.log(error))
+            .catch(err => {
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr)
+            })
     }
 
     return (
         <fieldset>
             <legend>Edit.jsx</legend>
+            {errors.map((err, index) => <p key={index}>{err}</p>)}
             <form onSubmit={updateUser} >
                 <p>
                     Name:
