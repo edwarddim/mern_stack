@@ -1,7 +1,17 @@
+import axios from 'axios'
 import React from 'react'
 import {Link} from "react-router-dom"
 
 const Display = (props) => {
+
+  const {refresh} = props
+
+  const deleteUser = (user_id) => {
+    console.log(user_id)
+    axios.delete("http://localhost:8000/api/users/"+user_id)
+      .then(response => refresh())
+      .catch(error => console.log(error))
+  }
 
   const { users } = props
   return (
@@ -13,6 +23,7 @@ const Display = (props) => {
           <td>Name</td>
           <td>Age</td>
           <td>Hair Color</td>
+          <td>Action</td>
         </thead>
         <tbody>
           {
@@ -25,6 +36,8 @@ const Display = (props) => {
                   </td>
                   <td>{user.age}</td>
                   <td>{user.hairColor}</td>
+                  <Link to={"/"+user._id+"/edit"}>Edit</Link>
+                  <button onClick={() => deleteUser(user._id)}>Delete</button>
                 </tr>
               )
             })

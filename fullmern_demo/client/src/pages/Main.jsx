@@ -26,7 +26,7 @@ const Main = () => {
         <fieldset>
             <legend>Main.jsx</legend>
             <Form refresh={refresh} />
-            <Display users={users} />
+            <Display users={users} refresh={refresh} />
         </fieldset>
     )
 }
