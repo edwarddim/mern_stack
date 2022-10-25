@@ -1,22 +1,12 @@
 /* 
-  https://visualgo.net/en/sorting
+  https://www.hackerearth.com/practice/algorithms/sorting/selection-sort/visualize/
     
-  Selection sort works by iterating through the list, finding the minimum
-  value, and moving it to the beginning of the list. Then, ignoring the first
-  position, which is now sorted, iterate through the list again to find the
-  next minimum value and move it to index 1. This continues until all values
-  are sorted.
+  Selection sort works by iterating through the list, finding the maximum
+  value, and moving it to the end of the list. Start from the beginning of the
+  array, find the next max value. Once you have found the max, move to the back of the array.
   Unstable sort.
   
-  Time Complexity
-    - Best: O(n^2) quadratic.
-    - Average: O(n^2) quadratic.
-    - Worst: O(n^2) quadratic.
-  Space: O(1) constant.
-  Selection sort is one of the slower sorts.
-  - ideal for: pagination, where page 1 displays 10 records for example,
-      you run selection sort for 10 iterations only to display the first 10
-      sorted items.
+
 */
 
 const numsOrdered = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -26,8 +16,6 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 /**
  * Sorts given array in-place.
- * Best: O(n^2) quadratic.
- * Average: O(n^2) quadratic.
  * Worst: O(n^2) quadratic.
  * @param {Array<number>} nums
  * @returns {Array<number>} The given array after being sorted.
