@@ -46,7 +46,17 @@ const expectedMerge4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @returns {Array<number>} A new sorted array containing all the elements of
  *    both given halves.
  */
-function merge(left = [], right = []) {}
+function merge(left = [], right = []) {
+  // CREATE AN EMPTY ARRAY TO MERGE THE left and right
+
+  // ITERATE THORUGH YOUR left and right ARRAY
+    // COMPARE THE LEFT AND RIGHT VALUES
+  
+  // FINISH ITERATING THROUGH YOUR left ARRAY
+  // FINISH ITERATING THROUGH YOUR right ARRAY
+
+  // RETURN THE MERGED ARRAY
+}
 
 // mergeSort
 const numsOrdered = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -63,4 +73,8 @@ const expectedSort = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  * @param {Array<number>} nums
  * @returns {Array<number>} A New sorted array.
  */
-function mergeSort(nums = []) {}
+function mergeSort(nums = []) {
+  // 1. BASE CASE
+  // 2. FORWARD PROGRESS
+  // 3. RECURSION CALL
+}
