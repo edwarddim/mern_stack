@@ -11,6 +11,8 @@ const Form = () => {
     const [nameError, setNameError] = useState("")
     const [languageError, setLanguageError] = useState("")
 
+    const available = ["Edward", "Tyler", "Narciso"]
+
     
     const nameHandler = (event) => {
         setName(event.target.value)
@@ -55,7 +57,10 @@ const Form = () => {
             <form onSubmit={createUser}>
                 <p>
                     Name:
-                    <input type="text" value={name} onChange={nameHandler} />
+                    <input type="text" list='name-input' value={name} onChange={nameHandler} />
+                    <datalist id='name-input'>
+                        {available.map(name => <option value={name} />)}
+                    </datalist>
                     {(nameError) ? <p>{nameError}</p> : null }
                 </p>
                 <p>
