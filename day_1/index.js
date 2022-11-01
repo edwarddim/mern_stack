@@ -89,3 +89,18 @@ if( age === 32){
 else{
     console.log("you are NOT 32")
 }
+
+
+
+// ----------------------------------------------//
+// ----------------------------------------------//
+// ----------------------------------------------//
+
+
+axios.get("pokemonapi")
+    .then(res => setPokemon(res.data))
+    .catch(error => console.log(error))
+
+
+
+setTimeout(() => console.log('test'), 1000)

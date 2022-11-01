@@ -28,6 +28,7 @@ const Pokemon = () => {
     const makeAPICall = () => {
         axios.get("https://pokeapi.co/api/v2/pokemon")
             .then(res => {
+                console.log(res.data)
                 const {results} = res.data
                 console.log(res.data)
                 setPokeList(results)
