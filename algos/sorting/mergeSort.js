@@ -78,3 +78,48 @@ function mergeSort(nums = []) {
   // 2. FORWARD PROGRESS
   // 3. RECURSION CALL
 }
+function merge(left = [], right = []) {
+  let result = [];
+  let indexLeft = 0;
+  let indexRight = 0;
+
+  while (indexLeft < left.length && indexRight < right.length) {
+    if (left[indexLeft] < right[indexRight]) {
+      result.push(left[indexLeft]);
+      indexLeft++;
+    } else {
+      result.push(right[indexRight]);
+      indexRight++;
+    }
+  }
+
+  // in case one of the arrays has remaining items due to unequal lengths, all of those can be added
+  while (indexLeft < left.length) {
+    result.push(left[indexLeft]);
+    indexLeft++;
+  }
+
+  while (indexRight < right.length) {
+    result.push(right[indexRight]);
+    indexRight++;
+  }
+
+  return result;
+
+  // one liner version of adding in any left over items
+  // return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+}
+
+function mergeSort(nums = []) {
+  if (nums.length === 1) {
+    // return once we hit an array with a single item
+    return nums;
+  }
+
+  const middleIdx = Math.floor(nums.length / 2);
+  const left = nums.slice(0, middleIdx);
+  const right = nums.slice(middleIdx);
+  const sortedLeft = mergeSort(left);
+  const sortedRight = mergeSort(right);
+  return merge(sortedLeft, sortedRight);
+}

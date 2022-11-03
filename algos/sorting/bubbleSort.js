@@ -30,3 +30,23 @@ function bubbleSort(nums = []) {
             // COMPARE THE ADJACENT VALUES
                 // SWAP THE VALUES IF THE LEFT IS GREATER THAN THE RIGHT
 }
+
+function bubbleSort(nums = []) {
+  let isSorted = false;
+
+  while (isSorted === false) {
+    isSorted = true;
+
+    for (let i = 0; i < nums.length - 1; i++) {
+      const j = i + 1;
+
+      if (nums[i] > nums[j]) {
+        isSorted = false;
+        const temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+      }
+    }
+  }
+  return nums;
+}

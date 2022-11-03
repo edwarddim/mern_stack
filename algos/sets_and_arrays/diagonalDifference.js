@@ -44,3 +44,15 @@ const expected2 = 0;
 function diagonalDifference(sqrMatrix) {
   
 }
+
+function diagonalDifference(sqrMatrix) {
+  let ltrSum = 0;
+  let rtlSum = 0;
+
+  for (let i = 0; i < sqrMatrix.length; i++) {
+    const row = sqrMatrix[i];
+    ltrSum += row[i];
+    rtlSum += row[row.length - i - 1];
+  }
+  return Math.abs(ltrSum - rtlSum);
+}

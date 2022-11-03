@@ -104,16 +104,61 @@ function partition(nums = [], left = 0, right = nums.length - 1) {
 
     // SWAP THE PIVOT VALUE WITH THE TEMP PIVOT
 
-    while(true){
+    while (true) {
         // MOVE THE LEFT POINTER RIGHT UNTIL IT FINDS A VALUE LESS THAN PIVOT VALUE
 
         // MOVE THE RIGHT POINTER LEFT UNTIL IT FINDS A VALUE GREATER THAN PIVOT VALUE
 
         // IF THE RIGHT POINTER AND THE LEFT POINTERS HAVE CROSSED EACH OTHER
-            // DO SWAP THE PIVOT VALUE TO WHERE THE LEFT POINTER IS
-            // RETURN THE LEFT POINTER
+        // DO SWAP THE PIVOT VALUE TO WHERE THE LEFT POINTER IS
+        // RETURN THE LEFT POINTER
 
         // ELSE SWAP THE LEFT AND RIGHT POINTERS
         // AND INCREMENT/DECREMENT THE LEFT AND RIGHT POINTERS
     }
+}
+
+function quickSort(nums = [], left = 0, right = nums.length - 1) {
+    if (left < right) {
+        const pivotIndex = partition(nums, left, right);
+        quickSort(nums, left, pivotIndex);
+        quickSort(nums, pivotIndex + 1, right);
+    }
+    return nums;
+}
+
+
+function quickerSort(nums = [], left = 0, right = nums.length - 1) {
+    const stack = [
+        {
+            leftIdx: left,
+            rightIdx: right,
+        },
+    ];
+
+    while (stack.length > 0) {
+        const { leftIdx, rightIdx } = stack.pop();
+
+        if (leftIdx < rightIdx) {
+            const pivotIndex = partition(nums, leftIdx, rightIdx);
+
+            /* 
+            Each item popped will result in 2 being pushed for the left and right
+            side (and each left and right side has it's own left and right side)
+            which mirrors how the two recursive function calls branch.
+            */
+            stack.push(
+                {
+                    leftIdx,
+                    rightIdx: pivotIndex,
+                },
+                {
+                    leftIdx: pivotIndex + 1,
+                    rightIdx,
+                }
+            );
+        }
+    }
+
+    return nums;
 }

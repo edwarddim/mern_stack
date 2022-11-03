@@ -30,3 +30,19 @@ const expected3 = [1, 6];
 function twoNumSum(nums, targetSum) {
     
 }
+
+function twoSum(nums, targetSum) {
+  const numsToIndex = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    const numA = nums[i];
+    const numB = targetSum - numA;
+
+    if (numsToIndex.hasOwnProperty(numB)) {
+      const idxB = numsToIndex[numB];
+      return [idxB, i];
+    }
+    numsToIndex[numA] = i;
+  }
+  return [];
+}
