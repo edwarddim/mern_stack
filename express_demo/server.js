@@ -2,6 +2,8 @@
 const express = require("express")
 const cors = require("cors")
 
+// const { faker } = require("@faker-js/faker")
+
 
 // 2. INSTANTIATE OUR EXPRESS SERVER
 const app = express()
@@ -13,26 +15,9 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors())
 
 
-// 4. DEFINE OUR ENDPOINTS
-app.get("/api", (request, response)=> {
-    response.json({
-        'name' : "Smith Smithster"
-    })
-})
-
-app.get("/api/hello", (req, res) => {
-    res.json("HELLO AGAIN")
-})
-
-app.get("/api/recipes/:recipe_id", (req, res) => {
-    console.log(req.params)
-    res.json(req.params.recipe_id)
-})
-
-app.post("/api", (req, res) => {
-    console.log(req.body)
-    res.json(req.body)
-})
+// 4. CONNECTING THE EXPRESS SERVER TO THE ROUTES
+const expressRoute = require('./routes/express.route.js')
+expressRoute(app)
 
 
 // 5. RUN YOUR EXPRESS SERVER
