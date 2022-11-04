@@ -1,9 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-
 import {Routes, Route} from 'react-router-dom'
 import Create from './pages/Create';
 import Dashboard from './pages/Dashboard';
+import Details from './pages/Details';
 
 function App() {
   return (
@@ -11,7 +9,8 @@ function App() {
       <legend>App.jsx</legend>
       <Routes>
         <Route path="/" element={<Create />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/recipes" element={<Dashboard />} />
+        <Route path="/recipes/:recipe_id" element={<Details />} />
       </Routes>
     </fieldset>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -26,7 +26,7 @@ const Create = () => {
                 setName("")
                 setDate("")
                 setUnder30Mins(false)
-                navigate("/dashboard")
+                navigate("/recipes")
             })
             .catch(errors => console.log(errors))
     }
