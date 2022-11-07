@@ -7,7 +7,7 @@ module.exports.createRecipe = (req, res) => {
             console.log(newRecipe)
             res.json(newRecipe)
         })
-        .catch(errors => res.json(errors))
+        .catch(errors => res.status(400).json(errors))
 }
 // READ ALL
 module.exports.allRecipes = (req, res) => {
@@ -25,7 +25,7 @@ module.exports.oneRecipe = (req,res) => {
 module.exports.updateRecipe = (req, res) => {
     Recipe.findByIdAndUpdate({_id:req.params.recipe_id}, req.body, {new:true, runValidators:true})
         .then(updatedRecipe => res.json(updatedRecipe))
-        .catch(errors => res.json(errors))
+        .catch(errors => res.status(400).json(errors))
 }
 // DELETE
 module.exports.deleteRecipe = (req, res) => {

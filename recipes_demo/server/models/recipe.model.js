@@ -3,13 +3,17 @@ const mongoose = require("mongoose")
 // DEFINE SCHEMA
 const RecipeSchema = new mongoose.Schema({
     name:{
-        type:String
+        type:String,
+        required:[true, "Custom name validation requirement"],
+        minLength:[2, "Name must be 2 characters long"]
     },
     dateMade:{
-        type:Date
+        type:Date,
+        required:[true, "Give me date or else"]
     },
     under30Minutes:{
-        type:Boolean
+        type:Boolean,
+        required:true
     }
 }, {timestamps:true});
 

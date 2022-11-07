@@ -11,6 +11,8 @@ const Create = () => {
     const [date, setDate] = useState("")
     const [under30Mins, setUnder30Mins] = useState(false)
 
+    const [errors, setErrors] = useState([]); 
+
     const createRecipe = (e) => {
         e.preventDefault()
         // CREATE BODY TO SENT OVER TO API
@@ -28,7 +30,16 @@ const Create = () => {
                 setUnder30Mins(false)
                 navigate("/recipes")
             })
-            .catch(errors => console.log(errors))
+            .catch(err=>{
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                // Set Errors
+                setErrors(errorArr);
+            })
+            // .catch(errors => console.log(errors.response.data.errors))
     }
 
     return (
@@ -49,6 +60,9 @@ const Create = () => {
                 </p>
                 <button>Submit</button>
             </form>
+            {
+                errors.map((error) => <p>{error}</p>)
+            }
         </fieldset>
     )
 }

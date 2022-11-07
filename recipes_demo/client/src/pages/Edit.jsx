@@ -16,6 +16,8 @@ const Edit = () => {
     const [date, setDate] = useState("")
     const [under30Mins, setUnder30Mins] = useState(false)
 
+    const [errors, setErrors] = useState([]); 
+
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes/${recipe_id}`)
             .then(res => {
@@ -41,7 +43,15 @@ const Edit = () => {
                 // navigate(`/recipes`) REDIRECT TO DASH
                 navigate(`/recipes/${recipe_id}`) // REDIRECT TO DETAILS
             })
-            .catch(errors => console.log(errors))
+            .catch(err=>{
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                // Set Errors
+                setErrors(errorArr);
+            })
     }
 
     return (
@@ -62,6 +72,9 @@ const Edit = () => {
                 </p>
                 <button>Submit</button>
             </form>
+            {
+                errors.map((error) => <p>{error}</p>)
+            }
         </fieldset>
     )
 }
