@@ -1,12 +1,12 @@
 // DEFINE PROMISE
-const noMondays = new Promise((resolve, reject) => {
-    // IF TODAY IS NOT MONDAY - SUCCESS
-    if (new Date().getDay() !== 2) {
-        resolve("Good, it's not Tuesday!");
-    } else {
-        reject("NO MORE MONDAYS! THREE DAY WEEKENDS FOREVER");
-    }
-});
+// const noMondays = new Promise((resolve, reject) => {
+//     // IF TODAY IS NOT MONDAY - SUCCESS
+//     if (new Date().getDay() !== 2) {
+//         resolve("Good, it's not Tuesday!");
+//     } else {
+//         reject("NO MORE MONDAYS! THREE DAY WEEKENDS FOREVER");
+//     }
+// });
 
 // CHECK PROMISE
 // noMondays

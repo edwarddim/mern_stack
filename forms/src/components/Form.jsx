@@ -14,6 +14,7 @@ const Form = () => {
     const available = ["Edward", "Tyler", "Narciso"]
 
     
+    
     const nameHandler = (event) => {
         setName(event.target.value)
         if(event.target.value.length < 2){

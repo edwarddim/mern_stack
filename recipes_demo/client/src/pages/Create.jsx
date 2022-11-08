@@ -39,6 +39,7 @@ const Create = () => {
                 // Set Errors
                 setErrors(errorArr);
             })
+        console.log("ASYNC")
             // .catch(errors => console.log(errors.response.data.errors))
     }
 
