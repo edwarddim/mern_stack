@@ -2,7 +2,7 @@ const Fruit = require("../models/fruit.model")
 
 
 // CREATE
-module.exports.createMovie = (req, res) => {
+module.exports.createFruit = (req, res) => {
     Fruit.create(req.body)
         .then(newFruit => {
             console.log(newFruit)
