@@ -28,4 +28,4 @@ const expected4 = 4;
  * - Time: O(?).
  * - Space: O(?).
  */
-function lengthOfLongestSubString(str) {}
+function lengthOfLongestSubString(str){}
